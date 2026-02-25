@@ -3,83 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pasumarthi Banquet Hall - Where Celebrations Come Alive</title>
+    <title>Pasumarthi Banquet Hall - Where Dreams Become Celebrations</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- GSAP for Animations -->
+    <!-- GSAP for Advanced Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     
     <style>
         /* ========================================
-           CSS VARIABLES - 8px GRID SYSTEM
+           CSS VARIABLES
            ======================================== */
         :root {
-            /* Primary Colors */
-            --color-primary: #8B1538;
-            --color-primary-dark: #6B0E2B;
-            --color-primary-light: #A61945;
+            /* Rich Color Palette */
+            --color-primary: #7A1B3A;
+            --color-primary-dark: #5A1229;
+            --color-primary-light: #9A2449;
             
-            /* Gold Accents */
-            --color-gold: #D4AF37;
-            --color-gold-light: #E5C158;
-            --color-gold-dark: #C49A2A;
+            --color-gold: #C9A227;
+            --color-gold-light: #D4AF37;
+            --color-gold-dark: #B8921F;
             
-            /* Background Colors */
-            --color-cream: #F5E6D3;
-            --color-cream-dark: #EBD9C1;
-            --color-white-warm: #FDFBF7;
-            
-            /* Text Colors */
-            --color-text-primary: #2C1810;
-            --color-text-secondary: #5C4A3E;
-            --color-text-light: #F5E6D3;
+            --color-cream: #FAF6F0;
+            --color-cream-dark: #F0EBE3;
+            --color-sage: #E8E4DE;
+            --color-charcoal: #2C2C2C;
+            --color-ivory: #FFFEF9;
             
             /* Typography */
-            --font-display: 'Playfair Display', Georgia, serif;
-            --font-body: 'Lato', system-ui, -apple-system, sans-serif;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Montserrat', system-ui, sans-serif;
             
-            /* 8px Grid System */
-            --space-1: 8px;
-            --space-2: 16px;
-            --space-3: 24px;
-            --space-4: 32px;
-            --space-6: 48px;
-            --space-8: 64px;
-            --space-12: 96px;
-            
-            /* Type Scale */
-            --font-sm: 14px;
-            --font-base: 16px;
-            --font-lg: 18px;
-            --font-xl: 24px;
-            --font-2xl: 32px;
-            --font-3xl: 48px;
-            --font-4xl: 64px;
-            
-            /* Border Radius */
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --radius-pill: 50px;
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --space-4xl: 96px;
             
             /* Shadows */
-            --shadow-sm: 0 4px 16px rgba(139, 21, 56, 0.1);
-            --shadow-md: 0 8px 24px rgba(139, 21, 56, 0.15);
-            --shadow-lg: 0 16px 48px rgba(139, 21, 56, 0.2);
+            --shadow-soft: 0 4px 20px rgba(122, 27, 58, 0.08);
+            --shadow-medium: 0 8px 30px rgba(122, 27, 58, 0.12);
+            --shadow-strong: 0 16px 50px rgba(122, 27, 58, 0.18);
             
             /* Transitions */
-            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* ========================================
-           RESET & BASE STYLES
+           RESET
            ======================================== */
         * {
             margin: 0;
@@ -93,12 +73,12 @@
 
         body {
             font-family: var(--font-body);
-            font-size: var(--font-base);
-            line-height: 1.7;
-            color: var(--color-text-primary);
-            background: var(--color-cream);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-charcoal);
+            background: var(--color-ivory);
             overflow-x: hidden;
-            padding-bottom: 60px; /* Space for mobile CTA */
+            padding-bottom: 70px;
         }
 
         /* ========================================
@@ -107,57 +87,35 @@
         h1, h2, h3, h4 {
             font-family: var(--font-display);
             font-weight: 600;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
+            line-height: 1.15;
             color: var(--color-primary);
         }
 
         h1 {
-            font-size: clamp(var(--font-xl), 6vw, var(--font-4xl));
+            font-size: clamp(40px, 10vw, 100px);
             font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         h2 {
-            font-size: clamp(var(--font-xl), 4vw, var(--font-3xl));
-            margin-bottom: var(--space-2);
+            font-size: clamp(32px, 6vw, 64px);
+            margin-bottom: var(--space-md);
         }
 
         h3 {
-            font-size: clamp(var(--font-lg), 2.5vw, var(--font-2xl));
-            margin-bottom: var(--space-1);
+            font-size: clamp(24px, 4vw, 36px);
+            margin-bottom: var(--space-sm);
         }
 
         p {
-            margin-bottom: var(--space-2);
-            color: var(--color-text-secondary);
-        }
-
-        a {
-            color: var(--color-primary);
-            text-decoration: none;
-            transition: all var(--transition-base);
+            font-size: clamp(16px, 2vw, 18px);
+            color: #4A4A4A;
+            margin-bottom: var(--space-md);
+            line-height: 1.8;
         }
 
         /* ========================================
-           FROSTED TOUCH EFFECT
-           ======================================== */
-        .frosted-glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .frosted-glass-dark {
-            background: rgba(139, 21, 56, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        /* ========================================
-           NAVIGATION (FROSTED)
+           NAVIGATION
            ======================================== */
         .nav {
             position: fixed;
@@ -165,12 +123,16 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            transition: all var(--transition-base);
-            padding: var(--space-2) 0;
+            padding: var(--space-lg) 0;
+            transition: all var(--transition);
         }
 
         .nav.scrolled {
-            padding: var(--space-1) 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-soft);
+            padding: var(--space-md) 0;
         }
 
         .nav-container {
@@ -179,46 +141,34 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 var(--space-4);
-        }
-
-        .nav-inner {
-            @extend .frosted-glass;
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-pill);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            gap: var(--space-4);
+            padding: 0 var(--space-xl);
         }
 
         .nav-logo {
             text-decoration: none;
-            flex-shrink: 0;
         }
 
         .logo-text {
             font-family: var(--font-display);
-            font-size: clamp(var(--font-sm), 2vw, var(--font-lg));
+            font-size: clamp(18px, 3vw, 28px);
             font-weight: 700;
             color: var(--color-primary);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
 
         .nav-menu {
             display: flex;
-            gap: var(--space-3);
+            gap: var(--space-xl);
             align-items: center;
-            flex-wrap: wrap;
         }
 
         .nav-link {
-            color: var(--color-text-primary);
+            font-size: 14px;
             font-weight: 500;
-            font-size: var(--font-sm);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             position: relative;
-            padding: var(--space-1) 0;
+            padding: var(--space-sm) 0;
         }
 
         .nav-link::after {
@@ -229,11 +179,7 @@
             width: 0;
             height: 2px;
             background: var(--color-gold);
-            transition: width var(--transition-base);
-        }
-
-        .nav-link:hover {
-            color: var(--color-primary);
+            transition: width var(--transition);
         }
 
         .nav-link:hover::after {
@@ -241,274 +187,212 @@
         }
 
         .nav-cta {
-            padding: var(--space-1) var(--space-3);
             background: var(--color-primary);
-            color: var(--color-gold);
-            border-radius: var(--radius-pill);
+            color: white !important;
+            padding: var(--space-md) var(--space-xl);
+            border-radius: 50px;
             font-weight: 600;
-            font-size: var(--font-sm);
-            transition: all var(--transition-base);
-            flex-shrink: 0;
+            transition: all var(--transition);
         }
 
         .nav-cta:hover {
             background: var(--color-primary-dark);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-soft);
         }
 
-        /* Mobile Navigation */
         .nav-toggle {
             display: none;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
             background: none;
             border: none;
             cursor: pointer;
-            padding: var(--space-1);
-            z-index: 1001;
+            padding: var(--space-sm);
         }
 
         .nav-toggle span {
-            width: 24px;
+            width: 28px;
             height: 2px;
             background: var(--color-primary);
-            transition: all var(--transition-base);
+            transition: all var(--transition);
             border-radius: 2px;
         }
 
         .nav-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(44, 24, 16, 0.5);
+            background: rgba(0, 0, 0, 0.5);
             opacity: 0;
             pointer-events: none;
-            transition: opacity var(--transition-base);
+            transition: opacity var(--transition);
             z-index: 999;
         }
 
         /* ========================================
-           HERO SECTION - ANIMATED
+           HERO SECTION - PARALLAX
            ======================================== */
         .hero {
-            min-height: 100vh;
             position: relative;
-            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-white-warm) 100%);
-            overflow: hidden;
-            padding: 8rem var(--space-2) var(--space-8);
+            min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .hero-pattern {
+        .hero-bg {
             position: absolute;
             inset: 0;
-            background-image:
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 32px,
-                    rgba(212, 175, 55, 0.03) 32px,
-                    rgba(212, 175, 55, 0.03) 64px
-                );
-            pointer-events: none;
+            background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transform: scale(1.1);
         }
 
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-6);
-            align-items: center;
-            position: relative;
-            z-index: 1;
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(122, 27, 58, 0.85) 0%,
+                rgba(122, 27, 58, 0.65) 50%,
+                rgba(201, 162, 39, 0.4) 100%
+            );
         }
 
         .hero-content {
-            opacity: 0; /* Animated with GSAP */
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 1000px;
+            padding: var(--space-xl);
         }
 
         .hero-badge {
             display: inline-block;
-            padding: var(--space-1) var(--space-3);
-            background: var(--color-primary);
-            color: var(--color-gold);
-            font-family: var(--font-display);
-            font-size: var(--font-sm);
-            font-style: italic;
-            border-radius: var(--radius-pill);
-            margin-bottom: var(--space-3);
-            box-shadow: var(--shadow-sm);
+            background: rgba(201, 162, 39, 0.9);
+            color: var(--color-primary-dark);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-xl);
         }
 
         .hero-title {
+            color: white;
+            margin-bottom: var(--space-lg);
             line-height: 1.1;
-            font-weight: 700;
-            color: var(--color-primary);
-            margin-bottom: var(--space-3);
-        }
-
-        .title-line {
-            display: block;
-        }
-
-        .title-accent {
-            color: var(--color-gold-dark);
-            position: relative;
         }
 
         .hero-subtitle {
-            font-size: var(--font-lg);
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-4);
             font-family: var(--font-display);
+            font-size: clamp(20px, 4vw, 28px);
             font-style: italic;
+            color: var(--color-gold-light);
+            margin-bottom: var(--space-2xl);
         }
 
         .hero-features {
             display: flex;
-            gap: var(--space-3);
+            justify-content: center;
+            gap: var(--space-xl);
             flex-wrap: wrap;
-            margin-bottom: var(--space-4);
+            margin-bottom: var(--space-2xl);
         }
 
         .hero-feature {
             display: flex;
             align-items: center;
-            gap: var(--space-1);
-            font-size: var(--font-sm);
-            color: var(--color-text-secondary);
+            gap: var(--space-sm);
+            font-size: 15px;
+            font-weight: 500;
         }
 
         .hero-feature-icon {
-            font-size: var(--font-xl);
+            font-size: 20px;
         }
 
-        .hero-cta {
+        .hero-cta-group {
             display: flex;
-            gap: var(--space-2);
+            gap: var(--space-md);
+            justify-content: center;
             flex-wrap: wrap;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
-            color: var(--color-text-primary);
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-pill);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all var(--transition-base);
-            box-shadow: var(--shadow-sm);
+        .btn {
             display: inline-flex;
             align-items: center;
-            gap: var(--space-1);
-            font-size: var(--font-base);
+            gap: var(--space-sm);
+            padding: var(--space-lg) var(--space-2xl);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--color-gold);
+            color: var(--color-charcoal);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            background: var(--color-gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4);
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--color-primary);
-            padding: var(--space-2) var(--space-4);
-            border: 2px solid var(--color-primary);
-            border-radius: var(--radius-pill);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all var(--transition-base);
-            font-size: var(--font-base);
-        }
-
-        .btn-outline:hover {
-            background: var(--color-primary);
-            color: var(--color-gold);
-            transform: translateY(-2px);
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-            opacity: 0; /* Animated with GSAP */
-        }
-
-        .hero-image-frame {
-            position: relative;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 3px solid var(--color-gold);
-        }
-
-        .hero-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-        }
-
-        .hero-image-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(139, 21, 56, 0.15) 0%,
-                transparent 50%
-            );
-        }
-
-        /* Floating stats cards */
-        .hero-stats {
-            position: absolute;
-            bottom: -16px;
-            right: -16px;
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-2);
-        }
-
-        .stat-card {
-            @extend .frosted-glass;
-            padding: var(--space-2) var(--space-3);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            box-shadow: var(--shadow-md);
-            min-width: 160px;
-        }
-
-        .stat-icon {
-            font-size: var(--font-3xl);
-        }
-
-        .stat-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: var(--font-xl);
-            font-weight: 700;
+        .btn-white {
+            background: white;
             color: var(--color-primary);
         }
 
-        .stat-label {
-            font-size: var(--font-sm);
-            color: var(--color-text-secondary);
+        .btn-white:hover {
+            background: var(--color-ivory);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--space-2xl);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: white;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator-text {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-sm);
+        }
+
+        .scroll-indicator-arrow {
+            font-size: 24px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
         }
 
         /* ========================================
            SECTIONS
            ======================================== */
         .section {
-            position: relative;
-            padding: var(--space-12) var(--space-2);
-            overflow: hidden;
+            padding: var(--space-4xl) var(--space-lg);
         }
 
         .container {
@@ -518,110 +402,91 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: var(--space-6);
+            margin-bottom: var(--space-3xl);
         }
 
         .section-subtitle {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: var(--font-lg);
-            color: var(--color-text-secondary);
-            margin-top: var(--space-1);
-        }
-
-        .divider-ornate {
-            width: 100%;
-            max-width: 250px;
-            height: 2px;
-            margin: var(--space-4) auto;
-            position: relative;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                var(--color-gold-dark),
-                transparent
-            );
-        }
-
-        .divider-ornate::before,
-        .divider-ornate::after {
-            content: '◆';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
             color: var(--color-gold);
-            font-size: var(--font-lg);
+            margin-bottom: var(--space-md);
         }
 
-        .divider-ornate::before {
-            left: var(--space-6);
-        }
-
-        .divider-ornate::after {
-            right: var(--space-6);
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: var(--color-gold);
+            margin: var(--space-xl) auto;
         }
 
         /* ========================================
-           GALLERY SECTION - CATEGORIZED
+           GALLERY SECTION - MASONRY WITH HOVER
            ======================================== */
         .gallery-section {
-            background: var(--color-white-warm);
+            background: var(--color-cream-dark);
         }
 
-        .gallery-nav {
+        .gallery-filters {
             display: flex;
             justify-content: center;
-            gap: var(--space-2);
-            margin-bottom: var(--space-6);
+            gap: var(--space-md);
+            margin-bottom: var(--space-3xl);
             flex-wrap: wrap;
         }
 
-        .gallery-nav-btn {
-            @extend .frosted-glass;
-            padding: var(--space-2) var(--space-4);
-            border: 2px solid transparent;
-            border-radius: var(--radius-pill);
-            font-size: var(--font-sm);
+        .gallery-filter {
+            padding: var(--space-md) var(--space-xl);
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 13px;
             font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             cursor: pointer;
-            transition: all var(--transition-base);
-            background: rgba(255, 255, 255, 0.7);
+            transition: all var(--transition);
         }
 
-        .gallery-nav-btn:hover,
-        .gallery-nav-btn.active {
+        .gallery-filter:hover,
+        .gallery-filter.active {
             background: var(--color-primary);
-            color: var(--color-gold);
-            border-color: var(--color-primary);
+            color: white;
         }
 
         .gallery-grid {
-            display: none;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-4);
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        .gallery-grid.active {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-xl);
         }
 
         .gallery-item {
             position: relative;
-            border-radius: var(--radius-md);
+            border-radius: var(--space-lg);
             overflow: hidden;
             cursor: pointer;
-            transition: all var(--transition-base);
-            box-shadow: var(--shadow-sm);
             aspect-ratio: 4/3;
+            box-shadow: var(--shadow-soft);
+            transition: all var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform var(--transition-slow);
-            display: block;
+            transition: transform 0.6s var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
 
         .gallery-overlay {
@@ -629,364 +494,276 @@
             inset: 0;
             background: linear-gradient(
                 to top,
-                rgba(139, 21, 56, 0.95) 0%,
-                rgba(139, 21, 56, 0.7) 50%,
+                rgba(122, 27, 58, 0.95) 0%,
+                rgba(122, 27, 58, 0.3) 50%,
                 transparent 100%
             );
-            padding: var(--space-3);
+            padding: var(--space-xl);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             opacity: 0;
-            transition: all var(--transition-base);
-            transform: translateY(12px);
-        }
-
-        .gallery-overlay h4 {
-            font-family: var(--font-display);
-            font-size: var(--font-xl);
-            color: var(--color-gold);
-            margin-bottom: var(--space-1);
-        }
-
-        .gallery-overlay p {
-            color: var(--color-white-warm);
-            font-size: var(--font-sm);
-            margin: 0;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
+            transition: all var(--transition);
         }
 
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
-            transform: translateY(0);
+        }
+
+        .gallery-category {
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-sm);
+        }
+
+        .gallery-title {
+            font-family: var(--font-display);
+            font-size: 24px;
+            color: white;
+            margin-bottom: var(--space-sm);
+        }
+
+        .gallery-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* ========================================
-           INTERACTIVE JOURNEY MAP
+           BOOKING JOURNEY TIMELINE
            ======================================== */
-        .visit-section {
-            background: linear-gradient(
-                135deg,
-                var(--color-cream-dark) 0%,
-                var(--color-cream) 100%
-            );
+        .journey-section {
+            background: var(--color-ivory);
         }
 
-        .journey-map {
-            position: relative;
-            background: var(--color-white-warm);
-            border-radius: var(--radius-lg);
-            padding: var(--space-6);
-            box-shadow: var(--shadow-md);
-            margin-top: var(--space-6);
-        }
-
-        .journey-map-header {
+        .journey-intro {
             text-align: center;
-            margin-bottom: var(--space-6);
+            max-width: 700px;
+            margin: 0 auto var(--space-3xl);
         }
 
-        .journey-map-header p {
-            font-size: var(--font-lg);
-            color: var(--color-text-secondary);
-        }
-
-        .map-canvas {
+        .timeline {
             position: relative;
-            background: linear-gradient(135deg, #f5f0e8 0%, #ebe4d6 100%);
-            border-radius: var(--radius-md);
-            padding: var(--space-6);
-            min-height: 400px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: var(--space-4);
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .map-location {
-            position: relative;
-            background: var(--color-white-warm);
-            border: 2px solid var(--color-gold);
-            border-radius: var(--radius-md);
-            padding: var(--space-4);
-            cursor: pointer;
-            transition: all var(--transition-base);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .map-location:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--color-primary);
-        }
-
-        .map-location.active {
-            background: var(--color-primary);
-            border-color: var(--color-gold);
-        }
-
-        .map-location.active .location-icon,
-        .map-location.active .location-title {
-            color: var(--color-gold);
-        }
-
-        .map-location.active .location-desc {
-            color: var(--color-white-warm);
-        }
-
-        .location-icon {
-            font-size: var(--font-4xl);
-            margin-bottom: var(--space-2);
-        }
-
-        .location-title {
-            font-family: var(--font-display);
-            font-size: var(--font-lg);
-            font-weight: 600;
-            color: var(--color-primary);
-            margin-bottom: var(--space-1);
-        }
-
-        .location-desc {
-            font-size: var(--font-sm);
-            color: var(--color-text-secondary);
-        }
-
-        .location-arrow {
+        .timeline::before {
+            content: '';
             position: absolute;
-            font-size: var(--font-3xl);
-            color: var(--color-gold);
-            animation: bounce 2s infinite;
-        }
-
-        .location-arrow.right {
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .location-arrow.down {
-            bottom: -20px;
             left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--color-gold);
             transform: translateX(-50%);
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-50%) translateY(-8px); }
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--space-3xl);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
         }
 
-        .location-arrow.down {
-            animation: bounceDown 2s infinite;
+        .timeline-item:nth-child(even) {
+            direction: rtl;
         }
 
-        @keyframes bounceDown {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
+        .timeline-content {
+            background: white;
+            padding: var(--space-xl);
+            border-radius: var(--space-lg);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            transition: all var(--transition);
         }
 
-        /* Info Panel */
-        .info-panel {
-            @extend .frosted-glass;
-            border-radius: var(--radius-md);
-            padding: var(--space-4);
-            margin-top: var(--space-4);
-            display: none;
-            animation: slideIn 0.3s ease-out;
+        .timeline-content:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
         }
 
-        .info-panel.active {
-            display: block;
+        .timeline-number {
+            position: absolute;
+            top: var(--space-xl);
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
         }
 
-        .info-panel h4 {
-            font-size: var(--font-xl);
-            margin-bottom: var(--space-2);
+        .timeline-item:nth-child(odd) .timeline-number {
+            right: -20px;
         }
 
-        .info-panel ul {
-            list-style: none;
-            padding: 0;
+        .timeline-item:nth-child(even) .timeline-number {
+            left: -20px;
         }
 
-        .info-panel li {
-            padding: var(--space-1) 0;
-            border-bottom: 1px solid rgba(139, 21, 56, 0.1);
-            font-size: var(--font-sm);
+        .timeline-icon {
+            font-size: 32px;
+            margin-bottom: var(--space-md);
         }
 
-        .info-panel li:last-child {
-            border-bottom: none;
+        .timeline-title {
+            font-family: var(--font-display);
+            font-size: 24px;
+            margin-bottom: var(--space-sm);
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .timeline-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #666;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .timeline-cta {
+            margin-top: var(--space-lg);
+            text-align: center;
+        }
+
+        .timeline-cta .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ========================================
+           FEATURES SECTION
+           ======================================== */
+        .features-section {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .features-section h2,
+        .features-section p {
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-3xl);
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: var(--space-2xl);
+            border-radius: var(--space-lg);
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: var(--space-lg);
+        }
+
+        .feature-title {
+            font-family: var(--font-display);
+            font-size: 24px;
+            margin-bottom: var(--space-md);
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
         }
 
         /* ========================================
            MOBILE CTA BAR
            ======================================== */
-        .mobile-cta-bar {
+        .mobile-cta {
             display: none;
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background: var(--color-primary);
-            padding: var(--space-2) var(--space-3);
+            padding: var(--space-md) var(--space-lg);
             z-index: 998;
-            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
         }
 
         .mobile-cta-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--space-md);
         }
 
         .mobile-cta-text {
-            color: var(--color-white-warm);
-            font-size: var(--font-sm);
+            color: white;
+            font-size: 13px;
         }
 
         .mobile-cta-text strong {
             display: block;
-            font-size: var(--font-base);
+            font-size: 16px;
             color: var(--color-gold);
         }
 
         .mobile-cta-button {
             background: var(--color-gold);
-            color: var(--color-text-primary);
-            padding: var(--space-2) var(--space-3);
-            border-radius: var(--radius-pill);
+            color: var(--color-charcoal);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: 50px;
             font-weight: 600;
-            font-size: var(--font-sm);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: var(--space-1);
-            flex-shrink: 0;
+            gap: var(--space-sm);
+            white-space: nowrap;
         }
 
         /* ========================================
            FOOTER
            ======================================== */
         .footer {
-            background: var(--color-primary-dark);
-            color: var(--color-white-warm);
-            padding: var(--space-6) var(--space-3);
+            background: var(--color-charcoal);
+            color: white;
+            padding: var(--space-3xl) var(--space-lg);
             text-align: center;
         }
 
         .footer p {
-            color: var(--color-gold);
-            margin: 0;
-            font-size: var(--font-sm);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: var(--space-sm);
         }
 
         /* ========================================
-           ANIMATIONS
+           RESPONSIVE
            ======================================== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(32px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* ========================================
-           RESPONSIVE DESIGN
-           ======================================== */
-        @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: var(--space-4);
-            }
-
-            .hero-image-wrapper {
-                order: -1;
-            }
-
-            .hero-stats {
-                position: static;
-                flex-direction: row;
-                flex-wrap: wrap;
-                margin-top: var(--space-4);
-            }
-
-            .map-canvas {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-            }
-        }
-
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 var(--space-2);
-            }
-
-            .nav-inner {
-                padding: var(--space-1) var(--space-2);
-            }
-
             .nav-menu {
                 display: none;
             }
 
             .nav-toggle {
                 display: flex;
-            }
-
-            .nav-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(4px, 4px);
-            }
-
-            .nav-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(4px, -4px);
             }
 
             .nav-menu.mobile-active {
@@ -997,13 +774,13 @@
                 width: 80%;
                 max-width: 300px;
                 height: 100vh;
-                background: var(--color-cream);
+                background: white;
                 flex-direction: column;
                 justify-content: center;
-                gap: var(--space-4);
-                padding: var(--space-6);
-                box-shadow: -8px 0 24px rgba(139, 21, 56, 0.2);
-                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                gap: var(--space-xl);
+                padding: var(--space-2xl);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+                transition: right 0.4s var(--transition);
             }
 
             .nav-menu.mobile-active.active {
@@ -1015,62 +792,61 @@
                 pointer-events: auto;
             }
 
-            .nav-cta {
-                width: 100%;
-                text-align: center;
-            }
-
-            .mobile-cta-bar {
+            .mobile-cta {
                 display: flex;
             }
 
-            .hero {
-                padding: 7rem var(--space-2) var(--space-12);
+            .timeline::before {
+                left: 30px;
             }
 
-            .hero-cta {
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+                padding-left: 70px;
+            }
+
+            .timeline-item:nth-child(even) {
+                direction: ltr;
+            }
+
+            .timeline-number {
+                left: -50px !important;
+                right: auto !important;
+            }
+
+            .hero-features {
                 flex-direction: column;
+                align-items: center;
+                gap: var(--space-md);
             }
 
-            .btn-primary,
-            .btn-outline {
+            .hero-cta-group {
+                flex-direction: column;
                 width: 100%;
-                text-align: center;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
 
-            .section {
-                padding: var(--space-8) var(--space-2);
-            }
-
-            .journey-map {
-                padding: var(--space-4);
-            }
-
-            .map-canvas {
-                padding: var(--space-4);
-                min-height: auto;
-            }
-
-            .location-arrow {
-                display: none;
+            body {
+                padding-bottom: 70px;
             }
         }
 
         @media (max-width: 480px) {
-            h1 {
-                font-size: var(--font-2xl);
+            .section {
+                padding: var(--space-2xl) var(--space-md);
             }
 
-            h2 {
-                font-size: var(--font-xl);
-            }
-
-            .stat-card {
-                min-width: 140px;
+            .hero-content {
+                padding: var(--space-md);
             }
         }
     </style>
@@ -1079,23 +855,22 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <div class="nav-inner frosted-glass">
-                <a href="#home" class="nav-logo">
-                    <span class="logo-text">Pasumarthi Banquet Hall</span>
-                </a>
+            <a href="#" class="nav-logo">
+                <span class="logo-text">Pasumarthi Banquet Hall</span>
+            </a>
 
-                <button class="nav-toggle" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-                <div class="nav-menu">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#gallery" class="nav-link">Gallery</a>
-                    <a href="#visit" class="nav-link">Visit</a>
-                    <a href="tel:9208108108" class="nav-cta">📞 Call Now</a>
-                </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#journey" class="nav-link">Your Journey</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="tel:9208108108" class="nav-link nav-cta">📞 Book Now</a>
             </div>
         </div>
     </nav>
@@ -1104,309 +879,291 @@
     <div class="nav-overlay"></div>
 
     <!-- Hero Section -->
-    <header id="home" class="hero">
-        <div class="hero-pattern"></div>
-
-        <div class="hero-container">
-            <!-- Left side - Content -->
-            <div class="hero-content">
-                <div class="hero-badge">Where Celebrations Come Alive</div>
-                <h1 class="hero-title">
-                    <span class="title-line">Elegant Spaces</span>
-                    <span class="title-line title-accent">for Unforgettable</span>
-                    <span class="title-line">Celebrations</span>
-                </h1>
-                
-                <div class="hero-features">
-                    <div class="hero-feature">
-                        <span class="hero-feature-icon">👥</span>
-                        <span>Up to 500 guests</span>
-                    </div>
-                    <div class="hero-feature">
-                        <span class="hero-feature-icon">❄️</span>
-                        <span>AC Hall</span>
-                    </div>
-                    <div class="hero-feature">
-                        <span class="hero-feature-icon">🎬</span>
-                        <span>Full AV Setup</span>
-                    </div>
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">Premium Event Venue in Khammam</div>
+            <h1 class="hero-title">Where Dreams Become Celebrations</h1>
+            <p class="hero-subtitle">Up to 500 Guests • Luxury Amenities • Unforgettable Memories</p>
+            
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <span class="hero-feature-icon">❄️</span>
+                    <span>AC Banquet Hall</span>
                 </div>
-
-                <p class="hero-subtitle">
-                    Weddings • Corporate Events • Social Celebrations
-                </p>
-                <div class="hero-cta">
-                    <a href="#visit" class="btn-primary">
-                        <span>📅</span>
-                        <span>Check Availability</span>
-                    </a>
-                    <a href="#gallery" class="btn-outline">View Gallery</a>
+                <div class="hero-feature">
+                    <span class="hero-feature-icon">🎬</span>
+                    <span>Full AV Setup</span>
+                </div>
+                <div class="hero-feature">
+                    <span class="hero-feature-icon">🍽️</span>
+                    <span>Premium Catering</span>
                 </div>
             </div>
 
-            <!-- Right side - Image -->
-            <div class="hero-image-wrapper">
-                <div class="hero-image-frame">
-                    <img src="Hall_header.jpg" alt="Pasumarthi Banquet Hall" class="hero-image">
-                    <div class="hero-image-overlay"></div>
+            <div class="hero-cta-group">
+                <a href="#journey" class="btn btn-primary">
+                    <span>📅</span>
+                    <span>Start Planning</span>
+                </a>
+                <a href="#gallery" class="btn btn-white">
+                    <span>📷</span>
+                    <span>View Gallery</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-indicator-text">Scroll to explore</div>
+            <div class="scroll-indicator-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Why Choose Us</div>
+                <h2>Everything You Need</h2>
+                <div class="divider" style="background: rgba(255,255,255,0.3);"></div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏛️</div>
+                    <h3 class="feature-title">Grand Hall</h3>
+                    <p class="feature-desc">Elegant banquet hall accommodating up to 500 guests with sophisticated decor and ambiance.</p>
                 </div>
-                
-                <!-- Floating Stats -->
-                <div class="hero-stats">
-                    <div class="stat-card">
-                        <span class="stat-icon">🎉</span>
-                        <div class="stat-text">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Events Hosted</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-icon">⭐</span>
-                        <div class="stat-text">
-                            <span class="stat-number">4.9</span>
-                            <span class="stat-label">Customer Rating</span>
-                        </div>
-                    </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3 class="feature-title">Full AV Setup</h3>
+                    <p class="feature-desc">State-of-the-art projector, premium sound system, and professional lighting included.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🍽️</div>
+                    <h3 class="feature-title">Premium Catering</h3>
+                    <p class="feature-desc">Expert culinary team crafting delicious menus for every occasion and taste.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🅿️</div>
+                    <h3 class="feature-title">Ample Parking</h3>
+                    <p class="feature-desc">Double cellar parking with 50+ car capacity and 24-hour lift access.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">❄️</div>
+                    <h3 class="feature-title">Climate Control</h3>
+                    <p class="feature-desc">Central air conditioning ensuring comfort for your guests year-round.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Expert Team</h3>
+                    <p class="feature-desc">Dedicated event coordinators to make your celebration flawless and memorable.</p>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
             <div class="section-header">
-                <h2>Our Gallery</h2>
-                <p class="section-subtitle">Real events, real memories</p>
-                <div class="divider-ornate"></div>
+                <div class="section-subtitle">Our Portfolio</div>
+                <h2>Real Celebrations</h2>
+                <div class="divider"></div>
+                <p>Witness the magic we've created for our clients</p>
             </div>
 
-            <!-- Gallery Navigation -->
-            <div class="gallery-nav">
-                <button class="gallery-nav-btn active" data-category="weddings">💒 Weddings</button>
-                <button class="gallery-nav-btn" data-category="corporate">💼 Corporate</button>
-                <button class="gallery-nav-btn" data-category="social">🎉 Social</button>
+            <div class="gallery-filters">
+                <button class="gallery-filter active" data-filter="all">All Events</button>
+                <button class="gallery-filter" data-filter="wedding">Weddings</button>
+                <button class="gallery-filter" data-filter="corporate">Corporate</button>
+                <button class="gallery-filter" data-filter="social">Social</button>
             </div>
 
-            <!-- Weddings Gallery -->
-            <div class="gallery-grid active" id="weddings">
-                <div class="gallery-item">
-                    <img src="https://placehold.co/600x450/8B1538/FFF?text=Wedding+Ceremony" alt="Wedding Ceremony">
+            <div class="gallery-grid">
+                <!-- Wedding Images -->
+                <div class="gallery-item" data-category="wedding">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Wedding Ceremony">
                     <div class="gallery-overlay">
-                        <h4>Priya & Rahul's Wedding</h4>
-                        <p>300 guests • Jan 2025</p>
+                        <div class="gallery-category">Wedding</div>
+                        <h4 class="gallery-title">Elegant Wedding Ceremony</h4>
+                        <p class="gallery-desc">Priya & Rahul's Special Day • 300 Guests</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/600x450/8B1538/FFF?text=Wedding+Reception" alt="Wedding Reception">
-                    <div class="gallery-overlay">
-                        <h4>Wedding Reception</h4>
-                        <p>400 guests • Dec 2024</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/600x450/8B1538/FFF?text=Mandap+Decoration" alt="Mandap Decoration">
-                    <div class="gallery-overlay">
-                        <h4>Traditional Mandap</h4>
-                        <p>Elegant decor setup</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Corporate Gallery -->
-            <div class="gallery-grid" id="corporate">
-                <div class="gallery-item">
-                    <img src="https://placehold.co/600x450/1B2845/FFF?text=Conference+Setup" alt="Conference">
+                <div class="gallery-item" data-category="wedding">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="Wedding Reception">
                     <div class="gallery-overlay">
-                        <h4>TechCorp Conference</h4>
-                        <p>200 attendees • Nov 2024</p>
+                        <div class="gallery-category">Wedding</div>
+                        <h4 class="gallery-title">Grand Reception</h4>
+                        <p class="gallery-desc">Traditional Ceremony • 400 Guests</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/600x450/1B2845/FFF?text=Corporate+Party" alt="Corporate Party">
-                    <div class="gallery-overlay">
-                        <h4>Annual Corporate Party</h4>
-                        <p>150 guests • Oct 2024</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/600x450/1B2845/FFF?text=Product+Launch" alt="Product Launch">
-                    <div class="gallery-overlay">
-                        <h4>Product Launch Event</h4>
-                        <p>Full AV setup • Sep 2024</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Social Events Gallery -->
-            <div class="gallery-grid" id="social">
-                <div class="gallery-item">
-                    <img src="https://placehold.co/600x450/D4AF37/FFF?text=Birthday+Party" alt="Birthday Party">
+                <div class="gallery-item" data-category="wedding">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&q=80" alt="Wedding Decor">
                     <div class="gallery-overlay">
-                        <h4>Sweet 16 Birthday</h4>
-                        <p>100 guests • Feb 2025</p>
+                        <div class="gallery-category">Wedding</div>
+                        <h4 class="gallery-title">Beautiful Mandap</h4>
+                        <p class="gallery-desc">Custom Floral Design • 250 Guests</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/600x450/D4AF37/FFF?text=Anniversary" alt="Anniversary">
+
+                <!-- Corporate Images -->
+                <div class="gallery-item" data-category="corporate">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80" alt="Conference">
                     <div class="gallery-overlay">
-                        <h4>25th Anniversary</h4>
-                        <p>Family celebration</p>
+                        <div class="gallery-category">Corporate</div>
+                        <h4 class="gallery-title">Tech Conference</h4>
+                        <p class="gallery-desc">Annual Summit • 200 Attendees</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/600x450/D4AF37/FFF?text=Baby+Shower" alt="Baby Shower">
+
+                <div class="gallery-item" data-category="corporate">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Corporate Event">
                     <div class="gallery-overlay">
-                        <h4>Baby Shower</h4>
-                        <p>50 guests • Jan 2025</p>
+                        <div class="gallery-category">Corporate</div>
+                        <h4 class="gallery-title">Product Launch</h4>
+                        <p class="gallery-desc">TechCorp Event • 150 Guests</p>
+                    </div>
+                </div>
+
+                <!-- Social Images -->
+                <div class="gallery-item" data-category="social">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="Birthday Party">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Social</div>
+                        <h4 class="gallery-title">Birthday Celebration</h4>
+                        <p class="gallery-desc">Sweet 16 Party • 100 Guests</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="social">
+                    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&q=80" alt="Anniversary">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Social</div>
+                        <h4 class="gallery-title">25th Anniversary</h4>
+                        <p class="gallery-desc">Family Gathering • 80 Guests</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="social">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80" alt="Baby Shower">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Social</div>
+                        <h4 class="gallery-title">Baby Shower</h4>
+                        <p class="gallery-desc">Gender Reveal • 50 Guests</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Journey Map -->
-    <section id="visit" class="section visit-section">
+    <!-- Booking Journey Timeline -->
+    <section id="journey" class="section journey-section">
         <div class="container">
             <div class="section-header">
-                <h2>Plan Your Visit</h2>
-                <p class="section-subtitle">Explore your journey to the perfect event</p>
-                <div class="divider-ornate"></div>
+                <div class="section-subtitle">Your Event Journey</div>
+                <h2>From Booking to Celebration</h2>
+                <div class="divider"></div>
             </div>
 
-            <div class="journey-map">
-                <div class="journey-map-header">
-                    <p>👆 Click each location to learn more about your event journey</p>
-                </div>
+            <div class="journey-intro">
+                <p>We've crafted a seamless experience to bring your vision to life. Here's how we'll work together from your first inquiry to the final toast.</p>
+            </div>
 
-                <div class="map-canvas">
-                    <!-- Parking -->
-                    <div class="map-location" data-info="parking">
-                        <span class="location-icon">🅿️</span>
-                        <h4 class="location-title">Arrival & Parking</h4>
-                        <span class="location-arrow right">→</span>
-                    </div>
-
-                    <!-- Entrance -->
-                    <div class="map-location" data-info="entrance">
-                        <span class="location-icon">🚪</span>
-                        <h4 class="location-title">Main Entrance</h4>
-                        <span class="location-arrow right">→</span>
-                    </div>
-
-                    <!-- Reception -->
-                    <div class="map-location" data-info="reception">
-                        <span class="location-icon">👋</span>
-                        <h4 class="location-title">Welcome Desk</h4>
-                        <span class="location-arrow down">↓</span>
-                    </div>
-
-                    <!-- Hall -->
-                    <div class="map-location" data-info="hall">
-                        <span class="location-icon">🏛️</span>
-                        <h4 class="location-title">Main Banquet Hall</h4>
-                        <span class="location-arrow right">→</span>
-                    </div>
-
-                    <!-- Dining -->
-                    <div class="map-location" data-info="dining">
-                        <span class="location-icon">🍽️</span>
-                        <h4 class="location-title">Dining Area</h4>
-                        <span class="location-arrow right">→</span>
-                    </div>
-
-                    <!-- Exit -->
-                    <div class="map-location" data-info="exit">
-                        <span class="location-icon">👋</span>
-                        <h4 class="location-title">Event Conclusion</h4>
+            <div class="timeline">
+                <!-- Step 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-number">1</div>
+                        <div class="timeline-icon">📞</div>
+                        <h3 class="timeline-title">Initial Inquiry</h3>
+                        <p class="timeline-desc">Reach out via phone, WhatsApp, or our website form. We'll respond within 2 hours to discuss your vision and check availability for your preferred date.</p>
                     </div>
                 </div>
 
-                <!-- Info Panels -->
-                <div class="info-panel" id="info-parking">
-                    <h4>🅿️ Arrival & Parking</h4>
-                    <ul>
-                        <li>✓ Double cellar parking (50+ cars)</li>
-                        <li>✓ Two 24-hour lifts for easy access</li>
-                        <li>✓ Valet parking available for events</li>
-                        <li>✓ Located on 4th floor, Koppu Naresh Complex</li>
-                    </ul>
+                <!-- Step 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-number">2</div>
+                        <div class="timeline-icon">🏛️</div>
+                        <h3 class="timeline-title">Venue Tour</h3>
+                        <p class="timeline-desc">Visit our banquet hall to experience the space firsthand. We'll show you around, discuss layout options, and help you visualize your event setup.</p>
+                    </div>
                 </div>
 
-                <div class="info-panel" id="info-entrance">
-                    <h4>🚪 Main Entrance</h4>
-                    <ul>
-                        <li>✓ Grand entrance with welcome signage</li>
-                        <li>✓ Elevator access to 4th floor</li>
-                        <li>✓ Wheelchair accessible</li>
-                        <li>✓ Above Avantara showroom, Wyra Rd</li>
-                    </ul>
+                <!-- Step 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-number">3</div>
+                        <div class="timeline-icon">📋</div>
+                        <h3 class="timeline-title">Custom Proposal</h3>
+                        <p class="timeline-desc">Receive a tailored proposal including menu options, decor packages, pricing, and a detailed timeline. We'll refine it until it's perfect for you.</p>
+                    </div>
                 </div>
 
-                <div class="info-panel" id="info-reception">
-                    <h4>👋 Welcome Desk</h4>
-                    <ul>
-                        <li>✓ Event coordinator greets guests</li>
-                        <li>✓ Seating arrangement guidance</li>
-                        <li>✓ Gift collection counter</li>
-                        <li>✓ Name badge distribution (corporate)</li>
-                    </ul>
+                <!-- Step 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-number">4</div>
+                        <div class="timeline-icon">✍️</div>
+                        <h3 class="timeline-title">Booking Confirmation</h3>
+                        <p class="timeline-desc">Secure your date with a simple booking agreement and deposit. We'll immediately begin planning all the details for your special day.</p>
+                    </div>
                 </div>
 
-                <div class="info-panel" id="info-hall">
-                    <h4>🏛️ Main Banquet Hall</h4>
-                    <ul>
-                        <li>✓ Capacity: 100-500 guests (seated)</li>
-                        <li>✓ Central air conditioning</li>
-                        <li>✓ Full AV setup (projector, sound, mic)</li>
-                        <li>✓ Elegant stage with backdrop</li>
-                        <li>✓ Flexible seating arrangements</li>
-                    </ul>
+                <!-- Step 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-number">5</div>
+                        <div class="timeline-icon">🎨</div>
+                        <h3 class="timeline-title">Event Planning</h3>
+                        <p class="timeline-desc">Our dedicated coordinator works with you on menus, decor, seating arrangements, AV requirements, and every detail to ensure perfection.</p>
+                    </div>
                 </div>
 
-                <div class="info-panel" id="info-dining">
-                    <h4>🍽️ Dining Area</h4>
-                    <ul>
-                        <li>✓ Premium catering service included</li>
-                        <li>✓ Buffet or plated service options</li>
-                        <li>✓ Dedicated serving stations</li>
-                        <li>✓ Traditional & contemporary menu</li>
-                    </ul>
+                <!-- Step 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-number">6</div>
+                        <div class="timeline-icon">🎉</div>
+                        <h3 class="timeline-title">Celebration Day</h3>
+                        <p class="timeline-desc">Our team arrives early to set up everything. You and your guests enjoy a flawless event while we handle all logistics behind the scenes.</p>
+                    </div>
                 </div>
+            </div>
 
-                <div class="info-panel" id="info-exit">
-                    <h4>👋 Event Conclusion</h4>
-                    <ul>
-                        <li>✓ Guest departure coordination</li>
-                        <li>✓ Gift distribution assistance</li>
-                        <li>✓ Feedback collection</li>
-                        <li>✓ Safe exit guidance</li>
-                    </ul>
-                </div>
-
-                <!-- CTA -->
-                <div style="text-align: center; margin-top: var(--space-6);">
-                    <a href="tel:9208108108" class="btn-primary btn-large">
-                        <span>📞</span>
-                        <span>Book Your Venue Tour</span>
-                    </a>
-                </div>
+            <div class="timeline-cta" style="margin-top: var(--space-3xl); text-align: center;">
+                <h3 style="margin-bottom: var(--space-lg);">Ready to Start Your Journey?</h3>
+                <a href="tel:9208108108" class="btn btn-primary" style="display: inline-flex; width: auto; padding: var(--space-lg) var(--space-2xl);">
+                    <span>📞</span>
+                    <span>Call Us Now - (920) 810-8108</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>© 2025 Pasumarthi Banquet Hall. All rights reserved. | Where Celebrations Come Alive</p>
-        <p style="margin-top: 8px; font-size: 12px;">📍 Khammam, Telangana | 📞 (920) 810-8108</p>
+        <p>© 2025 Pasumarthi Banquet Hall. All rights reserved.</p>
+        <p>📍 4th Floor, Koppu Naresh Complex, Wyra Rd, Khammam, Telangana 507001</p>
+        <p style="margin-top: var(--space-md);">📞 (920) 810-8108 | ✉️ info@pasumarthibanquet.com</p>
     </footer>
 
     <!-- Mobile CTA Bar -->
-    <div class="mobile-cta-bar">
+    <div class="mobile-cta">
         <div class="mobile-cta-content">
             <div class="mobile-cta-text">
                 <strong>Book Your Event</strong>
-                <span>Up to 500 guests</span>
+                Up to 500 guests
             </div>
             <a href="tel:9208108108" class="mobile-cta-button">
                 <span>📞</span>
@@ -1417,70 +1174,97 @@
 
     <!-- JavaScript -->
     <script>
-        // ========================================
-        // GSAP Animations
-        // ========================================
-        gsap.registerPlugin(ScrollTrigger);
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-        // Hero animations on load
+        // Hero parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg && scrolled < window.innerHeight) {
+                heroBg.style.transform = `scale(1.1) translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Animate hero content on load
         window.addEventListener('load', () => {
-            // Animate hero content
-            gsap.to('.hero-content', {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                ease: 'power3.out'
-            });
-
-            // Animate hero image
-            gsap.to('.hero-image-wrapper', {
-                opacity: 1,
-                x: 0,
-                duration: 1.2,
-                delay: 0.3,
-                ease: 'power3.out'
-            });
-
-            // Animate stats cards
-            gsap.from('.stat-card', {
+            gsap.from('.hero-badge', {
                 opacity: 0,
-                y: 20,
+                y: 30,
                 duration: 0.8,
-                stagger: 0.2,
-                delay: 0.8,
-                ease: 'power2.out'
+                delay: 0.2
+            });
+
+            gsap.from('.hero-title', {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.4
+            });
+
+            gsap.from('.hero-subtitle', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                delay: 0.6
+            });
+
+            gsap.from('.hero-features', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                delay: 0.8
+            });
+
+            gsap.from('.hero-cta-group', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                delay: 1
             });
         });
 
-        // Scroll-triggered animations
-        gsap.utils.toArray('.section-header').forEach(header => {
-            gsap.from(header, {
+        // Scroll-triggered animations for timeline
+        gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+            gsap.from(item, {
                 opacity: 0,
-                y: 40,
+                y: 50,
                 duration: 0.8,
                 scrollTrigger: {
-                    trigger: header,
+                    trigger: item,
                     start: 'top 80%',
                     toggleActions: 'play none none none'
-                }
+                },
+                delay: i * 0.1
             });
         });
 
-        // ========================================
+        // Scroll-triggered animations for features
+        gsap.utils.toArray('.feature-card').forEach((card, i) => {
+            gsap.from(card, {
+                opacity: 0,
+                y: 40,
+                duration: 0.6,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                delay: i * 0.1
+            });
+        });
+
         // Navbar scroll effect
-        // ========================================
         const nav = document.querySelector('.nav');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 100) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
         });
 
-        // ========================================
         // Mobile nav toggle
-        // ========================================
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
         const navOverlay = document.querySelector('.nav-overlay');
@@ -1499,8 +1283,8 @@
             navOverlay.classList.remove('active');
         });
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+        // Close menu on link click
+        document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('mobile-active');
@@ -1509,42 +1293,37 @@
             });
         });
 
-        // ========================================
-        // Gallery Navigation
-        // ========================================
-        const galleryNavBtns = document.querySelectorAll('.gallery-nav-btn');
-        const galleryGrids = document.querySelectorAll('.gallery-grid');
+        // Gallery filter
+        const filterBtns = document.querySelectorAll('.gallery-filter');
+        const galleryItems = document.querySelectorAll('.gallery-item');
 
-        galleryNavBtns.forEach(btn => {
+        filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active from all
-                galleryNavBtns.forEach(b => b.classList.remove('active'));
-                galleryGrids.forEach(g => g.classList.remove('active'));
-
-                // Add active to clicked
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                const category = btn.dataset.category;
-                document.getElementById(category).classList.add('active');
-            });
-        });
 
-        // ========================================
-        // Interactive Journey Map
-        // ========================================
-        const mapLocations = document.querySelectorAll('.map-location');
-        const infoPanels = document.querySelectorAll('.info-panel');
-
-        mapLocations.forEach(location => {
-            location.addEventListener('click', () => {
-                const info = location.dataset.info;
-
-                // Remove active from all
-                mapLocations.forEach(l => l.classList.remove('active'));
-                infoPanels.forEach(p => p.classList.remove('active'));
-
-                // Add active to clicked
-                location.classList.add('active');
-                document.getElementById('info-' + info).classList.add('active');
+                // Filter items
+                const filter = btn.dataset.filter;
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        gsap.to(item, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.3,
+                            display: 'block'
+                        });
+                    } else {
+                        gsap.to(item, {
+                            opacity: 0,
+                            scale: 0.8,
+                            duration: 0.3,
+                            onComplete: () => {
+                                item.style.display = 'none';
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>
