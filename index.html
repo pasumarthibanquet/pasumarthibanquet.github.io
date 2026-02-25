@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasumarthi Banquet Hall - Where Dreams Become Celebrations</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Pasumarthi Banquet Hall - Khammam's premier event venue. Up to 500 guests, AC hall, full AV setup, premium catering. Book your celebration today!">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Pasumarthi Banquet Hall - Where Dreams Become Celebrations">
+    <meta property="og:description" content="Khammam's premier event venue for weddings, corporate events, and celebrations.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=80">
+    <meta property="og:url" content="https://pasumarthibanquet.github.io/">
+    <meta property="og:type" content="website">
+    
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://api.iconify.design">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    
     <!-- Google Fonts - OUTFIT + DM SANS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,8 +48,8 @@
             --color-tan: #C3B7AD;
             
             /* Typography - OUTFIT + DM SANS */
-            --font-display: 'Outfit', sans-serif;
-            --font-body: 'DM Sans', system-ui, sans-serif;
+            --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             
             /* Spacing */
             --space-sm: 8px;
@@ -68,8 +83,22 @@
             color: var(--color-charcoal);
             background: var(--color-cream);
             overflow-x: hidden;
-            padding-bottom: 70px;
+            padding-bottom: 80px;
             position: relative;
+        }
+
+        /* ========================================
+           TOUCH ACTION - All Interactive Elements
+           ======================================== */
+        .btn, .nav-link, .gallery-filter, .nav-toggle, .mobile-cta-button, .toggle-btn {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Focus indicators for accessibility */
+        .btn:focus, .nav-link:focus, .gallery-filter:focus, .nav-toggle:focus, .toggle-btn:focus {
+            outline: 3px solid var(--color-gold);
+            outline-offset: 2px;
         }
 
         /* ========================================
@@ -126,7 +155,7 @@
         }
 
         /* ========================================
-           NAVIGATION
+           NAVIGATION - Improved Touch Targets
            ======================================== */
         .nav {
             position: fixed;
@@ -189,7 +218,10 @@
             text-transform: uppercase;
             color: var(--color-white);
             text-decoration: none;
-            padding: var(--space-sm) var(--space-md);
+            padding: 12px var(--space-md);
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
             border-radius: 8px;
             transition: all var(--transition);
             position: relative;
@@ -225,7 +257,7 @@
         .nav-cta {
             background: var(--color-gold) !important;
             color: var(--color-charcoal) !important;
-            padding: 10px var(--space-lg);
+            padding: 12px var(--space-lg);
             border-radius: 50px;
             font-weight: 700;
             box-shadow: 0 4px 16px rgba(201, 162, 39, 0.3);
@@ -249,6 +281,9 @@
             cursor: pointer;
             padding: var(--space-sm);
             border-radius: 8px;
+            width: 44px;
+            height: 44px;
+            justify-content: center;
         }
 
         .nav.scrolled .nav-toggle {
@@ -257,11 +292,25 @@
         }
 
         .nav-toggle span {
-            width: 28px;
+            width: 24px;
             height: 2px;
             background: white;
-            transition: all var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 2px;
+            transform-origin: center;
+        }
+
+        /* Hamburger to X animation */
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
         }
 
         .nav-overlay {
@@ -275,7 +324,7 @@
         }
 
         /* ========================================
-           HERO SECTION
+           HERO SECTION - Responsive Images
            ======================================== */
         .hero {
             position: relative;
@@ -286,13 +335,20 @@
             overflow: hidden;
         }
 
+        .hero-bg-wrapper {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=80');
-            background-size: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             background-position: center;
-            background-attachment: fixed;
         }
 
         .hero-overlay {
@@ -390,6 +446,7 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: var(--space-sm);
             padding: 14px var(--space-2xl);
             border-radius: 50px;
@@ -398,6 +455,9 @@
             text-decoration: none;
             transition: all var(--transition);
             font-family: var(--font-body);
+            min-height: 48px;
+            cursor: pointer;
+            border: none;
         }
 
         .btn-primary {
@@ -558,6 +618,11 @@
             transition: all var(--transition);
             color: var(--color-tan);
             padding: var(--space-sm) var(--space-md);
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             white-space: nowrap;
         }
 
@@ -725,6 +790,10 @@
             background: transparent;
             border: none;
             font-family: var(--font-body);
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .toggle-btn.active {
@@ -999,6 +1068,7 @@
             background: var(--color-charcoal);
             color: white;
             padding: var(--space-xl) var(--space-xl);
+            padding-bottom: 100px;
             text-align: center;
         }
 
@@ -1044,7 +1114,7 @@
         .mobile-cta-button {
             background: var(--color-gold);
             color: var(--color-charcoal);
-            padding: 10px var(--space-lg);
+            padding: 12px var(--space-lg);
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
@@ -1052,6 +1122,7 @@
             align-items: center;
             gap: var(--space-sm);
             white-space: nowrap;
+            min-height: 44px;
         }
 
         /* ========================================
@@ -1111,6 +1182,7 @@
                 font-size: 16px;
                 padding: var(--space-md) 0;
                 text-align: left;
+                min-height: 48px;
             }
 
             .nav-menu.mobile-active .nav-cta {
@@ -1132,6 +1204,11 @@
 
             .mobile-cta {
                 display: flex;
+            }
+
+            /* Disable parallax on mobile */
+            .hero-bg {
+                background-attachment: scroll !important;
             }
 
             .hero-features {
@@ -1217,7 +1294,7 @@
             }
 
             body {
-                padding-bottom: 70px;
+                padding-bottom: 80px;
             }
         }
 
@@ -1268,6 +1345,19 @@
                 aspect-ratio: 1;
             }
         }
+
+        @media (max-width: 360px) {
+            .timeline-item {
+                padding-left: 55px;
+            }
+            
+            .timeline-number {
+                left: -32px !important;
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1298,7 +1388,7 @@
                 <span class="logo-text">Pasumarthi Banquet Hall</span>
             </a>
 
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1315,11 +1405,19 @@
     </nav>
 
     <!-- Mobile Nav Overlay -->
-    <div class="nav-overlay"></div>
+    <div class="nav-overlay" onclick="toggleNav()"></div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-bg"></div>
+        <div class="hero-bg-wrapper">
+            <!-- Responsive hero image using picture element -->
+            <picture class="hero-bg">
+                <source media="(max-width: 480px)" srcset="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80">
+                <source media="(max-width: 768px)" srcset="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80">
+                <source media="(max-width: 1024px)" srcset="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=80">
+                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=80" alt="Banquet Hall" class="hero-bg">
+            </picture>
+        </div>
         <div class="hero-overlay"></div>
         
         <div class="hero-content">
@@ -1343,10 +1441,10 @@
             </div>
 
             <div class="hero-cta-group">
-                <a href="#journey" class="btn btn-primary">
+                <a href="#journey" class="btn btn-primary" onclick="triggerHaptic('medium')">
                     <span>Start Planning</span>
                 </a>
-                <a href="#gallery" class="btn btn-white">
+                <a href="#gallery" class="btn btn-white" onclick="triggerHaptic('light')">
                     <span>View Gallery</span>
                 </a>
             </div>
@@ -1474,7 +1572,11 @@
 
             <div class="gallery-grid">
                 <div class="gallery-item" data-category="wedding">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Wedding Ceremony">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" 
+                         srcset="https://images.unsplash.com/photo-1519741497674-611481863552?w=300&q=80 300w,
+                                 https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80 600w"
+                         sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 300px"
+                         alt="Wedding Ceremony">
                     <div class="gallery-overlay">
                         <div class="gallery-category">Wedding</div>
                         <h4 class="gallery-title">Elegant Wedding</h4>
@@ -1483,7 +1585,11 @@
                 </div>
 
                 <div class="gallery-item" data-category="wedding">
-                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="Wedding Reception">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80"
+                         srcset="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=300&q=80 300w,
+                                 https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80 600w"
+                         sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 300px"
+                         alt="Wedding Reception">
                     <div class="gallery-overlay">
                         <div class="gallery-category">Wedding</div>
                         <h4 class="gallery-title">Grand Reception</h4>
@@ -1492,7 +1598,11 @@
                 </div>
 
                 <div class="gallery-item" data-category="corporate">
-                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80" alt="Conference">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80"
+                         srcset="https://images.unsplash.com/photo-1511578314322-379afb476865?w=300&q=80 300w,
+                                 https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80 600w"
+                         sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 300px"
+                         alt="Conference">
                     <div class="gallery-overlay">
                         <div class="gallery-category">Corporate</div>
                         <h4 class="gallery-title">Tech Conference</h4>
@@ -1501,7 +1611,11 @@
                 </div>
 
                 <div class="gallery-item" data-category="corporate">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Corporate Event">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"
+                         srcset="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&q=80 300w,
+                                 https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80 600w"
+                         sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 300px"
+                         alt="Corporate Event">
                     <div class="gallery-overlay">
                         <div class="gallery-category">Corporate</div>
                         <h4 class="gallery-title">Product Launch</h4>
@@ -1510,7 +1624,11 @@
                 </div>
 
                 <div class="gallery-item" data-category="social">
-                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="Birthday Party">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80"
+                         srcset="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=300&q=80 300w,
+                                 https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80 600w"
+                         sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 300px"
+                         alt="Birthday Party">
                     <div class="gallery-overlay">
                         <div class="gallery-category">Social</div>
                         <h4 class="gallery-title">Birthday</h4>
@@ -1519,7 +1637,11 @@
                 </div>
 
                 <div class="gallery-item" data-category="social">
-                    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&q=80" alt="Anniversary">
+                    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&q=80"
+                         srcset="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=300&q=80 300w,
+                                 https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&q=80 600w"
+                         sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 300px"
+                         alt="Anniversary">
                     <div class="gallery-overlay">
                         <div class="gallery-category">Social</div>
                         <h4 class="gallery-title">Anniversary</h4>
@@ -1655,7 +1777,7 @@
 
             <div class="timeline-cta">
                 <h3>Ready to Start?</h3>
-                <a href="tel:9208108108" class="btn btn-primary">
+                <a href="tel:9208108108" class="btn btn-primary" onclick="triggerHaptic('success')">
                     <span>Call (920) 810-8108</span>
                 </a>
             </div>
@@ -1666,7 +1788,7 @@
     <footer class="footer">
         <p>© 2025 Pasumarthi Banquet Hall. All rights reserved.</p>
         <p>4th Floor, Koppu Naresh Complex, Wyra Rd, Khammam, Telangana 507001</p>
-        <p>(920) 810-8108 | info@pasumarthibanquet.com</p>
+        <p>(920) 810-8108 | <a href="https://wa.me/919208108108" style="color: var(--color-gold-light); text-decoration: none;">WhatsApp</a></p>
     </footer>
 
     <!-- Mobile CTA Bar -->
@@ -1676,7 +1798,7 @@
                 <strong>Book Your Event</strong>
                 Up to 500 guests
             </div>
-            <a href="tel:9208108108" class="mobile-cta-button">
+            <a href="tel:9208108108" class="mobile-cta-button" onclick="triggerHaptic('success')">
                 <span>Call Now</span>
             </a>
         </div>
@@ -1684,14 +1806,82 @@
 
     <!-- JavaScript -->
     <script>
-        lucide.createIcons();
+        // ========================================
+        // HAPTIC FEEDBACK SYSTEM
+        // ========================================
+        function triggerHaptic(intensity) {
+            // Check if device supports vibration
+            if ('vibrate' in navigator) {
+                switch(intensity) {
+                    case 'light':
+                        // Subtle tap feedback
+                        navigator.vibrate(10);
+                        break;
+                    case 'medium':
+                        // Standard button press
+                        navigator.vibrate(15);
+                        break;
+                    case 'heavy':
+                        // Major interaction
+                        navigator.vibrate(20);
+                        break;
+                    case 'success':
+                        // Success pattern: double tap
+                        navigator.vibrate([10, 50, 10]);
+                        break;
+                    case 'error':
+                        // Error pattern: three short pulses
+                        navigator.vibrate([10, 30, 10, 30, 10]);
+                        break;
+                    case 'filter':
+                        // Filter change: gentle pulse
+                        navigator.vibrate([8, 20, 8]);
+                        break;
+                    default:
+                        navigator.vibrate(10);
+                }
+            }
+            
+            // Also provide audio feedback for touch devices
+            // This is a silent "click" that helps with accessibility
+            if ('ontouchstart' in window) {
+                // Silent visual feedback is handled by CSS :active states
+            }
+        }
 
+        // ========================================
+        // NAVIGATION TOGGLE
+        // ========================================
+        function toggleNav() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const navOverlay = document.querySelector('.nav-overlay');
+            
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('mobile-active');
+            navMenu.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            
+            // Haptic feedback for menu toggle
+            triggerHaptic('medium');
+        }
+
+        // ========================================
+        // GALLERY FILTERING
+        // ========================================
         function filterGallery(category, element) {
+            // Remove active from all filters
             document.querySelectorAll('.gallery-filter').forEach(filter => {
                 filter.classList.remove('active');
             });
+            
+            // Add active to clicked filter
             element.classList.add('active');
-
+            
+            // Haptic feedback for filter change
+            triggerHaptic('filter');
+            
+            // Animate gallery items
             const items = document.querySelectorAll('.gallery-item');
             items.forEach(item => {
                 if (category === 'all' || item.dataset.category === category) {
@@ -1714,12 +1904,18 @@
             });
         }
 
+        // ========================================
+        // JOURNEY MODE TOGGLE
+        // ========================================
         function setJourneyMode(mode) {
             const pill = document.getElementById('togglePill');
             const btnFull = document.getElementById('btn-full');
             const btnQuick = document.getElementById('btn-quick');
             const timelineView = document.getElementById('timeline-view');
             const quickView = document.getElementById('quick-view');
+            
+            // Haptic feedback for toggle
+            triggerHaptic('medium');
             
             if (mode === 'full') {
                 pill.style.transform = 'translateX(0)';
@@ -1741,110 +1937,134 @@
             );
         }
 
+        // ========================================
+        // INITIALIZATION & ANIMATIONS
+        // ========================================
+        lucide.createIcons();
+        
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         gsap.registerPlugin(ScrollTrigger);
 
+        // Parallax effect (disabled on mobile for performance)
         window.addEventListener('scroll', () => {
             const scrolled = window.scrollY;
             const heroBg = document.querySelector('.hero-bg');
-            if (heroBg && scrolled < window.innerHeight) {
+            // Only apply parallax on desktop
+            if (heroBg && scrolled < window.innerHeight && window.innerWidth > 768) {
                 heroBg.style.transform = `translateY(${scrolled * 0.3}px)`;
             }
         });
 
         window.addEventListener('load', () => {
-            gsap.from('.hero-venue-name', {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: 0.2
-            });
+            if (!prefersReducedMotion) {
+                gsap.from('.hero-venue-name', {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    delay: 0.2
+                });
 
-            gsap.from('.hero-tagline', {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                delay: 0.5
-            });
+                gsap.from('.hero-tagline', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    delay: 0.5
+                });
 
-            gsap.from('.hero-location', {
-                opacity: 0,
-                y: 20,
-                duration: 0.6,
-                delay: 0.7
-            });
+                gsap.from('.hero-location', {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.6,
+                    delay: 0.7
+                });
 
-            gsap.from('.hero-features', {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                delay: 0.9
-            });
+                gsap.from('.hero-features', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    delay: 0.9
+                });
 
-            gsap.from('.hero-cta-group', {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                delay: 1.1
-            });
+                gsap.from('.hero-cta-group', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    delay: 1.1
+                });
+            } else {
+                // Simple fade-in for reduced motion
+                gsap.set(['.hero-venue-name', '.hero-tagline', '.hero-location', '.hero-features', '.hero-cta-group'], {
+                    opacity: 1,
+                    y: 0
+                });
+            }
         });
 
-        gsap.utils.toArray('.timeline-item').forEach((item, i) => {
-            gsap.from(item, {
-                opacity: 0,
-                y: 40,
-                duration: 0.6,
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                },
-                delay: i * 0.1
+        // Scroll animations
+        if (!prefersReducedMotion) {
+            gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+                gsap.from(item, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.6,
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    },
+                    delay: i * 0.1
+                });
             });
-        });
 
-        gsap.utils.toArray('.feature-card').forEach((card, i) => {
-            gsap.from(card, {
-                opacity: 0,
-                y: 30,
-                duration: 0.5,
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                },
-                delay: i * 0.08
+            gsap.utils.toArray('.feature-card').forEach((card, i) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.5,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    delay: i * 0.08
+                });
             });
-        });
 
-        gsap.utils.toArray('.gallery-item').forEach((item, i) => {
-            gsap.from(item, {
-                opacity: 0,
-                y: 30,
-                duration: 0.5,
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                },
-                delay: i * 0.08
+            gsap.utils.toArray('.gallery-item').forEach((item, i) => {
+                gsap.from(item, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.5,
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    delay: i * 0.08
+                });
             });
-        });
 
-        // Stats counter animation
-        gsap.utils.toArray('.stat-number').forEach((stat, i) => {
-            gsap.from(stat, {
-                opacity: 0,
-                scale: 0.5,
-                duration: 0.6,
-                scrollTrigger: {
-                    trigger: stat,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                },
-                delay: i * 0.1
+            // Stats counter animation
+            gsap.utils.toArray('.stat-number').forEach((stat, i) => {
+                gsap.from(stat, {
+                    opacity: 0,
+                    scale: 0.5,
+                    duration: 0.6,
+                    scrollTrigger: {
+                        trigger: stat,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    delay: i * 0.1
+                });
             });
-        });
+        }
 
+        // ========================================
+        // NAV SCROLL BEHAVIOR
+        // ========================================
         const nav = document.querySelector('.nav');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -1854,33 +2074,9 @@
             }
         });
 
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        const navOverlay = document.querySelector('.nav-overlay');
-
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('mobile-active');
-            navMenu.classList.toggle('active');
-            navOverlay.classList.toggle('active');
-        });
-
-        navOverlay.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('mobile-active');
-            navMenu.classList.remove('active');
-            navOverlay.classList.remove('active');
-        });
-
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('mobile-active');
-                navMenu.classList.remove('active');
-                navOverlay.classList.remove('active');
-            });
-        });
-
+        // ========================================
+        // ACTIVE SECTION HIGHLIGHT
+        // ========================================
         const sections = document.querySelectorAll('section[id]');
         window.addEventListener('scroll', () => {
             let current = '';
@@ -1896,6 +2092,41 @@
                 if (link.getAttribute('href') === `#${current}`) {
                     link.classList.add('active');
                 }
+            });
+        });
+
+        // ========================================
+        // ADD HAPTICS TO ALL INTERACTIVE ELEMENTS
+        // ========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add haptic feedback to all buttons
+            document.querySelectorAll('.btn, .nav-link, .gallery-filter, .toggle-btn').forEach(element => {
+                element.addEventListener('click', () => {
+                    // Determine haptic intensity based on element type
+                    if (element.classList.contains('btn-primary') || element.classList.contains('nav-cta')) {
+                        triggerHaptic('medium');
+                    } else if (element.classList.contains('gallery-filter')) {
+                        triggerHaptic('filter');
+                    } else if (element.classList.contains('toggle-btn')) {
+                        triggerHaptic('medium');
+                    } else {
+                        triggerHaptic('light');
+                    }
+                });
+            });
+            
+            // Add haptic feedback to gallery items
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    triggerHaptic('light');
+                });
+            });
+            
+            // Add haptic feedback to feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    triggerHaptic('light');
+                });
             });
         });
     </script>
