@@ -96,18 +96,18 @@
         }
 
         h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 700;
         }
 
         h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(1.8rem, 4vw, 3rem);
             margin-bottom: var(--spacing-sm);
         }
 
         h3 {
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            margin-bottom: 0.75rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            margin-bottom: 0.5rem;
         }
 
         p {
@@ -157,21 +157,23 @@
 
         .logo-text {
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
             font-weight: 700;
             color: var(--color-primary);
-            letter-spacing: -0.03em;
+            letter-spacing: -0.02em;
         }
 
         .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-link {
             color: var(--color-text-primary);
             font-weight: 500;
+            font-size: 0.95rem;
             position: relative;
             padding: 0.5rem 0;
         }
@@ -196,11 +198,12 @@
         }
 
         .nav-cta {
-            padding: 0.75rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             background: var(--color-primary);
             color: var(--color-gold);
             border-radius: var(--radius-pill);
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all var(--transition-base);
         }
 
@@ -241,19 +244,18 @@
         }
 
         /* ========================================
-           HERO SECTION
+           HERO SECTION - BALANCED LAYOUT
            ======================================== */
         .hero {
             min-height: 100vh;
             position: relative;
-            background: var(--color-cream);
+            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-white-warm) 100%);
             overflow: hidden;
-            padding: 8rem 2rem 4rem;
+            padding: 7rem 2rem 4rem;
             display: flex;
             align-items: center;
         }
 
-        /* Decorative pattern overlay */
         .hero-pattern {
             position: absolute;
             inset: 0;
@@ -269,40 +271,38 @@
         }
 
         .hero-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
             align-items: center;
             position: relative;
             z-index: 1;
         }
 
-        /* Left side - Content */
         .hero-content {
             animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1.2rem;
             background: var(--color-primary);
             color: var(--color-gold);
             font-family: var(--font-display);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-style: italic;
             border-radius: var(--radius-pill);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             box-shadow: var(--shadow-sm);
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1.1;
+            line-height: 1.15;
             font-weight: 700;
             color: var(--color-primary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .title-line {
@@ -314,22 +314,10 @@
             position: relative;
         }
 
-        .title-accent::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: var(--color-gold);
-            opacity: 0.3;
-            z-index: -1;
-        }
-
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--color-text-secondary);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             font-family: var(--font-display);
             font-style: italic;
         }
@@ -343,7 +331,7 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
             color: var(--color-text-primary);
-            padding: 1rem 2.5rem;
+            padding: 0.9rem 2rem;
             border-radius: var(--radius-pill);
             text-decoration: none;
             font-weight: 600;
@@ -352,6 +340,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.95rem;
         }
 
         .btn-primary:hover {
@@ -362,12 +351,13 @@
         .btn-outline {
             background: transparent;
             color: var(--color-primary);
-            padding: 1rem 2.5rem;
+            padding: 0.9rem 2rem;
             border: 2px solid var(--color-primary);
             border-radius: var(--radius-pill);
             text-decoration: none;
             font-weight: 600;
             transition: all var(--transition-base);
+            font-size: 0.95rem;
         }
 
         .btn-outline:hover {
@@ -376,7 +366,6 @@
             transform: translateY(-2px);
         }
 
-        /* Right side - Image with decorative frame */
         .hero-image-wrapper {
             position: relative;
             animation: fadeInRight 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
@@ -404,58 +393,15 @@
             inset: 0;
             background: linear-gradient(
                 135deg,
-                rgba(139, 21, 56, 0.1) 0%,
+                rgba(139, 21, 56, 0.15) 0%,
                 transparent 50%
             );
         }
 
-        /* Floating accent card */
-        .hero-accent-card {
-            position: absolute;
-            bottom: -20px;
-            left: -30px;
-            background: var(--color-white-warm);
-            padding: 1.5rem;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            animation: float 3s ease-in-out infinite;
-            border-left: 4px solid var(--color-gold);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .accent-icon {
-            font-size: 2.5rem;
-        }
-
-        .accent-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .accent-number {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-primary);
-        }
-
-        .accent-label {
-            font-size: 0.85rem;
-            color: var(--color-text-secondary);
-        }
-
-        /* Decorative corner elements */
         .corner-decor {
             position: absolute;
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             pointer-events: none;
         }
 
@@ -482,24 +428,8 @@
             overflow: hidden;
         }
 
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 3px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                var(--color-gold),
-                transparent
-            );
-        }
-
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -511,15 +441,14 @@
         .section-subtitle {
             font-family: var(--font-display);
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--color-text-secondary);
             margin-top: 0.5rem;
         }
 
-        /* Ornate divider */
         .divider-ornate {
             width: 100%;
-            max-width: 300px;
+            max-width: 250px;
             height: 2px;
             margin: 2rem auto;
             position: relative;
@@ -538,27 +467,27 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--color-gold);
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .divider-ornate::before {
-            left: 50px;
+            left: 40px;
         }
 
         .divider-ornate::after {
-            right: 50px;
+            right: 40px;
         }
 
         /* ========================================
-           GALLERY SECTION
+           GALLERY SECTION - UNIFORM SIZES
            ======================================== */
         .gallery-section {
             background: var(--color-white-warm);
         }
 
-        .gallery-masonry {
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -570,10 +499,7 @@
             cursor: pointer;
             transition: all var(--transition-base);
             box-shadow: var(--shadow-sm);
-        }
-
-        .gallery-item-large {
-            grid-row: span 2;
+            aspect-ratio: 4/3;
         }
 
         .gallery-item img {
@@ -581,15 +507,9 @@
             height: 100%;
             object-fit: cover;
             transition: transform var(--transition-slow);
-            aspect-ratio: 4/3;
             display: block;
         }
 
-        .gallery-item-large img {
-            aspect-ratio: 3/4;
-        }
-
-        /* Overlay */
         .gallery-overlay {
             position: absolute;
             inset: 0;
@@ -599,36 +519,35 @@
                 rgba(139, 21, 56, 0.7) 50%,
                 transparent 100%
             );
-            padding: 2rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             opacity: 0;
             transition: all var(--transition-base);
-            transform: translateY(20px);
+            transform: translateY(15px);
         }
 
         .gallery-overlay h3 {
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--color-gold);
             margin-bottom: 0.5rem;
         }
 
         .gallery-overlay p {
             color: var(--color-white-warm);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin: 0;
         }
 
-        /* Hover effects */
         .gallery-item:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-md);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .gallery-item:hover .gallery-overlay {
@@ -637,7 +556,7 @@
         }
 
         /* ========================================
-           ABOUT SECTION
+           ABOUT SECTION - 3 TILES IN ONE ROW
            ======================================== */
         .about-section {
             background: linear-gradient(
@@ -654,25 +573,27 @@
         }
 
         .about-content p {
-            font-size: 1.1rem;
-            line-height: 1.9;
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
 
-        /* Feature highlights */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .feature-item {
             background: var(--color-white-warm);
-            padding: 2rem;
+            padding: 2rem 1.5rem;
             border-radius: var(--radius-md);
             text-align: center;
             transition: all var(--transition-base);
             border-top: 3px solid var(--color-gold);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .feature-item:hover {
@@ -686,12 +607,17 @@
         }
 
         .feature-item h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
 
+        .feature-item p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
         /* ========================================
-           CONTACT SECTION
+           CONTACT SECTION - SMALLER TILES
            ======================================== */
         .contact-section {
             background: linear-gradient(
@@ -703,28 +629,31 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
             margin-top: 3rem;
+            align-items: stretch;
         }
 
         .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            display: contents;
         }
 
         .contact-card {
             background: var(--color-white-warm);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-sm);
             transition: all var(--transition-base);
-            border-left: 4px solid var(--color-gold);
+            border-left: 3px solid var(--color-gold);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .contact-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
 
@@ -747,17 +676,18 @@
         }
 
         .contact-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
         }
 
         .contact-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
         }
 
         .contact-card p {
-            line-height: 1.8;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
         .contact-link,
@@ -766,6 +696,7 @@
             display: inline-block;
             color: var(--color-primary);
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all var(--transition-base);
         }
 
@@ -773,42 +704,40 @@
         .contact-link-phone:hover,
         .contact-link-email:hover {
             color: var(--color-gold-dark);
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
 
-        /* Map */
-        .contact-map {
+        .contact-map-container {
+            grid-column: 1 / -1;
+            margin-top: 2rem;
             border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow-md);
-            min-height: 400px;
         }
 
-        .contact-map iframe {
+        .contact-map-container iframe {
             display: block;
             width: 100%;
-            height: 100%;
-            min-height: 400px;
+            height: 350px;
         }
 
-        /* CTA */
         .contact-cta {
             text-align: center;
-            margin-top: 4rem;
-            padding: 3rem;
+            margin-top: 3rem;
+            padding: 2.5rem 2rem;
             background: var(--color-white-warm);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-md);
         }
 
         .contact-cta h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
         }
 
         .btn-large {
-            padding: 1.25rem 3rem;
-            font-size: 1.1rem;
+            padding: 1.1rem 2.5rem;
+            font-size: 1rem;
         }
 
         .btn-icon {
@@ -821,14 +750,14 @@
         .footer {
             background: var(--color-primary-dark);
             color: var(--color-white-warm);
-            padding: 3rem 2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
         }
 
         .footer p {
             color: var(--color-gold);
             margin: 0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         /* ========================================
@@ -848,7 +777,7 @@
         @keyframes fadeInRight {
             from {
                 opacity: 0;
-                transform: translateX(50px);
+                transform: translateX(40px);
             }
             to {
                 opacity: 1;
@@ -856,10 +785,9 @@
             }
         }
 
-        /* Custom scroll animations */
         .animate-pending {
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -869,54 +797,37 @@
         }
 
         [data-animate="fade-up"] {
-            transform: translateY(40px);
-        }
-
-        [data-animate="fade-down"] {
-            transform: translateY(-40px);
-        }
-
-        [data-animate="fade-left"] {
-            transform: translateX(40px);
-        }
-
-        [data-animate="fade-right"] {
-            transform: translateX(-40px);
+            transform: translateY(30px);
         }
 
         [data-animate="scale-up"] {
-            transform: scale(0.9);
+            transform: scale(0.95);
         }
 
         /* ========================================
            RESPONSIVE DESIGN
            ======================================== */
         @media (max-width: 1024px) {
-            .hero-container,
-            .contact-grid {
+            .hero-container {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2.5rem;
             }
 
             .hero-image-wrapper {
                 order: -1;
             }
 
-            .hero-accent-card {
-                bottom: -15px;
-                left: 15px;
+            .hero {
+                padding: 6rem 1.5rem 3rem;
             }
 
-            .gallery-masonry {
+            .features-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
-            .gallery-item-large {
-                grid-row: span 1;
-            }
-
-            .gallery-item-large img {
-                aspect-ratio: 4/3;
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -925,7 +836,6 @@
                 padding: 0 1rem;
             }
 
-            /* Mobile nav styles */
             .nav-toggle {
                 display: flex;
             }
@@ -972,15 +882,6 @@
                 text-align: center;
             }
 
-            /* Hero mobile */
-            .hero {
-                padding: 7rem 1.5rem 3rem;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
             .hero-cta {
                 flex-direction: column;
             }
@@ -991,28 +892,25 @@
                 text-align: center;
             }
 
-            /* Sections */
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
             .section {
                 padding: 4rem 1.5rem;
             }
 
-            /* Contact mobile */
-            .contact-map {
-                order: -1;
-                min-height: 300px;
-            }
-
-            .contact-map iframe {
-                min-height: 300px;
+            .contact-map-container iframe {
+                height: 250px;
             }
 
             .contact-cta {
                 padding: 2rem 1.5rem;
             }
 
-            /* Features */
-            .features-grid {
-                grid-template-columns: 1fr;
+            .corner-decor {
+                width: 60px;
+                height: 60px;
             }
         }
 
@@ -1022,19 +920,11 @@
             }
 
             h2 {
-                font-size: 1.75rem;
+                font-size: 1.6rem;
             }
 
-            .hero-accent-card {
-                position: relative;
-                bottom: 0;
-                left: 0;
-                margin-top: 1rem;
-            }
-
-            .corner-decor {
-                width: 80px;
-                height: 80px;
+            .hero {
+                padding: 6rem 1rem 2rem;
             }
         }
     </style>
@@ -1044,7 +934,7 @@
     <nav class="nav">
         <div class="nav-container">
             <a href="#home" class="nav-logo">
-                <span class="logo-text">Pasumarthi</span>
+                <span class="logo-text">Pasumarthi Banquet Hall</span>
             </a>
 
             <button class="nav-toggle" aria-label="Toggle navigation">
@@ -1068,11 +958,10 @@
 
     <!-- Hero Section -->
     <header id="home" class="hero">
-        <!-- Decorative pattern overlay -->
         <div class="hero-pattern"></div>
 
         <div class="hero-container">
-            <!-- Left side - Main headline -->
+            <!-- Left side - Content -->
             <div class="hero-content">
                 <div class="hero-badge">Where Celebrations Come Alive</div>
                 <h1 class="hero-title">
@@ -1081,7 +970,7 @@
                     <span class="title-line">Celebrations</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Up to 500 guests • Full AV Setup • Catering Services
+                    Up to 500 guests • Full AV Setup • Premium Catering
                 </p>
                 <div class="hero-cta">
                     <a href="#contact" class="btn-primary">
@@ -1092,24 +981,16 @@
                 </div>
             </div>
 
-            <!-- Right side - Image with decorative frame -->
+            <!-- Right side - Image -->
             <div class="hero-image-wrapper">
                 <div class="hero-image-frame">
                     <img src="Hall_header.jpg" alt="Pasumarthi Banquet Hall" class="hero-image">
                     <div class="hero-image-overlay"></div>
                 </div>
-                <!-- Floating accent card -->
-                <div class="hero-accent-card">
-                    <div class="accent-icon">🎉</div>
-                    <div class="accent-text">
-                        <span class="accent-number">500+</span>
-                        <span class="accent-label">Happy Events</span>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <!-- Decorative border elements -->
+        <!-- Decorative corners -->
         <div class="corner-decor corner-tl"></div>
         <div class="corner-decor corner-br"></div>
     </header>
@@ -1123,17 +1004,15 @@
                 <div class="divider-ornate"></div>
             </div>
 
-            <div class="gallery-masonry">
-                <!-- Large featured image -->
-                <div class="gallery-item gallery-item-large" data-animate="fade-up">
+            <div class="gallery-grid">
+                <div class="gallery-item" data-animate="fade-up">
                     <img src="Main_Hall.jpg" alt="Main Hall">
                     <div class="gallery-overlay">
                         <h3>Main Hall</h3>
-                        <p>Accommodates up to 500 guests in elegant comfort</p>
+                        <p>Accommodates up to 500 guests</p>
                     </div>
                 </div>
 
-                <!-- Standard images -->
                 <div class="gallery-item" data-animate="fade-up">
                     <img src="Setup.jpg" alt="Event Setup">
                     <div class="gallery-overlay">
@@ -1175,27 +1054,22 @@
                     Ample parking space is available, including a double cellar, and two lifts operate 24 hours for convenient access.
                 </p>
 
-                <!-- Feature highlights -->
+                <!-- 3 Feature tiles in one row -->
                 <div class="features-grid">
                     <div class="feature-item" data-animate="scale-up">
                         <div class="feature-icon">❄️</div>
                         <h3>AC Banquet Hall</h3>
-                        <p>Climate-controlled comfort for your guests</p>
+                        <p>Climate-controlled comfort</p>
                     </div>
                     <div class="feature-item" data-animate="scale-up">
                         <div class="feature-icon">🎬</div>
                         <h3>Full AV Setup</h3>
-                        <p>Projector, sound system & lighting included</p>
+                        <p>Projector & sound system</p>
                     </div>
                     <div class="feature-item" data-animate="scale-up">
                         <div class="feature-icon">🍽️</div>
                         <h3>Premium Catering</h3>
-                        <p>Delicious cuisine for every occasion</p>
-                    </div>
-                    <div class="feature-item" data-animate="scale-up">
-                        <div class="feature-icon">🚗</div>
-                        <h3>Ample Parking</h3>
-                        <p>Double cellar with 24-hour lift access</p>
+                        <p>Delicious cuisine included</p>
                     </div>
                 </div>
             </div>
@@ -1212,43 +1086,40 @@
             </div>
 
             <div class="contact-grid">
-                <!-- Information cards -->
-                <div class="contact-info">
-                    <div class="contact-card contact-card-primary" data-animate="fade-up">
-                        <div class="contact-icon">📍</div>
-                        <h3>Location</h3>
-                        <p>
-                            4th floor, Koppu Naresh Complex,<br>
-                            Wyra Rd, above Avantara,<br>
-                            B K Bazar Colony, Khammam,<br>
-                            Telangana 507001, India
-                        </p>
-                        <a href="https://www.google.com/maps?q=Avantara+B+K+Bazar+Colony,Khammam,+507001"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="contact-link">
-                            Get Directions →
-                        </a>
-                    </div>
-
-                    <div class="contact-card" data-animate="fade-up">
-                        <div class="contact-icon">📞</div>
-                        <h3>Contact</h3>
-                        <p>
-                            <a href="tel:9208108108" class="contact-link-phone">(920) 810-8108</a><br>
-                            <a href="mailto:info@elegancehall.com" class="contact-link-email">info@elegancehall.com</a>
-                        </p>
-                    </div>
-
-                    <div class="contact-card" data-animate="fade-up">
-                        <div class="contact-icon">🕐</div>
-                        <h3>Hours</h3>
-                        <p>Monday - Sunday<br><strong>Open 24 Hours</strong></p>
-                    </div>
+                <!-- 3 Smaller tiles aligned -->
+                <div class="contact-card contact-card-primary" data-animate="scale-up">
+                    <div class="contact-icon">📍</div>
+                    <h3>Location</h3>
+                    <p>
+                        4th floor, Koppu Naresh Complex<br>
+                        Wyra Rd, above Avantara<br>
+                        Khammam, Telangana 507001
+                    </p>
+                    <a href="https://www.google.com/maps?q=Avantara+B+K+Bazar+Colony,Khammam,+507001"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="contact-link">
+                        Get Directions →
+                    </a>
                 </div>
 
-                <!-- Map -->
-                <div class="contact-map" data-animate="fade-right">
+                <div class="contact-card" data-animate="scale-up">
+                    <div class="contact-icon">📞</div>
+                    <h3>Contact</h3>
+                    <p>
+                        <a href="tel:9208108108" class="contact-link-phone">(920) 810-8108</a><br>
+                        <a href="mailto:info@elegancehall.com" class="contact-link-email">info@elegancehall.com</a>
+                    </p>
+                </div>
+
+                <div class="contact-card" data-animate="scale-up">
+                    <div class="contact-icon">🕐</div>
+                    <h3>Hours</h3>
+                    <p>Monday - Sunday<br><strong>Open 24 Hours</strong></p>
+                </div>
+
+                <!-- Map below tiles -->
+                <div class="contact-map-container" data-animate="fade-up">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3832.589783473893!2d80.9386!3d17.2472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDE0JzQ5LjkiTiA4MMKwNTYnMTkuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
                         width="100%"
@@ -1280,9 +1151,6 @@
 
     <!-- JavaScript -->
     <script>
-        // ========================================
-        // Custom Scroll Animations
-        // ========================================
         document.addEventListener('DOMContentLoaded', () => {
             // Animation configuration
             const animationConfig = {
