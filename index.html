@@ -10,9 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
     <style>
         /* ========================================
-           CSS VARIABLES - DESIGN TOKENS
+           CSS VARIABLES - 8px GRID SYSTEM
            ======================================== */
         :root {
             /* Primary Colors */
@@ -39,22 +43,34 @@
             --font-display: 'Playfair Display', Georgia, serif;
             --font-body: 'Lato', system-ui, -apple-system, sans-serif;
             
-            /* Spacing */
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 6rem;
+            /* 8px Grid System */
+            --space-1: 8px;
+            --space-2: 16px;
+            --space-3: 24px;
+            --space-4: 32px;
+            --space-6: 48px;
+            --space-8: 64px;
+            --space-12: 96px;
+            
+            /* Type Scale */
+            --font-sm: 14px;
+            --font-base: 16px;
+            --font-lg: 18px;
+            --font-xl: 24px;
+            --font-2xl: 32px;
+            --font-3xl: 48px;
+            --font-4xl: 64px;
             
             /* Border Radius */
             --radius-sm: 8px;
-            --radius-md: 15px;
-            --radius-lg: 20px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
             --radius-pill: 50px;
             
             /* Shadows */
-            --shadow-sm: 0 4px 15px rgba(139, 21, 56, 0.1);
-            --shadow-md: 0 10px 30px rgba(139, 21, 56, 0.15);
-            --shadow-lg: 0 20px 50px rgba(139, 21, 56, 0.2);
+            --shadow-sm: 0 4px 16px rgba(139, 21, 56, 0.1);
+            --shadow-md: 0 8px 24px rgba(139, 21, 56, 0.15);
+            --shadow-lg: 0 16px 48px rgba(139, 21, 56, 0.2);
             
             /* Transitions */
             --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -77,11 +93,12 @@
 
         body {
             font-family: var(--font-body);
-            font-size: 16px;
+            font-size: var(--font-base);
             line-height: 1.7;
             color: var(--color-text-primary);
             background: var(--color-cream);
             overflow-x: hidden;
+            padding-bottom: 60px; /* Space for mobile CTA */
         }
 
         /* ========================================
@@ -96,22 +113,22 @@
         }
 
         h1 {
-            font-size: clamp(2rem, 6vw, 4rem);
+            font-size: clamp(var(--font-xl), 6vw, var(--font-4xl));
             font-weight: 700;
         }
 
         h2 {
-            font-size: clamp(1.8rem, 4vw, 3rem);
-            margin-bottom: var(--spacing-sm);
+            font-size: clamp(var(--font-xl), 4vw, var(--font-3xl));
+            margin-bottom: var(--space-2);
         }
 
         h3 {
-            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-            margin-bottom: 0.5rem;
+            font-size: clamp(var(--font-lg), 2.5vw, var(--font-2xl));
+            margin-bottom: var(--space-1);
         }
 
         p {
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: var(--space-2);
             color: var(--color-text-secondary);
         }
 
@@ -122,24 +139,38 @@
         }
 
         /* ========================================
-           NAVIGATION
+           FROSTED TOUCH EFFECT
+           ======================================== */
+        .frosted-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .frosted-glass-dark {
+            background: rgba(139, 21, 56, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* ========================================
+           NAVIGATION (FROSTED)
            ======================================== */
         .nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(245, 230, 211, 0.95);
-            backdrop-filter: blur(10px);
             z-index: 1000;
             transition: all var(--transition-base);
-            padding: 1rem 0;
+            padding: var(--space-2) 0;
         }
 
         .nav.scrolled {
-            background: rgba(245, 230, 211, 0.98);
-            box-shadow: var(--shadow-sm);
-            padding: 0.75rem 0;
+            padding: var(--space-1) 0;
         }
 
         .nav-container {
@@ -148,16 +179,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 0 var(--space-4);
+        }
+
+        .nav-inner {
+            @extend .frosted-glass;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-pill);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: var(--space-4);
         }
 
         .nav-logo {
             text-decoration: none;
+            flex-shrink: 0;
         }
 
         .logo-text {
             font-family: var(--font-display);
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-size: clamp(var(--font-sm), 2vw, var(--font-lg));
             font-weight: 700;
             color: var(--color-primary);
             letter-spacing: -0.02em;
@@ -165,7 +208,7 @@
 
         .nav-menu {
             display: flex;
-            gap: 1.5rem;
+            gap: var(--space-3);
             align-items: center;
             flex-wrap: wrap;
         }
@@ -173,9 +216,9 @@
         .nav-link {
             color: var(--color-text-primary);
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: var(--font-sm);
             position: relative;
-            padding: 0.5rem 0;
+            padding: var(--space-1) 0;
         }
 
         .nav-link::after {
@@ -198,13 +241,14 @@
         }
 
         .nav-cta {
-            padding: 0.6rem 1.2rem;
+            padding: var(--space-1) var(--space-3);
             background: var(--color-primary);
             color: var(--color-gold);
             border-radius: var(--radius-pill);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: var(--font-sm);
             transition: all var(--transition-base);
+            flex-shrink: 0;
         }
 
         .nav-cta:hover {
@@ -217,16 +261,16 @@
         .nav-toggle {
             display: none;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0.5rem;
+            padding: var(--space-1);
             z-index: 1001;
         }
 
         .nav-toggle span {
-            width: 25px;
+            width: 24px;
             height: 2px;
             background: var(--color-primary);
             transition: all var(--transition-base);
@@ -244,14 +288,14 @@
         }
 
         /* ========================================
-           HERO SECTION - BALANCED LAYOUT
+           HERO SECTION - ANIMATED
            ======================================== */
         .hero {
             min-height: 100vh;
             position: relative;
             background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-white-warm) 100%);
             overflow: hidden;
-            padding: 7rem 2rem 4rem;
+            padding: 8rem var(--space-2) var(--space-8);
             display: flex;
             align-items: center;
         }
@@ -263,9 +307,9 @@
                 repeating-linear-gradient(
                     45deg,
                     transparent,
-                    transparent 35px,
-                    rgba(212, 175, 55, 0.03) 35px,
-                    rgba(212, 175, 55, 0.03) 70px
+                    transparent 32px,
+                    rgba(212, 175, 55, 0.03) 32px,
+                    rgba(212, 175, 55, 0.03) 64px
                 );
             pointer-events: none;
         }
@@ -275,34 +319,34 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: var(--space-6);
             align-items: center;
             position: relative;
             z-index: 1;
         }
 
         .hero-content {
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0; /* Animated with GSAP */
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 0.5rem 1.2rem;
+            padding: var(--space-1) var(--space-3);
             background: var(--color-primary);
             color: var(--color-gold);
             font-family: var(--font-display);
-            font-size: 0.85rem;
+            font-size: var(--font-sm);
             font-style: italic;
             border-radius: var(--radius-pill);
-            margin-bottom: 1.2rem;
+            margin-bottom: var(--space-3);
             box-shadow: var(--shadow-sm);
         }
 
         .hero-title {
-            line-height: 1.15;
+            line-height: 1.1;
             font-weight: 700;
             color: var(--color-primary);
-            margin-bottom: 1.2rem;
+            margin-bottom: var(--space-3);
         }
 
         .title-line {
@@ -315,23 +359,42 @@
         }
 
         .hero-subtitle {
-            font-size: 1rem;
+            font-size: var(--font-lg);
             color: var(--color-text-secondary);
-            margin-bottom: 2rem;
+            margin-bottom: var(--space-4);
             font-family: var(--font-display);
             font-style: italic;
         }
 
+        .hero-features {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            font-size: var(--font-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .hero-feature-icon {
+            font-size: var(--font-xl);
+        }
+
         .hero-cta {
             display: flex;
-            gap: 1rem;
+            gap: var(--space-2);
             flex-wrap: wrap;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
             color: var(--color-text-primary);
-            padding: 0.9rem 2rem;
+            padding: var(--space-2) var(--space-4);
             border-radius: var(--radius-pill);
             text-decoration: none;
             font-weight: 600;
@@ -339,8 +402,8 @@
             box-shadow: var(--shadow-sm);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
+            gap: var(--space-1);
+            font-size: var(--font-base);
         }
 
         .btn-primary:hover {
@@ -351,13 +414,13 @@
         .btn-outline {
             background: transparent;
             color: var(--color-primary);
-            padding: 0.9rem 2rem;
+            padding: var(--space-2) var(--space-4);
             border: 2px solid var(--color-primary);
             border-radius: var(--radius-pill);
             text-decoration: none;
             font-weight: 600;
             transition: all var(--transition-base);
-            font-size: 0.95rem;
+            font-size: var(--font-base);
         }
 
         .btn-outline:hover {
@@ -368,8 +431,7 @@
 
         .hero-image-wrapper {
             position: relative;
-            animation: fadeInRight 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
-            opacity: 0;
+            opacity: 0; /* Animated with GSAP */
         }
 
         .hero-image-frame {
@@ -398,25 +460,46 @@
             );
         }
 
-        .corner-decor {
+        /* Floating stats cards */
+        .hero-stats {
             position: absolute;
-            width: 100px;
-            height: 100px;
-            pointer-events: none;
+            bottom: -16px;
+            right: -16px;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
         }
 
-        .corner-tl {
-            top: 0;
-            left: 0;
-            border-top: 3px solid var(--color-gold);
-            border-left: 3px solid var(--color-gold);
+        .stat-card {
+            @extend .frosted-glass;
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            box-shadow: var(--shadow-md);
+            min-width: 160px;
         }
 
-        .corner-br {
-            bottom: 0;
-            right: 0;
-            border-bottom: 3px solid var(--color-gold);
-            border-right: 3px solid var(--color-gold);
+        .stat-icon {
+            font-size: var(--font-3xl);
+        }
+
+        .stat-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: var(--font-xl);
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .stat-label {
+            font-size: var(--font-sm);
+            color: var(--color-text-secondary);
         }
 
         /* ========================================
@@ -424,7 +507,7 @@
            ======================================== */
         .section {
             position: relative;
-            padding: var(--spacing-xl) 2rem;
+            padding: var(--space-12) var(--space-2);
             overflow: hidden;
         }
 
@@ -435,22 +518,22 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: var(--space-6);
         }
 
         .section-subtitle {
             font-family: var(--font-display);
             font-style: italic;
-            font-size: 1rem;
+            font-size: var(--font-lg);
             color: var(--color-text-secondary);
-            margin-top: 0.5rem;
+            margin-top: var(--space-1);
         }
 
         .divider-ornate {
             width: 100%;
             max-width: 250px;
             height: 2px;
-            margin: 2rem auto;
+            margin: var(--space-4) auto;
             position: relative;
             background: linear-gradient(
                 90deg,
@@ -467,29 +550,60 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--color-gold);
-            font-size: 1rem;
+            font-size: var(--font-lg);
         }
 
         .divider-ornate::before {
-            left: 40px;
+            left: var(--space-6);
         }
 
         .divider-ornate::after {
-            right: 40px;
+            right: var(--space-6);
         }
 
         /* ========================================
-           GALLERY SECTION - UNIFORM SIZES
+           GALLERY SECTION - CATEGORIZED
            ======================================== */
         .gallery-section {
             background: var(--color-white-warm);
         }
 
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+            flex-wrap: wrap;
+        }
+
+        .gallery-nav-btn {
+            @extend .frosted-glass;
+            padding: var(--space-2) var(--space-4);
+            border: 2px solid transparent;
+            border-radius: var(--radius-pill);
+            font-size: var(--font-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .gallery-nav-btn:hover,
+        .gallery-nav-btn.active {
+            background: var(--color-primary);
+            color: var(--color-gold);
+            border-color: var(--color-primary);
+        }
+
         .gallery-grid {
-            display: grid;
+            display: none;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: var(--space-4);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .gallery-grid.active {
+            display: grid;
         }
 
         .gallery-item {
@@ -519,35 +633,35 @@
                 rgba(139, 21, 56, 0.7) 50%,
                 transparent 100%
             );
-            padding: 1.5rem;
+            padding: var(--space-3);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             opacity: 0;
             transition: all var(--transition-base);
-            transform: translateY(15px);
+            transform: translateY(12px);
         }
 
-        .gallery-overlay h3 {
+        .gallery-overlay h4 {
             font-family: var(--font-display);
-            font-size: 1.3rem;
+            font-size: var(--font-xl);
             color: var(--color-gold);
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--space-1);
         }
 
         .gallery-overlay p {
             color: var(--color-white-warm);
-            font-size: 0.9rem;
+            font-size: var(--font-sm);
             margin: 0;
         }
 
         .gallery-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-md);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .gallery-item:hover .gallery-overlay {
@@ -556,9 +670,9 @@
         }
 
         /* ========================================
-           ABOUT SECTION - 3 TILES IN ONE ROW
+           INTERACTIVE JOURNEY MAP
            ======================================== */
-        .about-section {
+        .visit-section {
             background: linear-gradient(
                 135deg,
                 var(--color-cream-dark) 0%,
@@ -566,182 +680,217 @@
             );
         }
 
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-item {
+        .journey-map {
+            position: relative;
             background: var(--color-white-warm);
-            padding: 2rem 1.5rem;
-            border-radius: var(--radius-md);
-            text-align: center;
-            transition: all var(--transition-base);
-            border-top: 3px solid var(--color-gold);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-item h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-item p {
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        /* ========================================
-           CONTACT SECTION - SMALLER TILES
-           ======================================== */
-        .contact-section {
-            background: linear-gradient(
-                135deg,
-                var(--color-cream-dark) 0%,
-                var(--color-cream) 100%
-            );
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-            align-items: stretch;
-        }
-
-        .contact-info {
-            display: contents;
-        }
-
-        .contact-card {
-            background: var(--color-white-warm);
-            padding: 1.5rem;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
-            transition: all var(--transition-base);
-            border-left: 3px solid var(--color-gold);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-3px);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
             box-shadow: var(--shadow-md);
+            margin-top: var(--space-6);
         }
 
-        .contact-card-primary {
-            background: linear-gradient(
-                135deg,
-                var(--color-primary) 0%,
-                var(--color-primary-dark) 100%
-            );
-            border-left-color: var(--color-gold);
+        .journey-map-header {
+            text-align: center;
+            margin-bottom: var(--space-6);
         }
 
-        .contact-card-primary h3,
-        .contact-card-primary p {
-            color: var(--color-white-warm);
+        .journey-map-header p {
+            font-size: var(--font-lg);
+            color: var(--color-text-secondary);
         }
 
-        .contact-card-primary .contact-link {
+        .map-canvas {
+            position: relative;
+            background: linear-gradient(135deg, #f5f0e8 0%, #ebe4d6 100%);
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            min-height: 400px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: var(--space-4);
+        }
+
+        .map-location {
+            position: relative;
+            background: var(--color-white-warm);
+            border: 2px solid var(--color-gold);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .map-location:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+        }
+
+        .map-location.active {
+            background: var(--color-primary);
+            border-color: var(--color-gold);
+        }
+
+        .map-location.active .location-icon,
+        .map-location.active .location-title {
             color: var(--color-gold);
         }
 
-        .contact-icon {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
+        .map-location.active .location-desc {
+            color: var(--color-white-warm);
         }
 
-        .contact-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.6rem;
+        .location-icon {
+            font-size: var(--font-4xl);
+            margin-bottom: var(--space-2);
         }
 
-        .contact-card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .contact-link,
-        .contact-link-phone,
-        .contact-link-email {
-            display: inline-block;
-            color: var(--color-primary);
+        .location-title {
+            font-family: var(--font-display);
+            font-size: var(--font-lg);
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all var(--transition-base);
+            color: var(--color-primary);
+            margin-bottom: var(--space-1);
         }
 
-        .contact-link:hover,
-        .contact-link-phone:hover,
-        .contact-link-email:hover {
-            color: var(--color-gold-dark);
-            transform: translateX(3px);
+        .location-desc {
+            font-size: var(--font-sm);
+            color: var(--color-text-secondary);
         }
 
-        .contact-map-container {
-            grid-column: 1 / -1;
-            margin-top: 2rem;
+        .location-arrow {
+            position: absolute;
+            font-size: var(--font-3xl);
+            color: var(--color-gold);
+            animation: bounce 2s infinite;
+        }
+
+        .location-arrow.right {
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .location-arrow.down {
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateY(-8px); }
+        }
+
+        .location-arrow.down {
+            animation: bounceDown 2s infinite;
+        }
+
+        @keyframes bounceDown {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Info Panel */
+        .info-panel {
+            @extend .frosted-glass;
             border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
+            padding: var(--space-4);
+            margin-top: var(--space-4);
+            display: none;
+            animation: slideIn 0.3s ease-out;
         }
 
-        .contact-map-container iframe {
+        .info-panel.active {
             display: block;
+        }
+
+        .info-panel h4 {
+            font-size: var(--font-xl);
+            margin-bottom: var(--space-2);
+        }
+
+        .info-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-panel li {
+            padding: var(--space-1) 0;
+            border-bottom: 1px solid rgba(139, 21, 56, 0.1);
+            font-size: var(--font-sm);
+        }
+
+        .info-panel li:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ========================================
+           MOBILE CTA BAR
+           ======================================== */
+        .mobile-cta-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            height: 350px;
+            background: var(--color-primary);
+            padding: var(--space-2) var(--space-3);
+            z-index: 998;
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
         }
 
-        .contact-cta {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2.5rem 2rem;
-            background: var(--color-white-warm);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
+        .mobile-cta-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-2);
         }
 
-        .contact-cta h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.2rem;
+        .mobile-cta-text {
+            color: var(--color-white-warm);
+            font-size: var(--font-sm);
         }
 
-        .btn-large {
-            padding: 1.1rem 2.5rem;
-            font-size: 1rem;
+        .mobile-cta-text strong {
+            display: block;
+            font-size: var(--font-base);
+            color: var(--color-gold);
         }
 
-        .btn-icon {
-            margin-right: 0.5rem;
+        .mobile-cta-button {
+            background: var(--color-gold);
+            color: var(--color-text-primary);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: var(--font-sm);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            flex-shrink: 0;
         }
 
         /* ========================================
@@ -750,14 +899,14 @@
         .footer {
             background: var(--color-primary-dark);
             color: var(--color-white-warm);
-            padding: 2.5rem 2rem;
+            padding: var(--space-6) var(--space-3);
             text-align: center;
         }
 
         .footer p {
             color: var(--color-gold);
             margin: 0;
-            font-size: 0.85rem;
+            font-size: var(--font-sm);
         }
 
         /* ========================================
@@ -766,7 +915,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(32px);
             }
             to {
                 opacity: 1;
@@ -785,55 +934,43 @@
             }
         }
 
-        .animate-pending {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .animate-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        [data-animate="fade-up"] {
-            transform: translateY(30px);
-        }
-
-        [data-animate="scale-up"] {
-            transform: scale(0.95);
-        }
-
         /* ========================================
            RESPONSIVE DESIGN
            ======================================== */
         @media (max-width: 1024px) {
             .hero-container {
                 grid-template-columns: 1fr;
-                gap: 2.5rem;
+                gap: var(--space-4);
             }
 
             .hero-image-wrapper {
                 order: -1;
             }
 
-            .hero {
-                padding: 6rem 1.5rem 3rem;
+            .hero-stats {
+                position: static;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin-top: var(--space-4);
             }
 
-            .features-grid {
+            .map-canvas {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
+                grid-template-rows: auto;
             }
         }
 
         @media (max-width: 768px) {
             .nav-container {
-                padding: 0 1rem;
+                padding: 0 var(--space-2);
+            }
+
+            .nav-inner {
+                padding: var(--space-1) var(--space-2);
+            }
+
+            .nav-menu {
+                display: none;
             }
 
             .nav-toggle {
@@ -841,7 +978,7 @@
             }
 
             .nav-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
+                transform: rotate(45deg) translate(4px, 4px);
             }
 
             .nav-toggle.active span:nth-child(2) {
@@ -849,10 +986,11 @@
             }
 
             .nav-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
+                transform: rotate(-45deg) translate(4px, -4px);
             }
 
-            .nav-menu {
+            .nav-menu.mobile-active {
+                display: flex;
                 position: fixed;
                 top: 0;
                 right: -100%;
@@ -862,13 +1000,13 @@
                 background: var(--color-cream);
                 flex-direction: column;
                 justify-content: center;
-                gap: 2rem;
-                padding: 2rem;
-                box-shadow: -10px 0 30px rgba(139, 21, 56, 0.2);
+                gap: var(--space-4);
+                padding: var(--space-6);
+                box-shadow: -8px 0 24px rgba(139, 21, 56, 0.2);
                 transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
-            .nav-menu.active {
+            .nav-menu.mobile-active.active {
                 right: 0;
             }
 
@@ -880,6 +1018,14 @@
             .nav-cta {
                 width: 100%;
                 text-align: center;
+            }
+
+            .mobile-cta-bar {
+                display: flex;
+            }
+
+            .hero {
+                padding: 7rem var(--space-2) var(--space-12);
             }
 
             .hero-cta {
@@ -897,34 +1043,34 @@
             }
 
             .section {
-                padding: 4rem 1.5rem;
+                padding: var(--space-8) var(--space-2);
             }
 
-            .contact-map-container iframe {
-                height: 250px;
+            .journey-map {
+                padding: var(--space-4);
             }
 
-            .contact-cta {
-                padding: 2rem 1.5rem;
+            .map-canvas {
+                padding: var(--space-4);
+                min-height: auto;
             }
 
-            .corner-decor {
-                width: 60px;
-                height: 60px;
+            .location-arrow {
+                display: none;
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 2rem;
+                font-size: var(--font-2xl);
             }
 
             h2 {
-                font-size: 1.6rem;
+                font-size: var(--font-xl);
             }
 
-            .hero {
-                padding: 6rem 1rem 2rem;
+            .stat-card {
+                min-width: 140px;
             }
         }
     </style>
@@ -933,22 +1079,23 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">
-                <span class="logo-text">Pasumarthi Banquet Hall</span>
-            </a>
+            <div class="nav-inner frosted-glass">
+                <a href="#home" class="nav-logo">
+                    <span class="logo-text">Pasumarthi Banquet Hall</span>
+                </a>
 
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-            <div class="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#gallery" class="nav-link">Gallery</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <a href="#contact" class="nav-cta">Book Now</a>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#gallery" class="nav-link">Gallery</a>
+                    <a href="#visit" class="nav-link">Visit</a>
+                    <a href="tel:9208108108" class="nav-cta">📞 Call Now</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -969,13 +1116,29 @@
                     <span class="title-line title-accent">for Unforgettable</span>
                     <span class="title-line">Celebrations</span>
                 </h1>
+                
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <span class="hero-feature-icon">👥</span>
+                        <span>Up to 500 guests</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span class="hero-feature-icon">❄️</span>
+                        <span>AC Hall</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span class="hero-feature-icon">🎬</span>
+                        <span>Full AV Setup</span>
+                    </div>
+                </div>
+
                 <p class="hero-subtitle">
-                    Up to 500 guests • Full AV Setup • Premium Catering
+                    Weddings • Corporate Events • Social Celebrations
                 </p>
                 <div class="hero-cta">
-                    <a href="#contact" class="btn-primary">
-                        <span>📞</span>
-                        <span>Book Your Event</span>
+                    <a href="#visit" class="btn-primary">
+                        <span>📅</span>
+                        <span>Check Availability</span>
                     </a>
                     <a href="#gallery" class="btn-outline">View Gallery</a>
                 </div>
@@ -987,159 +1150,247 @@
                     <img src="Hall_header.jpg" alt="Pasumarthi Banquet Hall" class="hero-image">
                     <div class="hero-image-overlay"></div>
                 </div>
+                
+                <!-- Floating Stats -->
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-icon">🎉</span>
+                        <div class="stat-text">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Events Hosted</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">⭐</span>
+                        <div class="stat-text">
+                            <span class="stat-number">4.9</span>
+                            <span class="stat-label">Customer Rating</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Decorative corners -->
-        <div class="corner-decor corner-tl"></div>
-        <div class="corner-decor corner-br"></div>
     </header>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
-            <div class="section-header" data-animate="fade-up">
-                <h2>Our Space</h2>
-                <p class="section-subtitle">A glimpse into our elegant venue</p>
+            <div class="section-header">
+                <h2>Our Gallery</h2>
+                <p class="section-subtitle">Real events, real memories</p>
                 <div class="divider-ornate"></div>
             </div>
 
-            <div class="gallery-grid">
-                <div class="gallery-item" data-animate="fade-up">
-                    <img src="Main_Hall.jpg" alt="Main Hall">
+            <!-- Gallery Navigation -->
+            <div class="gallery-nav">
+                <button class="gallery-nav-btn active" data-category="weddings">💒 Weddings</button>
+                <button class="gallery-nav-btn" data-category="corporate">💼 Corporate</button>
+                <button class="gallery-nav-btn" data-category="social">🎉 Social</button>
+            </div>
+
+            <!-- Weddings Gallery -->
+            <div class="gallery-grid active" id="weddings">
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x450/8B1538/FFF?text=Wedding+Ceremony" alt="Wedding Ceremony">
                     <div class="gallery-overlay">
-                        <h3>Main Hall</h3>
-                        <p>Accommodates up to 500 guests</p>
+                        <h4>Priya & Rahul's Wedding</h4>
+                        <p>300 guests • Jan 2025</p>
                     </div>
                 </div>
-
-                <div class="gallery-item" data-animate="fade-up">
-                    <img src="Setup.jpg" alt="Event Setup">
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x450/8B1538/FFF?text=Wedding+Reception" alt="Wedding Reception">
                     <div class="gallery-overlay">
-                        <h3>Event Setup</h3>
-                        <p>Beautifully decorated for any occasion</p>
+                        <h4>Wedding Reception</h4>
+                        <p>400 guests • Dec 2024</p>
                     </div>
                 </div>
-
-                <div class="gallery-item" data-animate="fade-up">
-                    <img src="Evening.jpg" alt="Evening Ambience">
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x450/8B1538/FFF?text=Mandap+Decoration" alt="Mandap Decoration">
                     <div class="gallery-overlay">
-                        <h3>Evening Ambience</h3>
-                        <p>Perfect lighting for memorable events</p>
+                        <h4>Traditional Mandap</h4>
+                        <p>Elegant decor setup</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Corporate Gallery -->
+            <div class="gallery-grid" id="corporate">
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x450/1B2845/FFF?text=Conference+Setup" alt="Conference">
+                    <div class="gallery-overlay">
+                        <h4>TechCorp Conference</h4>
+                        <p>200 attendees • Nov 2024</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x450/1B2845/FFF?text=Corporate+Party" alt="Corporate Party">
+                    <div class="gallery-overlay">
+                        <h4>Annual Corporate Party</h4>
+                        <p>150 guests • Oct 2024</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x450/1B2845/FFF?text=Product+Launch" alt="Product Launch">
+                    <div class="gallery-overlay">
+                        <h4>Product Launch Event</h4>
+                        <p>Full AV setup • Sep 2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Events Gallery -->
+            <div class="gallery-grid" id="social">
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x450/D4AF37/FFF?text=Birthday+Party" alt="Birthday Party">
+                    <div class="gallery-overlay">
+                        <h4>Sweet 16 Birthday</h4>
+                        <p>100 guests • Feb 2025</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x450/D4AF37/FFF?text=Anniversary" alt="Anniversary">
+                    <div class="gallery-overlay">
+                        <h4>25th Anniversary</h4>
+                        <p>Family celebration</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/600x450/D4AF37/FFF?text=Baby+Shower" alt="Baby Shower">
+                    <div class="gallery-overlay">
+                        <h4>Baby Shower</h4>
+                        <p>50 guests • Jan 2025</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section about-section">
+    <!-- Interactive Journey Map -->
+    <section id="visit" class="section visit-section">
         <div class="container">
-            <div class="section-header" data-animate="fade-up">
-                <h2>About Us</h2>
-                <p class="section-subtitle">Creating memories that last a lifetime</p>
-                <div class="divider-ornate"></div>
-            </div>
-
-            <div class="about-content" data-animate="fade-up">
-                <p>
-                    Located in the heart of Khammam, Pasumarthi Banquet Hall is a premier venue perfect for weddings, 
-                    birthdays, corporate events, and social gatherings. Our AC banquet hall can accommodate up to 500 guests, 
-                    making it an ideal venue for a variety of celebrations.
-                </p>
-                <br>
-                <p>
-                    We are equipped with a full AV setup and offer premium catering services to suit your needs. 
-                    Our hall can be beautifully decorated for all kinds of functions, ensuring a memorable experience. 
-                    Ample parking space is available, including a double cellar, and two lifts operate 24 hours for convenient access.
-                </p>
-
-                <!-- 3 Feature tiles in one row -->
-                <div class="features-grid">
-                    <div class="feature-item" data-animate="scale-up">
-                        <div class="feature-icon">❄️</div>
-                        <h3>AC Banquet Hall</h3>
-                        <p>Climate-controlled comfort</p>
-                    </div>
-                    <div class="feature-item" data-animate="scale-up">
-                        <div class="feature-icon">🎬</div>
-                        <h3>Full AV Setup</h3>
-                        <p>Projector & sound system</p>
-                    </div>
-                    <div class="feature-item" data-animate="scale-up">
-                        <div class="feature-icon">🍽️</div>
-                        <h3>Premium Catering</h3>
-                        <p>Delicious cuisine included</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <div class="container">
-            <div class="section-header" data-animate="fade-up">
+            <div class="section-header">
                 <h2>Plan Your Visit</h2>
-                <p class="section-subtitle">We'd love to show you around</p>
+                <p class="section-subtitle">Explore your journey to the perfect event</p>
                 <div class="divider-ornate"></div>
             </div>
 
-            <div class="contact-grid">
-                <!-- 3 Smaller tiles aligned -->
-                <div class="contact-card contact-card-primary" data-animate="scale-up">
-                    <div class="contact-icon">📍</div>
-                    <h3>Location</h3>
-                    <p>
-                        4th floor, Koppu Naresh Complex<br>
-                        Wyra Rd, above Avantara<br>
-                        Khammam, Telangana 507001
-                    </p>
-                    <a href="https://www.google.com/maps?q=Avantara+B+K+Bazar+Colony,Khammam,+507001"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="contact-link">
-                        Get Directions →
+            <div class="journey-map">
+                <div class="journey-map-header">
+                    <p>👆 Click each location to learn more about your event journey</p>
+                </div>
+
+                <div class="map-canvas">
+                    <!-- Parking -->
+                    <div class="map-location" data-info="parking">
+                        <span class="location-icon">🅿️</span>
+                        <h4 class="location-title">Arrival & Parking</h4>
+                        <span class="location-arrow right">→</span>
+                    </div>
+
+                    <!-- Entrance -->
+                    <div class="map-location" data-info="entrance">
+                        <span class="location-icon">🚪</span>
+                        <h4 class="location-title">Main Entrance</h4>
+                        <span class="location-arrow right">→</span>
+                    </div>
+
+                    <!-- Reception -->
+                    <div class="map-location" data-info="reception">
+                        <span class="location-icon">👋</span>
+                        <h4 class="location-title">Welcome Desk</h4>
+                        <span class="location-arrow down">↓</span>
+                    </div>
+
+                    <!-- Hall -->
+                    <div class="map-location" data-info="hall">
+                        <span class="location-icon">🏛️</span>
+                        <h4 class="location-title">Main Banquet Hall</h4>
+                        <span class="location-arrow right">→</span>
+                    </div>
+
+                    <!-- Dining -->
+                    <div class="map-location" data-info="dining">
+                        <span class="location-icon">🍽️</span>
+                        <h4 class="location-title">Dining Area</h4>
+                        <span class="location-arrow right">→</span>
+                    </div>
+
+                    <!-- Exit -->
+                    <div class="map-location" data-info="exit">
+                        <span class="location-icon">👋</span>
+                        <h4 class="location-title">Event Conclusion</h4>
+                    </div>
+                </div>
+
+                <!-- Info Panels -->
+                <div class="info-panel" id="info-parking">
+                    <h4>🅿️ Arrival & Parking</h4>
+                    <ul>
+                        <li>✓ Double cellar parking (50+ cars)</li>
+                        <li>✓ Two 24-hour lifts for easy access</li>
+                        <li>✓ Valet parking available for events</li>
+                        <li>✓ Located on 4th floor, Koppu Naresh Complex</li>
+                    </ul>
+                </div>
+
+                <div class="info-panel" id="info-entrance">
+                    <h4>🚪 Main Entrance</h4>
+                    <ul>
+                        <li>✓ Grand entrance with welcome signage</li>
+                        <li>✓ Elevator access to 4th floor</li>
+                        <li>✓ Wheelchair accessible</li>
+                        <li>✓ Above Avantara showroom, Wyra Rd</li>
+                    </ul>
+                </div>
+
+                <div class="info-panel" id="info-reception">
+                    <h4>👋 Welcome Desk</h4>
+                    <ul>
+                        <li>✓ Event coordinator greets guests</li>
+                        <li>✓ Seating arrangement guidance</li>
+                        <li>✓ Gift collection counter</li>
+                        <li>✓ Name badge distribution (corporate)</li>
+                    </ul>
+                </div>
+
+                <div class="info-panel" id="info-hall">
+                    <h4>🏛️ Main Banquet Hall</h4>
+                    <ul>
+                        <li>✓ Capacity: 100-500 guests (seated)</li>
+                        <li>✓ Central air conditioning</li>
+                        <li>✓ Full AV setup (projector, sound, mic)</li>
+                        <li>✓ Elegant stage with backdrop</li>
+                        <li>✓ Flexible seating arrangements</li>
+                    </ul>
+                </div>
+
+                <div class="info-panel" id="info-dining">
+                    <h4>🍽️ Dining Area</h4>
+                    <ul>
+                        <li>✓ Premium catering service included</li>
+                        <li>✓ Buffet or plated service options</li>
+                        <li>✓ Dedicated serving stations</li>
+                        <li>✓ Traditional & contemporary menu</li>
+                    </ul>
+                </div>
+
+                <div class="info-panel" id="info-exit">
+                    <h4>👋 Event Conclusion</h4>
+                    <ul>
+                        <li>✓ Guest departure coordination</li>
+                        <li>✓ Gift distribution assistance</li>
+                        <li>✓ Feedback collection</li>
+                        <li>✓ Safe exit guidance</li>
+                    </ul>
+                </div>
+
+                <!-- CTA -->
+                <div style="text-align: center; margin-top: var(--space-6);">
+                    <a href="tel:9208108108" class="btn-primary btn-large">
+                        <span>📞</span>
+                        <span>Book Your Venue Tour</span>
                     </a>
                 </div>
-
-                <div class="contact-card" data-animate="scale-up">
-                    <div class="contact-icon">📞</div>
-                    <h3>Contact</h3>
-                    <p>
-                        <a href="tel:9208108108" class="contact-link-phone">(920) 810-8108</a><br>
-                        <a href="mailto:info@elegancehall.com" class="contact-link-email">info@elegancehall.com</a>
-                    </p>
-                </div>
-
-                <div class="contact-card" data-animate="scale-up">
-                    <div class="contact-icon">🕐</div>
-                    <h3>Hours</h3>
-                    <p>Monday - Sunday<br><strong>Open 24 Hours</strong></p>
-                </div>
-
-                <!-- Map below tiles -->
-                <div class="contact-map-container" data-animate="fade-up">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3832.589783473893!2d80.9386!3d17.2472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDE0JzQ5LjkiTiA4MMKwNTYnMTkuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
-                        width="100%"
-                        height="100%"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Pasumarthi Banquet Hall Location">
-                    </iframe>
-                </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="contact-cta" data-animate="scale-up">
-                <h3>Ready to Book Your Event?</h3>
-                <a href="tel:9208108108" class="btn-primary btn-large">
-                    <span class="btn-icon">📞</span>
-                    Call Us Now
-                </a>
             </div>
         </div>
     </section>
@@ -1147,72 +1398,153 @@
     <!-- Footer -->
     <footer class="footer">
         <p>© 2025 Pasumarthi Banquet Hall. All rights reserved. | Where Celebrations Come Alive</p>
+        <p style="margin-top: 8px; font-size: 12px;">📍 Khammam, Telangana | 📞 (920) 810-8108</p>
     </footer>
+
+    <!-- Mobile CTA Bar -->
+    <div class="mobile-cta-bar">
+        <div class="mobile-cta-content">
+            <div class="mobile-cta-text">
+                <strong>Book Your Event</strong>
+                <span>Up to 500 guests</span>
+            </div>
+            <a href="tel:9208108108" class="mobile-cta-button">
+                <span>📞</span>
+                <span>Call Now</span>
+            </a>
+        </div>
+    </div>
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Animation configuration
-            const animationConfig = {
-                threshold: 0.15,
-                rootMargin: '0px 0px -50px 0px'
-            };
+        // ========================================
+        // GSAP Animations
+        // ========================================
+        gsap.registerPlugin(ScrollTrigger);
 
-            // Create observer
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                    }
-                });
-            }, animationConfig);
-
-            // Observe elements with data-animate attribute
-            document.querySelectorAll('[data-animate]').forEach(el => {
-                el.classList.add('animate-pending');
-                observer.observe(el);
+        // Hero animations on load
+        window.addEventListener('load', () => {
+            // Animate hero content
+            gsap.to('.hero-content', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power3.out'
             });
 
-            // Navbar scroll effect
-            const nav = document.querySelector('.nav');
-            let lastScroll = 0;
+            // Animate hero image
+            gsap.to('.hero-image-wrapper', {
+                opacity: 1,
+                x: 0,
+                duration: 1.2,
+                delay: 0.3,
+                ease: 'power3.out'
+            });
 
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.scrollY;
+            // Animate stats cards
+            gsap.from('.stat-card', {
+                opacity: 0,
+                y: 20,
+                duration: 0.8,
+                stagger: 0.2,
+                delay: 0.8,
+                ease: 'power2.out'
+            });
+        });
 
-                if (currentScroll > 100) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
+        // Scroll-triggered animations
+        gsap.utils.toArray('.section-header').forEach(header => {
+            gsap.from(header, {
+                opacity: 0,
+                y: 40,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: header,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
                 }
-
-                lastScroll = currentScroll;
             });
+        });
 
-            // Mobile nav toggle
-            const navToggle = document.querySelector('.nav-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            const navOverlay = document.querySelector('.nav-overlay');
+        // ========================================
+        // Navbar scroll effect
+        // ========================================
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
 
-            navToggle.addEventListener('click', () => {
-                navToggle.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                navOverlay.classList.toggle('active');
-            });
+        // ========================================
+        // Mobile nav toggle
+        // ========================================
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navOverlay = document.querySelector('.nav-overlay');
 
-            navOverlay.addEventListener('click', () => {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('mobile-active');
+            navMenu.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+        });
+
+        navOverlay.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('mobile-active');
+            navMenu.classList.remove('active');
+            navOverlay.classList.remove('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+            link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
+                navMenu.classList.remove('mobile-active');
                 navMenu.classList.remove('active');
                 navOverlay.classList.remove('active');
             });
+        });
 
-            // Close menu when clicking a link
-            document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
-                link.addEventListener('click', () => {
-                    navToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    navOverlay.classList.remove('active');
-                });
+        // ========================================
+        // Gallery Navigation
+        // ========================================
+        const galleryNavBtns = document.querySelectorAll('.gallery-nav-btn');
+        const galleryGrids = document.querySelectorAll('.gallery-grid');
+
+        galleryNavBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all
+                galleryNavBtns.forEach(b => b.classList.remove('active'));
+                galleryGrids.forEach(g => g.classList.remove('active'));
+
+                // Add active to clicked
+                btn.classList.add('active');
+                const category = btn.dataset.category;
+                document.getElementById(category).classList.add('active');
+            });
+        });
+
+        // ========================================
+        // Interactive Journey Map
+        // ========================================
+        const mapLocations = document.querySelectorAll('.map-location');
+        const infoPanels = document.querySelectorAll('.info-panel');
+
+        mapLocations.forEach(location => {
+            location.addEventListener('click', () => {
+                const info = location.dataset.info;
+
+                // Remove active from all
+                mapLocations.forEach(l => l.classList.remove('active'));
+                infoPanels.forEach(p => p.classList.remove('active'));
+
+                // Add active to clicked
+                location.classList.add('active');
+                document.getElementById('info-' + info).classList.add('active');
             });
         });
     </script>
