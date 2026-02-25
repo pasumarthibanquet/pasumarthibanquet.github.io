@@ -1179,10 +1179,10 @@
             .nav-menu.mobile-active .nav-link {
                 color: var(--color-primary);
                 text-shadow: none;
-                font-size: 16px;
-                padding: var(--space-md) 0;
+                font-size: 14px;
+                padding: 10px 0;
                 text-align: left;
-                min-height: 48px;
+                min-height: 40px;
             }
 
             .nav-menu.mobile-active .nav-cta {
@@ -1191,6 +1191,9 @@
                 text-align: center;
                 justify-content: center;
                 box-shadow: 0 4px 16px rgba(201, 162, 39, 0.3);
+                font-size: 14px;
+                padding: 12px var(--space-lg);
+                border-radius: 50px;
             }
 
             .nav-menu.mobile-active .nav-link:hover {
@@ -1399,7 +1402,7 @@
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#gallery" class="nav-link">Gallery</a>
                 <a href="#journey" class="nav-link">Journey</a>
-                <a href="tel:9208108108" class="nav-link nav-cta">Book Now</a>
+                <a href="tel:+919208108108" class="nav-link nav-cta">Book Now</a>
             </div>
         </div>
     </nav>
@@ -1777,8 +1780,8 @@
 
             <div class="timeline-cta">
                 <h3>Ready to Start?</h3>
-                <a href="tel:9208108108" class="btn btn-primary" onclick="triggerHaptic('success')">
-                    <span>Call (920) 810-8108</span>
+                <a href="tel:+919208108108" class="btn btn-primary" onclick="triggerHaptic('success')">
+                    <span>Call +91 9208108108</span>
                 </a>
             </div>
         </div>
@@ -1788,7 +1791,7 @@
     <footer class="footer">
         <p>© 2025 Pasumarthi Banquet Hall. All rights reserved.</p>
         <p>4th Floor, Koppu Naresh Complex, Wyra Rd, Khammam, Telangana 507001</p>
-        <p>(920) 810-8108 | <a href="https://wa.me/919208108108" style="color: var(--color-gold-light); text-decoration: none;">WhatsApp</a></p>
+        <p><a href="tel:+919208108108" style="color: var(--color-gold-light); text-decoration: none;">+91 9208108108</a> | <a href="https://wa.me/919208108108" style="color: var(--color-gold-light); text-decoration: none;">WhatsApp</a></p>
     </footer>
 
     <!-- Mobile CTA Bar -->
@@ -1798,8 +1801,8 @@
                 <strong>Book Your Event</strong>
                 Up to 500 guests
             </div>
-            <a href="tel:9208108108" class="mobile-cta-button" onclick="triggerHaptic('success')">
-                <span>Call Now</span>
+            <a href="tel:+919208108108" class="mobile-cta-button" onclick="triggerHaptic('success')">
+                <span>Call +91 9208108108</span>
             </a>
         </div>
     </div>
@@ -1810,42 +1813,71 @@
         // HAPTIC FEEDBACK SYSTEM
         // ========================================
         function triggerHaptic(intensity) {
+            // Visual feedback - flash effect
+            const flash = document.createElement('div');
+            flash.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(201, 162, 39, 0.1);
+                pointer-events: none;
+                z-index: 9999;
+                opacity: 0;
+                transition: opacity 0.1s;
+            `;
+            document.body.appendChild(flash);
+            
+            // Show flash
+            requestAnimationFrame(() => {
+                flash.style.opacity = '1';
+                setTimeout(() => {
+                    flash.style.opacity = '0';
+                    setTimeout(() => flash.remove(), 100);
+                }, 50);
+            });
+            
             // Check if device supports vibration
             if ('vibrate' in navigator) {
+                let vibrationPattern;
+                
                 switch(intensity) {
                     case 'light':
-                        // Subtle tap feedback
-                        navigator.vibrate(10);
+                        // Subtle tap feedback - longer for noticeability
+                        vibrationPattern = 25;
                         break;
                     case 'medium':
-                        // Standard button press
-                        navigator.vibrate(15);
+                        // Standard button press - more noticeable
+                        vibrationPattern = 35;
                         break;
                     case 'heavy':
-                        // Major interaction
-                        navigator.vibrate(20);
+                        // Major interaction - strong pulse
+                        vibrationPattern = 50;
                         break;
                     case 'success':
-                        // Success pattern: double tap
-                        navigator.vibrate([10, 50, 10]);
+                        // Success pattern: distinctive rhythm
+                        vibrationPattern = [30, 100, 30, 100, 50];
                         break;
                     case 'error':
-                        // Error pattern: three short pulses
-                        navigator.vibrate([10, 30, 10, 30, 10]);
+                        // Error pattern: urgent triple pulse
+                        vibrationPattern = [20, 50, 20, 50, 20, 50, 20];
                         break;
                     case 'filter':
-                        // Filter change: gentle pulse
-                        navigator.vibrate([8, 20, 8]);
+                        // Filter change: noticeable double tap
+                        vibrationPattern = [20, 60, 20];
                         break;
                     default:
-                        navigator.vibrate(10);
+                        vibrationPattern = 25;
                 }
-            }
-            
-            // Also provide audio feedback for touch devices
-            // This is a silent "click" that helps with accessibility
-            if ('ontouchstart' in window) {
-                // Silent visual feedback is handled by CSS :active states
+                
+                // Try to vibrate
+                const didVibrate = navigator.vibrate(vibrationPattern);
+                
+                // Console log for debugging
+                console.log('📳 Haptic:', intensity, 'Pattern:', vibrationPattern, 'Supported:', didVibrate);
+            } else {
+                console.log('📳 Haptic not supported on this device');
             }
         }
 
