@@ -126,7 +126,7 @@
         }
 
         /* ========================================
-           NAVIGATION - EDGE PADDING FIX
+           NAVIGATION
            ======================================== */
         .nav {
             position: fixed;
@@ -497,7 +497,7 @@
         }
 
         /* ========================================
-           SECTIONS - LEFT-ALIGNED
+           SECTIONS
            ======================================== */
         .section {
             padding: var(--space-3xl) var(--space-xl);
@@ -558,6 +558,7 @@
             transition: all var(--transition);
             color: var(--color-tan);
             padding: var(--space-sm) var(--space-md);
+            white-space: nowrap;
         }
 
         .gallery-filter:hover {
@@ -674,7 +675,7 @@
         }
 
         /* ========================================
-           BOOKING JOURNEY - LEFT ALIGNED
+           BOOKING JOURNEY - CENTERED TILES
            ======================================== */
         .journey-section {
             background: var(--color-cream);
@@ -737,22 +738,39 @@
         .timeline {
             position: relative;
             max-width: 900px;
+            margin: 0 auto;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 30px;
+            left: 50%;
             top: 0;
             bottom: 0;
             width: 3px;
             background: var(--color-gold);
+            transform: translateX(-50%);
         }
 
         .timeline-item {
             position: relative;
             margin-bottom: var(--space-lg);
-            padding-left: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .timeline-item:nth-child(even) > * {
+            direction: ltr;
         }
 
         .timeline-content {
@@ -766,14 +784,13 @@
         }
 
         .timeline-content:hover {
-            transform: translateY(-4px) translateX(8px);
+            transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
             border-color: var(--color-gold);
         }
 
         .timeline-number {
             position: absolute;
-            left: -50px;
             top: var(--space-md);
             width: 32px;
             height: 32px;
@@ -786,6 +803,14 @@
             font-family: var(--font-display);
             font-size: 16px;
             font-weight: 700;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-number {
+            right: -16px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-number {
+            left: -16px;
         }
 
         .timeline-icon {
@@ -809,6 +834,7 @@
         .quick-journey {
             display: none;
             max-width: 900px;
+            margin: 0 auto;
         }
 
         .quick-journey.active {
@@ -831,7 +857,7 @@
         }
 
         .quick-card:hover {
-            transform: translateX(12px);
+            transform: translateX(8px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
             border-color: var(--color-gold);
         }
@@ -875,11 +901,11 @@
 
         .timeline-cta {
             margin-top: var(--space-xl);
+            text-align: center;
         }
 
         .timeline-cta h3 {
             margin-bottom: var(--space-sm);
-            color: var(--color-primary);
         }
 
         .timeline-cta .btn {
@@ -1069,7 +1095,7 @@
                 background: var(--color-cream);
                 flex-direction: column;
                 justify-content: center;
-                gap: var(--space-lg);
+                gap: var(--space-xl);
                 padding: var(--space-2xl);
                 box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
                 transition: right 0.4s var(--transition);
@@ -1077,6 +1103,26 @@
 
             .nav-menu.mobile-active.active {
                 right: 0;
+            }
+
+            .nav-menu.mobile-active .nav-link {
+                color: var(--color-primary);
+                text-shadow: none;
+                font-size: 16px;
+                padding: var(--space-md) 0;
+                text-align: left;
+            }
+
+            .nav-menu.mobile-active .nav-cta {
+                background: var(--color-gold);
+                color: var(--color-charcoal);
+                text-align: center;
+                justify-content: center;
+                box-shadow: 0 4px 16px rgba(201, 162, 39, 0.3);
+            }
+
+            .nav-menu.mobile-active .nav-link:hover {
+                background: rgba(122, 27, 58, 0.08);
             }
 
             .nav-overlay.active {
@@ -1104,18 +1150,32 @@
                 justify-content: center;
             }
 
+            .section {
+                padding: var(--space-xl) var(--space-md);
+            }
+
+            /* Mobile gallery filters - horizontal scroll */
             .gallery-filters {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
                 gap: var(--space-md);
+                padding-bottom: var(--space-sm);
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .gallery-filters::-webkit-scrollbar {
+                display: none;
             }
 
             .gallery-filter {
-                font-size: 28px;
+                font-size: 20px;
+                flex-shrink: 0;
             }
 
             .gallery-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-md);
             }
 
             .features-grid {
@@ -1127,8 +1187,33 @@
                 gap: var(--space-lg);
             }
 
-            .section {
-                padding: var(--space-xl) var(--space-md);
+            /* Mobile journey - center tiles */
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+                padding-left: 70px;
+                text-align: left !important;
+            }
+
+            .timeline-item:nth-child(even) {
+                direction: ltr;
+            }
+
+            .timeline-item:nth-child(even) > * {
+                direction: ltr;
+            }
+
+            .timeline-number {
+                left: -45px !important;
+                right: auto !important;
+            }
+
+            .timeline-cta {
+                text-align: center;
             }
 
             body {
@@ -1158,8 +1243,9 @@
             }
 
             .stats-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-md);
+                padding: 0 var(--space-md);
             }
 
             .timeline-item {
@@ -1167,10 +1253,19 @@
             }
 
             .timeline-number {
-                left: -30px;
                 width: 28px;
                 height: 28px;
                 font-size: 14px;
+                left: -38px !important;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-sm);
+            }
+
+            .gallery-item {
+                aspect-ratio: 1;
             }
         }
     </style>
@@ -1435,7 +1530,7 @@
         </div>
     </section>
 
-    <!-- Booking Journey - LEFT ALIGNED -->
+    <!-- Booking Journey - CENTERED TILES -->
     <section id="journey" class="section journey-section">
         <div class="container">
             <div class="section-header">
@@ -1697,7 +1792,6 @@
             gsap.from(item, {
                 opacity: 0,
                 y: 40,
-                x: -20,
                 duration: 0.6,
                 scrollTrigger: {
                     trigger: item,
