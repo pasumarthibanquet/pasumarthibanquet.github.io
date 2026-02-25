@@ -10,7 +10,7 @@
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Pasumarthi Banquet Hall - Where Dreams Become Celebrations">
-    <meta property="og:description" content="Khammam's premier event venue for weddings, corporate events, and celebrations.">
+    <meta property="og:description" content="Khammam's premier event venue for weddings, social events, and celebrations.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=80">
     <meta property="og:url" content="https://pasumarthibanquet.github.io/">
     <meta property="og:type" content="website">
@@ -155,7 +155,7 @@
         }
 
         /* ========================================
-           NAVIGATION - Improved Touch Targets
+           NAVIGATION - Creative Marker Hamburger
            ======================================== */
         .nav {
             position: fixed;
@@ -270,20 +270,22 @@
             box-shadow: 0 6px 20px rgba(201, 162, 39, 0.4);
         }
 
+        /* ========================================
+           CREATIVE MARKER HAMBURGER MENU
+           ======================================== */
         .nav-toggle {
             display: none;
-            flex-direction: column;
-            gap: 6px;
+            position: relative;
+            width: 52px;
+            height: 52px;
             background: rgba(255, 255, 255, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            cursor: pointer;
-            padding: var(--space-sm);
-            border-radius: 8px;
-            width: 44px;
-            height: 44px;
-            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: visible;
         }
 
         .nav.scrolled .nav-toggle {
@@ -291,26 +293,123 @@
             border-color: var(--color-primary);
         }
 
-        .nav-toggle span {
+        /* Hand-drawn marker circle effect */
+        .nav-toggle::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            filter: url(#marker-scribble);
+        }
+
+        .nav-toggle:hover::before {
+            border-color: var(--color-gold);
+            opacity: 0.6;
+            animation: rotate-marker 8s linear infinite;
+        }
+
+        .nav-toggle.active::before {
+            border-color: var(--color-gold);
+            opacity: 0.8;
+            animation: rotate-marker 4s linear infinite;
+        }
+
+        @keyframes rotate-marker {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Inner glow effect */
+        .nav-toggle::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-toggle:hover::after {
+            opacity: 1;
+        }
+
+        .nav-toggle.active::after {
+            opacity: 1;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.4) 0%, transparent 70%);
+        }
+
+        /* Hamburger lines */
+        .nav-toggle-lines {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
             width: 24px;
+        }
+
+        .nav-toggle-lines span {
+            display: block;
+            width: 100%;
             height: 2px;
             background: white;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             transform-origin: center;
+            position: relative;
         }
 
-        /* Hamburger to X animation */
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
+        /* Marker scribble under each line */
+        .nav-toggle-lines span::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: -2px;
+            right: -2px;
+            height: 6px;
+            background: var(--color-gold);
+            border-radius: 3px;
             opacity: 0;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: all 0.3s ease;
+            filter: url(#marker-highlight);
         }
 
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
+        .nav-toggle:hover .nav-toggle-lines span::before {
+            opacity: 0.4;
+            transform: scaleX(0.8);
+        }
+
+        .nav-toggle.active .nav-toggle-lines span::before {
+            opacity: 0.7;
+            transform: scaleX(1);
+        }
+
+        /* Active state - X transformation */
+        .nav-toggle.active .nav-toggle-lines span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+            background: var(--color-gold);
+        }
+
+        .nav-toggle.active .nav-toggle-lines span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .nav-toggle.active .nav-toggle-lines span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+            background: var(--color-gold);
+        }
+
+        /* Scrolled state */
+        .nav.scrolled .nav-toggle-lines span {
+            background: white;
         }
 
         .nav-overlay {
@@ -593,7 +692,7 @@
         }
 
         /* ========================================
-           GALLERY WITH GIANT FILTERS
+           GALLERY WITH GIANT FILTERS (NO CORPORATE)
            ======================================== */
         .gallery-section {
             background: var(--color-white);
@@ -1152,7 +1251,7 @@
             }
 
             .nav-toggle {
-                display: flex;
+                display: block;
             }
 
             .nav-menu.mobile-active {
@@ -1391,11 +1490,13 @@
                 <span class="logo-text">Pasumarthi Banquet Hall</span>
             </a>
 
-            <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="nav-toggle" onclick="toggleNav()">
+                <div class="nav-toggle-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
 
             <div class="nav-menu">
                 <a href="#home" class="nav-link active">Home</a>
@@ -1556,7 +1657,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section - NO CORPORATE -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
             <div class="section-header">
@@ -1569,7 +1670,6 @@
             <div class="gallery-filters">
                 <div class="gallery-filter active" onclick="filterGallery('all', this)">All Events</div>
                 <div class="gallery-filter" onclick="filterGallery('wedding', this)">Weddings</div>
-                <div class="gallery-filter" onclick="filterGallery('corporate', this)">Corporate</div>
                 <div class="gallery-filter" onclick="filterGallery('social', this)">Social</div>
             </div>
 
@@ -1597,32 +1697,6 @@
                         <div class="gallery-category">Wedding</div>
                         <h4 class="gallery-title">Grand Reception</h4>
                         <p class="gallery-desc">Traditional Ceremony • 400 Guests</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="corporate">
-                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80"
-                         srcset="https://images.unsplash.com/photo-1511578314322-379afb476865?w=300&q=80 300w,
-                                 https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80 600w"
-                         sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 300px"
-                         alt="Conference">
-                    <div class="gallery-overlay">
-                        <div class="gallery-category">Corporate</div>
-                        <h4 class="gallery-title">Tech Conference</h4>
-                        <p class="gallery-desc">Annual Summit • 200 Attendees</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="corporate">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"
-                         srcset="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=300&q=80 300w,
-                                 https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80 600w"
-                         sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 300px"
-                         alt="Corporate Event">
-                    <div class="gallery-overlay">
-                        <div class="gallery-category">Corporate</div>
-                        <h4 class="gallery-title">Product Launch</h4>
-                        <p class="gallery-desc">TechCorp Event • 150 Guests</p>
                     </div>
                 </div>
 
@@ -1844,38 +1918,29 @@
                 
                 switch(intensity) {
                     case 'light':
-                        // Subtle tap feedback - longer for noticeability
                         vibrationPattern = 25;
                         break;
                     case 'medium':
-                        // Standard button press - more noticeable
                         vibrationPattern = 35;
                         break;
                     case 'heavy':
-                        // Major interaction - strong pulse
                         vibrationPattern = 50;
                         break;
                     case 'success':
-                        // Success pattern: distinctive rhythm
                         vibrationPattern = [30, 100, 30, 100, 50];
                         break;
                     case 'error':
-                        // Error pattern: urgent triple pulse
                         vibrationPattern = [20, 50, 20, 50, 20, 50, 20];
                         break;
                     case 'filter':
-                        // Filter change: noticeable double tap
                         vibrationPattern = [20, 60, 20];
                         break;
                     default:
                         vibrationPattern = 25;
                 }
                 
-                // Try to vibrate
-                const didVibrate = navigator.vibrate(vibrationPattern);
-                
-                // Console log for debugging
-                console.log('📳 Haptic:', intensity, 'Pattern:', vibrationPattern, 'Supported:', didVibrate);
+                navigator.vibrate(vibrationPattern);
+                console.log('📳 Haptic:', intensity, 'Pattern:', vibrationPattern);
             } else {
                 console.log('📳 Haptic not supported on this device');
             }
@@ -1974,16 +2039,13 @@
         // ========================================
         lucide.createIcons();
         
-        // Check for reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         gsap.registerPlugin(ScrollTrigger);
 
-        // Parallax effect (disabled on mobile for performance)
         window.addEventListener('scroll', () => {
             const scrolled = window.scrollY;
             const heroBg = document.querySelector('.hero-bg');
-            // Only apply parallax on desktop
             if (heroBg && scrolled < window.innerHeight && window.innerWidth > 768) {
                 heroBg.style.transform = `translateY(${scrolled * 0.3}px)`;
             }
@@ -2026,7 +2088,6 @@
                     delay: 1.1
                 });
             } else {
-                // Simple fade-in for reduced motion
                 gsap.set(['.hero-venue-name', '.hero-tagline', '.hero-location', '.hero-features', '.hero-cta-group'], {
                     opacity: 1,
                     y: 0
@@ -2078,7 +2139,6 @@
                 });
             });
 
-            // Stats counter animation
             gsap.utils.toArray('.stat-number').forEach((stat, i) => {
                 gsap.from(stat, {
                     opacity: 0,
@@ -2131,10 +2191,8 @@
         // ADD HAPTICS TO ALL INTERACTIVE ELEMENTS
         // ========================================
         document.addEventListener('DOMContentLoaded', () => {
-            // Add haptic feedback to all buttons
             document.querySelectorAll('.btn, .nav-link, .gallery-filter, .toggle-btn').forEach(element => {
                 element.addEventListener('click', () => {
-                    // Determine haptic intensity based on element type
                     if (element.classList.contains('btn-primary') || element.classList.contains('nav-cta')) {
                         triggerHaptic('medium');
                     } else if (element.classList.contains('gallery-filter')) {
@@ -2147,14 +2205,12 @@
                 });
             });
             
-            // Add haptic feedback to gallery items
             document.querySelectorAll('.gallery-item').forEach(item => {
                 item.addEventListener('click', () => {
                     triggerHaptic('light');
                 });
             });
             
-            // Add haptic feedback to feature cards
             document.querySelectorAll('.feature-card').forEach(card => {
                 card.addEventListener('click', () => {
                     triggerHaptic('light');
