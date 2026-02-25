@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasumarthi Banquet Hall - Where Dreams Become Celebrations</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts - TRENDY COMBO -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -28,9 +28,9 @@
             --color-white: #FFFFFF;
             --color-charcoal: #2C2C2C;
             
-            /* Typography */
-            --font-display: 'Libre Baskerville', Georgia, serif;
-            --font-body: 'Inter', system-ui, sans-serif;
+            /* Typography - TRENDY FONTS */
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Poppins', system-ui, sans-serif;
             
             /* Spacing */
             --space-sm: 8px;
@@ -68,7 +68,7 @@
         }
 
         /* ========================================
-           TYPOGRAPHY
+           TYPOGRAPHY - SMALLER SIZES
            ======================================== */
         h1, h2, h3, h4 {
             font-family: var(--font-display);
@@ -78,29 +78,29 @@
         }
 
         h1 {
-            font-size: clamp(42px, 10vw, 88px);
+            font-size: clamp(32px, 8vw, 64px);
             letter-spacing: -0.01em;
         }
 
         h2 {
-            font-size: clamp(32px, 6vw, 56px);
+            font-size: clamp(26px, 5vw, 42px);
             margin-bottom: var(--space-md);
         }
 
         h3 {
-            font-size: clamp(22px, 4vw, 28px);
+            font-size: clamp(18px, 3.5vw, 22px);
             margin-bottom: var(--space-sm);
         }
 
         p {
-            font-size: clamp(15px, 2vw, 17px);
+            font-size: clamp(13px, 1.8vw, 15px);
             color: #4A4A4A;
             margin-bottom: var(--space-md);
             line-height: 1.7;
         }
 
         /* ========================================
-           NAVIGATION - FIXED
+           NAVIGATION
            ======================================== */
         .nav {
             position: fixed;
@@ -136,7 +136,7 @@
 
         .logo-text {
             font-family: var(--font-display);
-            font-size: clamp(18px, 2.5vw, 26px);
+            font-size: clamp(14px, 2.2vw, 20px);
             font-weight: 700;
             color: var(--color-white);
             letter-spacing: -0.01em;
@@ -155,7 +155,7 @@
         }
 
         .nav-link {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             letter-spacing: 0.05em;
             text-transform: uppercase;
@@ -174,7 +174,7 @@
         .nav-cta {
             background: var(--color-gold);
             color: var(--color-charcoal) !important;
-            padding: var(--space-md) var(--space-xl);
+            padding: 10px var(--space-lg);
             border-radius: 50px;
             font-weight: 700;
             box-shadow: 0 4px 16px rgba(201, 162, 39, 0.3);
@@ -216,7 +216,7 @@
         }
 
         /* ========================================
-           HERO SECTION - NO ZOOM
+           HERO SECTION
            ======================================== */
         .hero {
             position: relative;
@@ -261,25 +261,25 @@
             display: inline-block;
             background: var(--color-gold);
             color: var(--color-primary-dark);
-            padding: var(--space-sm) var(--space-lg);
+            padding: 6px var(--space-lg);
             border-radius: 50px;
             font-family: var(--font-body);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-lg);
         }
 
         .hero-title {
             color: white;
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-md);
             line-height: 1.1;
         }
 
         .hero-subtitle {
             font-family: var(--font-display);
-            font-size: clamp(20px, 4vw, 28px);
+            font-size: clamp(16px, 3.5vw, 22px);
             font-style: italic;
             color: var(--color-gold-light);
             margin-bottom: var(--space-xl);
@@ -288,27 +288,27 @@
         .hero-features {
             display: flex;
             justify-content: center;
-            gap: var(--space-xl);
+            gap: var(--space-md);
             flex-wrap: wrap;
-            margin-bottom: var(--space-2xl);
+            margin-bottom: var(--space-xl);
         }
 
         .hero-feature {
             display: flex;
             align-items: center;
-            gap: var(--space-md);
-            font-size: 15px;
+            gap: 8px;
+            font-size: 13px;
             font-weight: 600;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            padding: var(--space-md) var(--space-lg);
+            padding: 10px var(--space-lg);
             border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .hero-feature-icon {
-            font-size: 20px;
+            font-size: 18px;
             flex-shrink: 0;
         }
 
@@ -323,10 +323,10 @@
             display: inline-flex;
             align-items: center;
             gap: var(--space-sm);
-            padding: var(--space-lg) var(--space-2xl);
+            padding: 12px var(--space-xl);
             border-radius: 50px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 13px;
             text-decoration: none;
             transition: all var(--transition);
         }
@@ -366,14 +366,14 @@
         }
 
         .scroll-indicator-text {
-            font-size: 11px;
+            font-size: 10px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             margin-bottom: var(--space-sm);
         }
 
         .scroll-indicator-arrow {
-            font-size: 24px;
+            font-size: 20px;
         }
 
         @keyframes bounce {
@@ -395,12 +395,12 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: var(--space-2xl);
+            margin-bottom: var(--space-xl);
         }
 
         .section-subtitle {
             font-family: var(--font-body);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -409,14 +409,14 @@
         }
 
         .divider {
-            width: 80px;
+            width: 60px;
             height: 3px;
             background: var(--color-gold);
-            margin: var(--space-lg) auto;
+            margin: var(--space-md) auto;
         }
 
         /* ========================================
-           GALLERY - 6 IMAGES
+           GALLERY
            ======================================== */
         .gallery-section {
             background: var(--color-cream);
@@ -426,17 +426,17 @@
             display: flex;
             justify-content: center;
             gap: var(--space-md);
-            margin-bottom: var(--space-2xl);
+            margin-bottom: var(--space-xl);
             flex-wrap: wrap;
         }
 
         .gallery-filter {
-            padding: var(--space-md) var(--space-xl);
+            padding: 10px var(--space-lg);
             background: transparent;
             border: 2px solid var(--color-primary);
             border-radius: 50px;
             font-family: var(--font-body);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -453,7 +453,7 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-xl);
+            gap: var(--space-lg);
         }
 
         .gallery-item {
@@ -491,7 +491,7 @@
                 rgba(122, 27, 58, 0.4) 50%,
                 transparent 100%
             );
-            padding: var(--space-xl);
+            padding: var(--space-lg);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -505,28 +505,28 @@
 
         .gallery-category {
             font-family: var(--font-body);
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--color-gold);
-            margin-bottom: var(--space-sm);
+            margin-bottom: 4px;
         }
 
         .gallery-title {
             font-family: var(--font-display);
-            font-size: 22px;
+            font-size: 18px;
             color: white;
-            margin-bottom: var(--space-sm);
+            margin-bottom: 4px;
         }
 
         .gallery-desc {
-            font-size: 14px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.95);
         }
 
         /* ========================================
-           BOOKING JOURNEY - CONCISE
+           BOOKING JOURNEY
            ======================================== */
         .journey-section {
             background: var(--color-white);
@@ -535,11 +535,11 @@
         .journey-intro {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto var(--space-2xl);
+            margin: 0 auto var(--space-xl);
         }
 
         .journey-intro p {
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .timeline {
@@ -561,10 +561,10 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-lg);
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
+            gap: var(--space-lg);
             align-items: center;
         }
 
@@ -574,7 +574,7 @@
 
         .timeline-content {
             background: var(--color-cream);
-            padding: var(--space-xl);
+            padding: var(--space-lg);
             border-radius: 16px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
             position: relative;
@@ -588,9 +588,9 @@
 
         .timeline-number {
             position: absolute;
-            top: var(--space-lg);
-            width: 36px;
-            height: 36px;
+            top: var(--space-md);
+            width: 32px;
+            height: 32px;
             background: var(--color-primary);
             color: white;
             border-radius: 50%;
@@ -598,31 +598,31 @@
             align-items: center;
             justify-content: center;
             font-family: var(--font-display);
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
         }
 
         .timeline-item:nth-child(odd) .timeline-number {
-            right: -18px;
+            right: -16px;
         }
 
         .timeline-item:nth-child(even) .timeline-number {
-            left: -18px;
+            left: -16px;
         }
 
         .timeline-icon {
-            font-size: 28px;
-            margin-bottom: var(--space-md);
+            font-size: 24px;
+            margin-bottom: var(--space-sm);
         }
 
         .timeline-title {
             font-family: var(--font-display);
-            font-size: 20px;
-            margin-bottom: var(--space-sm);
+            font-size: 18px;
+            margin-bottom: 4px;
         }
 
         .timeline-desc {
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.6;
             color: #666;
         }
@@ -636,6 +636,10 @@
             width: 100%;
             justify-content: center;
             max-width: 400px;
+        }
+
+        .timeline-cta h3 {
+            margin-bottom: var(--space-sm);
         }
 
         /* ========================================
@@ -654,8 +658,8 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-xl);
-            margin-top: var(--space-2xl);
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
         }
 
         .feature-card {
@@ -663,7 +667,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: var(--space-xl);
+            padding: var(--space-lg);
             border-radius: 16px;
             text-align: center;
             transition: all var(--transition);
@@ -675,18 +679,18 @@
         }
 
         .feature-icon {
-            font-size: 40px;
-            margin-bottom: var(--space-md);
+            font-size: 32px;
+            margin-bottom: var(--space-sm);
         }
 
         .feature-title {
             font-family: var(--font-display);
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: var(--space-sm);
         }
 
         .feature-desc {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
         }
@@ -715,19 +719,19 @@
 
         .mobile-cta-text {
             color: white;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .mobile-cta-text strong {
             display: block;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--color-gold);
         }
 
         .mobile-cta-button {
             background: var(--color-gold);
             color: var(--color-charcoal);
-            padding: var(--space-md) var(--space-lg);
+            padding: 10px var(--space-lg);
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
@@ -743,13 +747,14 @@
         .footer {
             background: var(--color-charcoal);
             color: white;
-            padding: var(--space-2xl) var(--space-lg);
+            padding: var(--space-xl) var(--space-lg);
             text-align: center;
         }
 
         .footer p {
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: var(--space-sm);
+            margin-bottom: 6px;
+            font-size: 12px;
         }
 
         /* ========================================
@@ -806,8 +811,8 @@
 
             .timeline-item {
                 grid-template-columns: 1fr;
-                gap: var(--space-lg);
-                padding-left: 60px;
+                gap: var(--space-md);
+                padding-left: 50px;
             }
 
             .timeline-item:nth-child(even) {
@@ -815,14 +820,14 @@
             }
 
             .timeline-number {
-                left: -45px !important;
+                left: -38px !important;
                 right: auto !important;
             }
 
             .hero-features {
                 flex-direction: column;
                 align-items: center;
-                gap: var(--space-md);
+                gap: var(--space-sm);
             }
 
             .hero-cta-group {
@@ -850,7 +855,7 @@
 
         @media (max-width: 480px) {
             .section {
-                padding: var(--space-2xl) var(--space-md);
+                padding: var(--space-xl) var(--space-md);
             }
 
             .hero-content {
@@ -859,14 +864,14 @@
             }
 
             .timeline-item {
-                padding-left: 50px;
+                padding-left: 45px;
             }
 
             .timeline-number {
-                width: 32px;
-                height: 32px;
-                font-size: 16px;
-                left: -38px !important;
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+                left: -33px !important;
             }
         }
     </style>
@@ -1134,7 +1139,7 @@
             </div>
 
             <div class="timeline-cta">
-                <h3 style="margin-bottom: var(--space-md);">Ready to Start?</h3>
+                <h3>Ready to Start?</h3>
                 <a href="tel:9208108108" class="btn btn-primary">
                     <span>📞</span>
                     <span>Call (920) 810-8108</span>
@@ -1147,7 +1152,7 @@
     <footer class="footer">
         <p>© 2025 Pasumarthi Banquet Hall. All rights reserved.</p>
         <p>📍 4th Floor, Koppu Naresh Complex, Wyra Rd, Khammam, Telangana 507001</p>
-        <p style="margin-top: var(--space-md);">📞 (920) 810-8108 | ✉️ info@pasumarthibanquet.com</p>
+        <p>📞 (920) 810-8108 | ✉️ info@pasumarthibanquet.com</p>
     </footer>
 
     <!-- Mobile CTA Bar -->
@@ -1169,7 +1174,7 @@
         // Register GSAP plugins
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero parallax effect (removed scale)
+        // Hero parallax effect
         window.addEventListener('scroll', () => {
             const scrolled = window.scrollY;
             const heroBg = document.querySelector('.hero-bg');
