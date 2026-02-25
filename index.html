@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasumarthi Banquet Hall - Where Dreams Become Celebrations</title>
     
-    <!-- Google Fonts - TRENDY COMBO -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -19,16 +22,17 @@
            CSS VARIABLES
            ======================================== */
         :root {
-            /* Color Palette */
+            /* Color Palette - Warmer, more inviting */
             --color-primary: #7A1B3A;
             --color-primary-dark: #5A1229;
             --color-gold: #C9A227;
             --color-gold-light: #D4AF37;
-            --color-cream: #FAF6F0;
+            --color-cream: #F5EADC;
             --color-white: #FFFFFF;
             --color-charcoal: #2C2C2C;
+            --color-tan: #C3B7AD;
             
-            /* Typography - TRENDY FONTS */
+            /* Typography */
             --font-display: 'Playfair Display', Georgia, serif;
             --font-body: 'Poppins', system-ui, sans-serif;
             
@@ -65,10 +69,29 @@
             background: var(--color-cream);
             overflow-x: hidden;
             padding-bottom: 70px;
+            position: relative;
         }
 
         /* ========================================
-           TYPOGRAPHY - SMALLER SIZES
+           SUBTLE BACKGROUND TEXTURE
+           ======================================== */
+        .bg-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 20% 50%, #7A1B3A 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, #C9A227 1px, transparent 1px);
+            background-size: 100px 100px, 150px 150px;
+        }
+
+        /* ========================================
+           TYPOGRAPHY
            ======================================== */
         h1, h2, h3, h4 {
             font-family: var(--font-display);
@@ -100,7 +123,7 @@
         }
 
         /* ========================================
-           NAVIGATION
+           NAVIGATION WITH MARKER EFFECT
            ======================================== */
         .nav {
             position: fixed;
@@ -113,10 +136,10 @@
         }
 
         .nav.scrolled {
-            background: rgba(122, 27, 58, 0.95);
+            background: rgba(245, 234, 220, 0.95);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: var(--space-md) 0;
         }
 
@@ -138,14 +161,9 @@
             font-family: var(--font-display);
             font-size: clamp(14px, 2.2vw, 20px);
             font-weight: 700;
-            color: var(--color-white);
+            color: var(--color-primary);
             letter-spacing: -0.01em;
             white-space: nowrap;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav.scrolled .logo-text {
-            color: var(--color-white);
         }
 
         .nav-menu {
@@ -159,38 +177,52 @@
             font-weight: 600;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--color-charcoal);
             text-decoration: none;
             padding: var(--space-sm) var(--space-md);
             border-radius: 8px;
             transition: all var(--transition);
+            position: relative;
+        }
+
+        /* Marker highlight effect for active nav */
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 2px;
+            height: 3px;
+            background: var(--color-gold);
+            border-radius: 2px;
+            filter: url(#marker-highlight);
         }
 
         .nav-link:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
+            color: var(--color-primary);
         }
 
         .nav-cta {
-            background: var(--color-gold);
-            color: var(--color-charcoal) !important;
+            background: var(--color-primary);
+            color: white !important;
             padding: 10px var(--space-lg);
             border-radius: 50px;
             font-weight: 700;
-            box-shadow: 0 4px 16px rgba(201, 162, 39, 0.3);
+            box-shadow: 0 4px 16px rgba(122, 27, 58, 0.2);
         }
 
         .nav-cta:hover {
-            background: var(--color-gold-light);
+            background: var(--color-primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.4);
+            box-shadow: 0 6px 20px rgba(122, 27, 58, 0.3);
+            color: white !important;
         }
 
         .nav-toggle {
             display: none;
             flex-direction: column;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--color-primary);
             border: none;
             cursor: pointer;
             padding: var(--space-sm);
@@ -241,7 +273,7 @@
             inset: 0;
             background: linear-gradient(
                 135deg,
-                rgba(122, 27, 58, 0.9) 0%,
+                rgba(122, 27, 58, 0.88) 0%,
                 rgba(122, 27, 58, 0.8) 50%,
                 rgba(201, 162, 39, 0.5) 100%
             );
@@ -299,12 +331,12 @@
             gap: 8px;
             font-size: 13px;
             font-weight: 600;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             padding: 10px var(--space-lg);
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .hero-feature-icon {
@@ -387,6 +419,8 @@
            ======================================== */
         .section {
             padding: var(--space-3xl) var(--space-lg);
+            position: relative;
+            z-index: 1;
         }
 
         .container {
@@ -417,38 +451,194 @@
         }
 
         /* ========================================
-           GALLERY
+           AUDIO PLAYER SECTION
+           ======================================== */
+        .audio-section {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--space-xl) var(--space-lg);
+        }
+
+        .audio-player-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: var(--space-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .audio-player-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .audio-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background: var(--color-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .audio-icon-wrapper svg {
+            width: 28px;
+            height: 28px;
+            color: var(--color-charcoal);
+        }
+
+        .audio-player-info h3 {
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .audio-player-info p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .audio-play-btn {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition);
+            flex-shrink: 0;
+        }
+
+        .audio-play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .audio-play-btn svg {
+            width: 20px;
+            height: 20px;
+            color: var(--color-primary);
+            margin-left: 2px;
+        }
+
+        .audio-wave {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 24px;
+        }
+
+        .audio-bar {
+            width: 4px;
+            background: var(--color-gold);
+            border-radius: 2px;
+            height: 8px;
+            transition: height 0.1s ease;
+        }
+
+        .audio-wave.playing .audio-bar {
+            animation: audioWave 1s ease-in-out infinite;
+        }
+
+        .audio-wave.playing .audio-bar:nth-child(1) { animation-delay: 0s; }
+        .audio-wave.playing .audio-bar:nth-child(2) { animation-delay: 0.1s; }
+        .audio-wave.playing .audio-bar:nth-child(3) { animation-delay: 0.2s; }
+        .audio-wave.playing .audio-bar:nth-child(4) { animation-delay: 0.3s; }
+        .audio-wave.playing .audio-bar:nth-child(5) { animation-delay: 0.4s; }
+        .audio-wave.playing .audio-bar:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes audioWave {
+            0%, 100% { height: 8px; }
+            50% { height: 20px; }
+        }
+
+        .audio-time {
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            margin-left: auto;
+        }
+
+        /* ========================================
+           GALLERY WITH GIANT FILTERS
            ======================================== */
         .gallery-section {
-            background: var(--color-cream);
+            background: var(--color-white);
         }
 
         .gallery-filters {
             display: flex;
             justify-content: center;
-            gap: var(--space-md);
-            margin-bottom: var(--space-xl);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-2xl);
             flex-wrap: wrap;
         }
 
         .gallery-filter {
-            padding: 10px var(--space-lg);
-            background: transparent;
-            border: 2px solid var(--color-primary);
-            border-radius: 50px;
-            font-family: var(--font-body);
-            font-size: 11px;
+            font-family: var(--font-display);
+            font-size: clamp(24px, 4vw, 36px);
             font-weight: 700;
-            letter-spacing: 0.1em;
+            letter-spacing: -0.02em;
             text-transform: uppercase;
             cursor: pointer;
+            position: relative;
             transition: all var(--transition);
+            color: var(--color-tan);
+            padding: var(--space-sm) var(--space-md);
         }
 
-        .gallery-filter:hover,
+        .gallery-filter:hover {
+            color: var(--color-primary);
+            transform: translateX(-5px);
+        }
+
+        /* Marker highlight for gallery filters */
         .gallery-filter.active {
-            background: var(--color-primary);
-            color: white;
+            color: var(--color-primary);
+        }
+
+        .gallery-filter.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 20%;
+            bottom: 20%;
+            background: var(--color-gold);
+            z-index: -1;
+            opacity: 0.4;
+            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+            transform: rotate(-1deg) scale(1.05);
+            filter: url(#marker-scribble);
+        }
+
+        .gallery-filter.active::after {
+            content: '';
+            position: absolute;
+            left: -5px;
+            right: -5px;
+            top: 30%;
+            bottom: 10%;
+            background: linear-gradient(120deg, var(--color-gold) 0%, transparent 100%);
+            z-index: -1;
+            opacity: 0.3;
+            border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+            transform: rotate(1deg) scale(1.02);
         }
 
         .gallery-grid {
@@ -527,10 +717,10 @@
         }
 
         /* ========================================
-           BOOKING JOURNEY
+           BOOKING JOURNEY WITH STORY TOGGLE
            ======================================== */
         .journey-section {
-            background: var(--color-white);
+            background: var(--color-cream);
         }
 
         .journey-intro {
@@ -543,6 +733,52 @@
             font-size: 14px;
         }
 
+        /* Story Toggle */
+        .story-toggle {
+            position: relative;
+            background: rgba(122, 27, 58, 0.08);
+            border-radius: 50px;
+            padding: 6px;
+            display: inline-flex;
+            gap: 6px;
+            margin: var(--space-lg) auto;
+        }
+
+        .toggle-pill {
+            position: absolute;
+            background: var(--color-primary);
+            border-radius: 50px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(122, 27, 58, 0.3);
+            width: calc(50% - 6px);
+            height: calc(100% - 12px);
+            top: 6px;
+            left: 6px;
+        }
+
+        .toggle-btn {
+            position: relative;
+            z-index: 1;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: color 0.3s;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .toggle-btn.active {
+            color: white;
+        }
+
+        .toggle-btn:not(.active) {
+            color: var(--color-primary);
+        }
+
+        /* Full Journey View */
         .timeline {
             position: relative;
             max-width: 900px;
@@ -574,17 +810,19 @@
         }
 
         .timeline-content {
-            background: var(--color-cream);
+            background: white;
             padding: var(--space-lg);
             border-radius: 16px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
             position: relative;
             transition: all var(--transition);
+            border: 1px solid rgba(201, 162, 39, 0.2);
         }
 
         .timeline-content:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-gold);
         }
 
         .timeline-number {
@@ -629,6 +867,75 @@
             color: #666;
         }
 
+        /* Quick Journey View */
+        .quick-journey {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .quick-journey.active {
+            display: block;
+        }
+
+        .quick-card {
+            background: white;
+            border-radius: 16px;
+            padding: var(--space-xl);
+            margin-bottom: var(--space-md);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            display: flex;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .quick-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-gold);
+        }
+
+        .quick-card-number {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            color: rgba(201, 162, 39, 0.2);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .quick-card-content {
+            flex: 1;
+        }
+
+        .quick-card-title {
+            font-family: var(--font-display);
+            font-size: 20px;
+            margin-bottom: var(--space-sm);
+            color: var(--color-primary);
+        }
+
+        .quick-card-desc {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+
+        .quick-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-cream);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
         .timeline-cta {
             margin-top: var(--space-xl);
             text-align: center;
@@ -645,7 +952,7 @@
         }
 
         /* ========================================
-           FEATURES SECTION - NEW FORMAT
+           FEATURES SECTION
            ======================================== */
         .features-section {
             background: var(--color-white);
@@ -725,6 +1032,22 @@
         }
 
         /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--color-charcoal);
+            color: white;
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 6px;
+            font-size: 12px;
+        }
+
+        /* ========================================
            MOBILE CTA BAR
            ======================================== */
         .mobile-cta {
@@ -771,22 +1094,6 @@
         }
 
         /* ========================================
-           FOOTER
-           ======================================== */
-        .footer {
-            background: var(--color-charcoal);
-            color: white;
-            padding: var(--space-xl) var(--space-lg);
-            text-align: center;
-        }
-
-        .footer p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 6px;
-            font-size: 12px;
-        }
-
-        /* ========================================
            RESPONSIVE
            ======================================== */
         @media (max-width: 1024px) {
@@ -812,7 +1119,7 @@
                 width: 80%;
                 max-width: 300px;
                 height: 100vh;
-                background: var(--color-primary-dark);
+                background: var(--color-cream);
                 flex-direction: column;
                 justify-content: center;
                 gap: var(--space-lg);
@@ -869,12 +1176,27 @@
                 justify-content: center;
             }
 
+            .gallery-filters {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--space-md);
+            }
+
+            .gallery-filter {
+                font-size: 28px;
+            }
+
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .quick-card {
+                flex-direction: column;
+                text-align: center;
             }
 
             body {
@@ -916,10 +1238,32 @@
     </style>
 </head>
 <body>
+    <!-- SVG Filters for Marker Effects -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <!-- Hand-drawn marker effect -->
+            <filter id="marker-highlight" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+                <feGaussianBlur stdDeviation="0.5" />
+            </filter>
+            
+            <!-- Scribble marker for gallery -->
+            <filter id="marker-scribble" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
+                <feGaussianBlur stdDeviation="0.8" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Background Texture -->
+    <div class="bg-texture"></div>
+
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#" class="nav-logo">
+            <a href="#home" class="nav-logo">
                 <span class="logo-text">Pasumarthi Banquet Hall</span>
             </a>
 
@@ -930,7 +1274,7 @@
             </button>
 
             <div class="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
+                <a href="#home" class="nav-link active">Home</a>
                 <a href="#gallery" class="nav-link">Gallery</a>
                 <a href="#journey" class="nav-link">Journey</a>
                 <a href="#features" class="nav-link">Features</a>
@@ -962,7 +1306,7 @@
                     <span>Full AV Setup</span>
                 </div>
                 <div class="hero-feature">
-                    <img src="https://api.iconify.design/lucide/utensils.svg" alt="Catering" class="hero-feature-icon" style="filter: brightness(0) invert(1);">
+                    <img src="https://api.iconify.design/lucide/utensils-crossed.svg" alt="Catering" class="hero-feature-icon" style="filter: brightness(0) invert(1);">
                     <span>Premium Catering</span>
                 </div>
             </div>
@@ -983,7 +1327,37 @@
         </div>
     </section>
 
-    <!-- Features Section - NEW FORMAT WITH PNG ICONS -->
+    <!-- Audio Player Section -->
+    <section class="audio-section">
+        <div class="audio-player-container">
+            <div class="audio-player-header">
+                <div class="audio-icon-wrapper">
+                    <i data-lucide="headphones"></i>
+                </div>
+                <div class="audio-player-info">
+                    <h3>Virtual Venue Tour</h3>
+                    <p>Experience our banquet hall through audio</p>
+                </div>
+            </div>
+            
+            <div class="audio-controls">
+                <div class="audio-play-btn" onclick="toggleAudio()">
+                    <i data-lucide="play" id="audio-icon"></i>
+                </div>
+                <div class="audio-wave" id="audio-wave">
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                </div>
+                <span class="audio-time" id="audio-time">3:45</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
     <section id="features" class="section features-section">
         <div class="container">
             <div class="section-header">
@@ -1064,7 +1438,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section with Giant Filters -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
             <div class="section-header">
@@ -1075,10 +1449,10 @@
             </div>
 
             <div class="gallery-filters">
-                <button class="gallery-filter active" data-filter="all">All Events</button>
-                <button class="gallery-filter" data-filter="wedding">Weddings</button>
-                <button class="gallery-filter" data-filter="corporate">Corporate</button>
-                <button class="gallery-filter" data-filter="social">Social</button>
+                <div class="gallery-filter active" onclick="filterGallery('all', this)">All Events</div>
+                <div class="gallery-filter" onclick="filterGallery('wedding', this)">Weddings</div>
+                <div class="gallery-filter" onclick="filterGallery('corporate', this)">Corporate</div>
+                <div class="gallery-filter" onclick="filterGallery('social', this)">Social</div>
             </div>
 
             <div class="gallery-grid">
@@ -1142,7 +1516,7 @@
         </div>
     </section>
 
-    <!-- Booking Journey Timeline -->
+    <!-- Booking Journey with Story Toggle -->
     <section id="journey" class="section journey-section">
         <div class="container">
             <div class="section-header">
@@ -1155,7 +1529,15 @@
                 <p>We've crafted a seamless experience. Here's how we'll work together from your first inquiry to the final toast.</p>
             </div>
 
-            <div class="timeline">
+            <!-- Story Toggle -->
+            <div class="story-toggle">
+                <div class="toggle-pill" id="togglePill"></div>
+                <button class="toggle-btn active" onclick="setJourneyMode('full')" id="btn-full">Full Journey</button>
+                <button class="toggle-btn" onclick="setJourneyMode('quick')" id="btn-quick">Quick View</button>
+            </div>
+
+            <!-- Full Journey View -->
+            <div class="timeline" id="timeline-view">
                 <!-- Step 1 -->
                 <div class="timeline-item">
                     <div class="timeline-content">
@@ -1207,6 +1589,64 @@
                 </div>
             </div>
 
+            <!-- Quick Journey View -->
+            <div class="quick-journey" id="quick-view">
+                <div class="quick-card">
+                    <div class="quick-card-number">01</div>
+                    <div class="quick-card-content">
+                        <h3 class="quick-card-title">Initial Inquiry</h3>
+                        <p class="quick-card-desc">Reach out. We respond within 2 hours to discuss your vision.</p>
+                    </div>
+                    <div class="quick-card-icon">
+                        <img src="https://api.iconify.design/lucide/phone.svg" alt="Phone" style="width: 24px; height: 24px;">
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-number">02</div>
+                    <div class="quick-card-content">
+                        <h3 class="quick-card-title">Venue Tour</h3>
+                        <p class="quick-card-desc">Visit us. Experience the space and visualize your event.</p>
+                    </div>
+                    <div class="quick-card-icon">
+                        <img src="https://api.iconify.design/lucide/building.svg" alt="Building" style="width: 24px; height: 24px;">
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-number">03</div>
+                    <div class="quick-card-content">
+                        <h3 class="quick-card-title">Custom Proposal</h3>
+                        <p class="quick-card-desc">Receive tailored menus, decor options, and transparent pricing.</p>
+                    </div>
+                    <div class="quick-card-icon">
+                        <img src="https://api.iconify.design/lucide/file-text.svg" alt="File" style="width: 24px; height: 24px;">
+                    </div>
+                </div>
+
+                <div class="quick-card">
+                    <div class="quick-card-number">04</div>
+                    <div class="quick-card-content">
+                        <h3 class="quick-card-title">Booking & Planning</h3>
+                        <p class="quick-card-desc">Secure your date. Our coordinator handles every detail.</p>
+                    </div>
+                    <div class="quick-card-icon">
+                        <img src="https://api.iconify.design/lucide/calendar-check.svg" alt="Calendar" style="width: 24px; height: 24px;">
+                    </div>
+                </div>
+
+                <div class="quick-card" style="background: linear-gradient(135deg, var(--color-primary) 0%, #5A1229 100%);">
+                    <div class="quick-card-number" style="color: rgba(255, 255, 255, 0.2);">05</div>
+                    <div class="quick-card-content">
+                        <h3 class="quick-card-title" style="color: white;">Celebration Day</h3>
+                        <p class="quick-card-desc" style="color: rgba(255, 255, 255, 0.9);">We set up everything. You enjoy a flawless event.</p>
+                    </div>
+                    <div class="quick-card-icon" style="background: rgba(255, 255, 255, 0.2);">
+                        <img src="https://api.iconify.design/lucide/champagne.svg" alt="Champagne" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
+                    </div>
+                </div>
+            </div>
+
             <div class="timeline-cta">
                 <h3>Ready to Start?</h3>
                 <a href="tel:9208108108" class="btn btn-primary">
@@ -1238,10 +1678,93 @@
 
     <!-- JavaScript -->
     <script>
-        // Register GSAP plugins
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Audio Player
+        let isPlaying = false;
+        function toggleAudio() {
+            isPlaying = !isPlaying;
+            const icon = document.getElementById('audio-icon');
+            const wave = document.getElementById('audio-wave');
+            const time = document.getElementById('audio-time');
+            
+            if (isPlaying) {
+                icon.setAttribute('data-lucide', 'pause');
+                wave.classList.add('playing');
+                time.textContent = 'Playing • 3:45';
+            } else {
+                icon.setAttribute('data-lucide', 'play');
+                wave.classList.remove('playing');
+                time.textContent = '3:45';
+            }
+            lucide.createIcons();
+        }
+
+        // Gallery Filter with Giant Buttons
+        function filterGallery(category, element) {
+            // Update active state
+            document.querySelectorAll('.gallery-filter').forEach(filter => {
+                filter.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            // Filter items
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    gsap.to(item, {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.3,
+                        display: 'block'
+                    });
+                } else {
+                    gsap.to(item, {
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 0.3,
+                        onComplete: () => {
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        }
+
+        // Journey Mode Toggle
+        function setJourneyMode(mode) {
+            const pill = document.getElementById('togglePill');
+            const btnFull = document.getElementById('btn-full');
+            const btnQuick = document.getElementById('btn-quick');
+            const timelineView = document.getElementById('timeline-view');
+            const quickView = document.getElementById('quick-view');
+            
+            if (mode === 'full') {
+                pill.style.transform = 'translateX(0)';
+                btnFull.classList.add('active');
+                btnQuick.classList.remove('active');
+                timelineView.style.display = 'block';
+                quickView.classList.remove('active');
+            } else {
+                pill.style.transform = 'translateX(100%)';
+                btnQuick.classList.add('active');
+                btnFull.classList.remove('active');
+                timelineView.style.display = 'none';
+                quickView.classList.add('active');
+            }
+
+            // Animate transition
+            gsap.fromTo(mode === 'full' ? '.timeline-item' : '.quick-card',
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
+            );
+        }
+
+        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero parallax effect
+        // Hero parallax
         window.addEventListener('scroll', () => {
             const scrolled = window.scrollY;
             const heroBg = document.querySelector('.hero-bg');
@@ -1250,7 +1773,7 @@
             }
         });
 
-        // Animate hero content on load
+        // Hero content animation
         window.addEventListener('load', () => {
             gsap.from('.hero-badge', {
                 opacity: 0,
@@ -1288,7 +1811,7 @@
             });
         });
 
-        // Scroll-triggered animations for timeline
+        // Scroll animations for timeline
         gsap.utils.toArray('.timeline-item').forEach((item, i) => {
             gsap.from(item, {
                 opacity: 0,
@@ -1303,7 +1826,7 @@
             });
         });
 
-        // Scroll-triggered animations for features
+        // Scroll animations for features
         gsap.utils.toArray('.feature-card').forEach((card, i) => {
             gsap.from(card, {
                 opacity: 0,
@@ -1311,6 +1834,21 @@
                 duration: 0.5,
                 scrollTrigger: {
                     trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                delay: i * 0.08
+            });
+        });
+
+        // Scroll animations for gallery
+        gsap.utils.toArray('.gallery-item').forEach((item, i) => {
+            gsap.from(item, {
+                opacity: 0,
+                y: 30,
+                duration: 0.5,
+                scrollTrigger: {
+                    trigger: item,
                     start: 'top 85%',
                     toggleActions: 'play none none none'
                 },
@@ -1357,35 +1895,22 @@
             });
         });
 
-        // Gallery filter
-        const filterBtns = document.querySelectorAll('.gallery-filter');
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filter = btn.dataset.filter;
-                galleryItems.forEach(item => {
-                    if (filter === 'all' || item.dataset.category === filter) {
-                        gsap.to(item, {
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.3,
-                            display: 'block'
-                        });
-                    } else {
-                        gsap.to(item, {
-                            opacity: 0,
-                            scale: 0.8,
-                            duration: 0.3,
-                            onComplete: () => {
-                                item.style.display = 'none';
-                            }
-                        });
-                    }
-                });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
             });
         });
     </script>
