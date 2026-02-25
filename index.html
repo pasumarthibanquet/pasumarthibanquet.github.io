@@ -308,7 +308,8 @@
         }
 
         .hero-feature-icon {
-            font-size: 18px;
+            width: 18px;
+            height: 18px;
             flex-shrink: 0;
         }
 
@@ -611,7 +612,8 @@
         }
 
         .timeline-icon {
-            font-size: 24px;
+            width: 24px;
+            height: 24px;
             margin-bottom: var(--space-sm);
         }
 
@@ -643,56 +645,83 @@
         }
 
         /* ========================================
-           FEATURES SECTION
+           FEATURES SECTION - NEW FORMAT
            ======================================== */
         .features-section {
-            background: var(--color-primary);
-            color: white;
+            background: var(--color-white);
+            color: var(--color-charcoal);
         }
 
-        .features-section h2,
-        .features-section p {
-            color: white;
+        .features-section h2 {
+            color: var(--color-primary);
+        }
+
+        .features-section p.section-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--space-2xl);
+            color: #666;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: var(--space-lg);
             margin-top: var(--space-xl);
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: var(--space-lg);
+            background: var(--color-cream);
+            padding: var(--space-xl);
             border-radius: 16px;
-            text-align: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-lg);
             transition: all var(--transition);
+            border: 1px solid rgba(122, 27, 58, 0.1);
         }
 
         .feature-card:hover {
-            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-gold);
         }
 
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: var(--space-sm);
+        .feature-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
+            background: var(--color-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon-wrapper img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) invert(1);
+        }
+
+        .feature-content {
+            flex: 1;
         }
 
         .feature-title {
             font-family: var(--font-display);
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: var(--space-sm);
+            color: var(--color-primary);
         }
 
         .feature-desc {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            color: #666;
             line-height: 1.6;
+            margin: 0;
         }
 
         /* ========================================
@@ -873,6 +902,16 @@
                 font-size: 14px;
                 left: -33px !important;
             }
+
+            .feature-card {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-md);
+            }
+
+            .feature-icon-wrapper {
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -895,7 +934,7 @@
                 <a href="#gallery" class="nav-link">Gallery</a>
                 <a href="#journey" class="nav-link">Journey</a>
                 <a href="#features" class="nav-link">Features</a>
-                <a href="tel:9208108108" class="nav-link nav-cta">📞 Book Now</a>
+                <a href="tel:9208108108" class="nav-link nav-cta">Book Now</a>
             </div>
         </div>
     </nav>
@@ -915,26 +954,24 @@
             
             <div class="hero-features">
                 <div class="hero-feature">
-                    <span class="hero-feature-icon">❄️</span>
+                    <img src="https://api.iconify.design/lucide/snowflake.svg" alt="AC" class="hero-feature-icon" style="filter: brightness(0) invert(1);">
                     <span>AC Banquet Hall</span>
                 </div>
                 <div class="hero-feature">
-                    <span class="hero-feature-icon">🎬</span>
+                    <img src="https://api.iconify.design/lucide/film.svg" alt="AV" class="hero-feature-icon" style="filter: brightness(0) invert(1);">
                     <span>Full AV Setup</span>
                 </div>
                 <div class="hero-feature">
-                    <span class="hero-feature-icon">🍽️</span>
+                    <img src="https://api.iconify.design/lucide/utensils.svg" alt="Catering" class="hero-feature-icon" style="filter: brightness(0) invert(1);">
                     <span>Premium Catering</span>
                 </div>
             </div>
 
             <div class="hero-cta-group">
                 <a href="#journey" class="btn btn-primary">
-                    <span>📅</span>
                     <span>Start Planning</span>
                 </a>
                 <a href="#gallery" class="btn btn-white">
-                    <span>📷</span>
                     <span>View Gallery</span>
                 </a>
             </div>
@@ -946,50 +983,82 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section - NEW FORMAT WITH PNG ICONS -->
     <section id="features" class="section features-section">
         <div class="container">
             <div class="section-header">
                 <div class="section-subtitle">Why Choose Us</div>
                 <h2>Everything You Need</h2>
-                <div class="divider" style="background: rgba(255,255,255,0.3);"></div>
+                <div class="divider"></div>
             </div>
 
+            <p class="section-intro">We provide everything you need for a flawless event, from an elegant hall to premium amenities.</p>
+
             <div class="features-grid">
+                <!-- Grand Hall -->
                 <div class="feature-card">
-                    <div class="feature-icon">🏛️</div>
-                    <h3 class="feature-title">Grand Hall</h3>
-                    <p class="feature-desc">Elegant banquet hall accommodating up to 500 guests with sophisticated decor and ambiance.</p>
+                    <div class="feature-icon-wrapper">
+                        <img src="https://api.iconify.design/lucide/building-2.svg" alt="Grand Hall">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Grand Hall</h3>
+                        <p class="feature-desc">Elegant banquet hall accommodating up to 500 guests with sophisticated decor and ambiance.</p>
+                    </div>
                 </div>
 
+                <!-- Full AV Setup -->
                 <div class="feature-card">
-                    <div class="feature-icon">🎬</div>
-                    <h3 class="feature-title">Full AV Setup</h3>
-                    <p class="feature-desc">State-of-the-art projector, premium sound system, and professional lighting included.</p>
+                    <div class="feature-icon-wrapper">
+                        <img src="https://api.iconify.design/lucide/monitor-speaker.svg" alt="AV Setup">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Full AV Setup</h3>
+                        <p class="feature-desc">State-of-the-art projector, premium sound system, and professional lighting included.</p>
+                    </div>
                 </div>
 
+                <!-- Premium Catering -->
                 <div class="feature-card">
-                    <div class="feature-icon">🍽️</div>
-                    <h3 class="feature-title">Premium Catering</h3>
-                    <p class="feature-desc">Expert culinary team crafting delicious menus for every occasion and taste.</p>
+                    <div class="feature-icon-wrapper">
+                        <img src="https://api.iconify.design/lucide/coffee.svg" alt="Catering">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Premium Catering</h3>
+                        <p class="feature-desc">Expert culinary team crafting delicious menus for every occasion and taste.</p>
+                    </div>
                 </div>
 
+                <!-- Ample Parking -->
                 <div class="feature-card">
-                    <div class="feature-icon">🅿️</div>
-                    <h3 class="feature-title">Ample Parking</h3>
-                    <p class="feature-desc">Double cellar parking with 50+ car capacity and 24-hour lift access.</p>
+                    <div class="feature-icon-wrapper">
+                        <img src="https://api.iconify.design/lucide/car.svg" alt="Parking">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Ample Parking</h3>
+                        <p class="feature-desc">Double cellar parking with 50+ car capacity and 24-hour lift access.</p>
+                    </div>
                 </div>
 
+                <!-- Climate Control -->
                 <div class="feature-card">
-                    <div class="feature-icon">❄️</div>
-                    <h3 class="feature-title">Climate Control</h3>
-                    <p class="feature-desc">Central air conditioning ensuring comfort for your guests year-round.</p>
+                    <div class="feature-icon-wrapper">
+                        <img src="https://api.iconify.design/lucide/thermometer.svg" alt="Climate Control">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Climate Control</h3>
+                        <p class="feature-desc">Central air conditioning ensuring comfort for your guests year-round.</p>
+                    </div>
                 </div>
 
+                <!-- Expert Team -->
                 <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3 class="feature-title">Expert Team</h3>
-                    <p class="feature-desc">Dedicated event coordinators to make your celebration flawless and memorable.</p>
+                    <div class="feature-icon-wrapper">
+                        <img src="https://api.iconify.design/lucide/users.svg" alt="Expert Team">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Expert Team</h3>
+                        <p class="feature-desc">Dedicated event coordinators to make your celebration flawless and memorable.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1091,7 +1160,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-number">1</div>
-                        <div class="timeline-icon">📞</div>
+                        <img src="https://api.iconify.design/lucide/phone.svg" alt="Inquiry" class="timeline-icon">
                         <h3 class="timeline-title">Initial Inquiry</h3>
                         <p class="timeline-desc">Reach out via phone or WhatsApp. We respond within 2 hours to discuss your vision.</p>
                     </div>
@@ -1101,7 +1170,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-number">2</div>
-                        <div class="timeline-icon">🏛️</div>
+                        <img src="https://api.iconify.design/lucide/building.svg" alt="Tour" class="timeline-icon">
                         <h3 class="timeline-title">Venue Tour</h3>
                         <p class="timeline-desc">Visit us to experience the space and visualize your event setup.</p>
                     </div>
@@ -1111,7 +1180,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-number">3</div>
-                        <div class="timeline-icon">📋</div>
+                        <img src="https://api.iconify.design/lucide/file-text.svg" alt="Proposal" class="timeline-icon">
                         <h3 class="timeline-title">Custom Proposal</h3>
                         <p class="timeline-desc">Receive a tailored proposal with menus, decor, and pricing.</p>
                     </div>
@@ -1121,7 +1190,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-number">4</div>
-                        <div class="timeline-icon">✍️</div>
+                        <img src="https://api.iconify.design/lucide/calendar-check.svg" alt="Booking" class="timeline-icon">
                         <h3 class="timeline-title">Booking & Planning</h3>
                         <p class="timeline-desc">Secure your date. Our coordinator handles all the details.</p>
                     </div>
@@ -1131,7 +1200,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-number">5</div>
-                        <div class="timeline-icon">🎉</div>
+                        <img src="https://api.iconify.design/lucide/champagne.svg" alt="Celebration" class="timeline-icon">
                         <h3 class="timeline-title">Celebration Day</h3>
                         <p class="timeline-desc">We set up everything. You enjoy a flawless event.</p>
                     </div>
@@ -1141,7 +1210,6 @@
             <div class="timeline-cta">
                 <h3>Ready to Start?</h3>
                 <a href="tel:9208108108" class="btn btn-primary">
-                    <span>📞</span>
                     <span>Call (920) 810-8108</span>
                 </a>
             </div>
@@ -1151,8 +1219,8 @@
     <!-- Footer -->
     <footer class="footer">
         <p>© 2025 Pasumarthi Banquet Hall. All rights reserved.</p>
-        <p>📍 4th Floor, Koppu Naresh Complex, Wyra Rd, Khammam, Telangana 507001</p>
-        <p>📞 (920) 810-8108 | ✉️ info@pasumarthibanquet.com</p>
+        <p>4th Floor, Koppu Naresh Complex, Wyra Rd, Khammam, Telangana 507001</p>
+        <p>(920) 810-8108 | info@pasumarthibanquet.com</p>
     </footer>
 
     <!-- Mobile CTA Bar -->
@@ -1163,7 +1231,6 @@
                 Up to 500 guests
             </div>
             <a href="tel:9208108108" class="mobile-cta-button">
-                <span>📞</span>
                 <span>Call Now</span>
             </a>
         </div>
