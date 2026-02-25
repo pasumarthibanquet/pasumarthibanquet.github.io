@@ -8,54 +8,40 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- GSAP for Advanced Animations -->
+    <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     
     <style>
         /* ========================================
            CSS VARIABLES
            ======================================== */
         :root {
-            /* Rich Color Palette */
+            /* Color Palette */
             --color-primary: #7A1B3A;
             --color-primary-dark: #5A1229;
-            --color-primary-light: #9A2449;
-            
             --color-gold: #C9A227;
             --color-gold-light: #D4AF37;
-            --color-gold-dark: #B8921F;
-            
             --color-cream: #FAF6F0;
-            --color-cream-dark: #F0EBE3;
-            --color-sage: #E8E4DE;
+            --color-white: #FFFFFF;
             --color-charcoal: #2C2C2C;
-            --color-ivory: #FFFEF9;
             
             /* Typography */
-            --font-display: 'Cormorant Garamond', Georgia, serif;
-            --font-body: 'Montserrat', system-ui, sans-serif;
+            --font-display: 'Bodoni Moda', Georgia, serif;
+            --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
             
             /* Spacing */
-            --space-xs: 4px;
             --space-sm: 8px;
             --space-md: 16px;
             --space-lg: 24px;
             --space-xl: 32px;
             --space-2xl: 48px;
             --space-3xl: 64px;
-            --space-4xl: 96px;
-            
-            /* Shadows */
-            --shadow-soft: 0 4px 20px rgba(122, 27, 58, 0.08);
-            --shadow-medium: 0 8px 30px rgba(122, 27, 58, 0.12);
-            --shadow-strong: 0 16px 50px rgba(122, 27, 58, 0.18);
             
             /* Transitions */
-            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* ========================================
@@ -76,7 +62,7 @@
             font-size: 16px;
             line-height: 1.6;
             color: var(--color-charcoal);
-            background: var(--color-ivory);
+            background: var(--color-cream);
             overflow-x: hidden;
             padding-bottom: 70px;
         }
@@ -92,30 +78,30 @@
         }
 
         h1 {
-            font-size: clamp(40px, 10vw, 100px);
+            font-size: clamp(48px, 10vw, 96px);
             font-weight: 700;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
 
         h2 {
-            font-size: clamp(32px, 6vw, 64px);
+            font-size: clamp(36px, 6vw, 60px);
             margin-bottom: var(--space-md);
         }
 
         h3 {
-            font-size: clamp(24px, 4vw, 36px);
+            font-size: clamp(24px, 4vw, 32px);
             margin-bottom: var(--space-sm);
         }
 
         p {
-            font-size: clamp(16px, 2vw, 18px);
+            font-size: clamp(15px, 2vw, 17px);
             color: #4A4A4A;
             margin-bottom: var(--space-md);
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         /* ========================================
-           NAVIGATION
+           NAVIGATION - FIXED
            ======================================== */
         .nav {
             position: fixed;
@@ -128,10 +114,10 @@
         }
 
         .nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-soft);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: var(--space-md) 0;
         }
 
@@ -146,44 +132,47 @@
 
         .nav-logo {
             text-decoration: none;
+            background: var(--color-white);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all var(--transition);
+        }
+
+        .nav-logo:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         .logo-text {
             font-family: var(--font-display);
-            font-size: clamp(18px, 3vw, 28px);
+            font-size: clamp(16px, 2.5vw, 24px);
             font-weight: 700;
             color: var(--color-primary);
             letter-spacing: -0.01em;
+            white-space: nowrap;
         }
 
         .nav-menu {
             display: flex;
-            gap: var(--space-xl);
+            gap: var(--space-lg);
             align-items: center;
         }
 
         .nav-link {
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            position: relative;
-            padding: var(--space-sm) 0;
+            color: var(--color-charcoal);
+            text-decoration: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 8px;
+            transition: all var(--transition);
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--color-gold);
-            transition: width var(--transition);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
+        .nav-link:hover {
+            background: var(--color-cream);
+            color: var(--color-primary);
         }
 
         .nav-cta {
@@ -192,23 +181,24 @@
             padding: var(--space-md) var(--space-xl);
             border-radius: 50px;
             font-weight: 600;
-            transition: all var(--transition);
         }
 
         .nav-cta:hover {
             background: var(--color-primary-dark);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-soft);
+            box-shadow: 0 6px 20px rgba(122, 27, 58, 0.3);
         }
 
         .nav-toggle {
             display: none;
             flex-direction: column;
             gap: 6px;
-            background: none;
+            background: var(--color-white);
             border: none;
             cursor: pointer;
             padding: var(--space-sm);
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         }
 
         .nav-toggle span {
@@ -256,9 +246,9 @@
             inset: 0;
             background: linear-gradient(
                 135deg,
-                rgba(122, 27, 58, 0.85) 0%,
-                rgba(122, 27, 58, 0.65) 50%,
-                rgba(201, 162, 39, 0.4) 100%
+                rgba(122, 27, 58, 0.88) 0%,
+                rgba(122, 27, 58, 0.75) 50%,
+                rgba(201, 162, 39, 0.5) 100%
             );
         }
 
@@ -267,19 +257,19 @@
             z-index: 2;
             text-align: center;
             color: white;
-            max-width: 1000px;
+            max-width: 900px;
             padding: var(--space-xl);
         }
 
         .hero-badge {
             display: inline-block;
-            background: rgba(201, 162, 39, 0.9);
+            background: var(--color-gold);
             color: var(--color-primary-dark);
             padding: var(--space-sm) var(--space-lg);
             border-radius: 50px;
             font-family: var(--font-body);
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             margin-bottom: var(--space-xl);
@@ -293,7 +283,7 @@
 
         .hero-subtitle {
             font-family: var(--font-display);
-            font-size: clamp(20px, 4vw, 28px);
+            font-size: clamp(22px, 4vw, 32px);
             font-style: italic;
             color: var(--color-gold-light);
             margin-bottom: var(--space-2xl);
@@ -355,12 +345,11 @@
         }
 
         .btn-white:hover {
-            background: var(--color-ivory);
+            background: var(--color-cream);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
 
-        /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
             bottom: var(--space-2xl);
@@ -392,7 +381,7 @@
            SECTIONS
            ======================================== */
         .section {
-            padding: var(--space-4xl) var(--space-lg);
+            padding: var(--space-3xl) var(--space-lg);
         }
 
         .container {
@@ -402,13 +391,13 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: var(--space-3xl);
+            margin-bottom: var(--space-2xl);
         }
 
         .section-subtitle {
             font-family: var(--font-body);
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--color-gold);
@@ -419,21 +408,21 @@
             width: 80px;
             height: 3px;
             background: var(--color-gold);
-            margin: var(--space-xl) auto;
+            margin: var(--space-lg) auto;
         }
 
         /* ========================================
-           GALLERY SECTION - MASONRY WITH HOVER
+           GALLERY - 6 IMAGES (EVEN NUMBER)
            ======================================== */
         .gallery-section {
-            background: var(--color-cream-dark);
+            background: var(--color-cream);
         }
 
         .gallery-filters {
             display: flex;
             justify-content: center;
             gap: var(--space-md);
-            margin-bottom: var(--space-3xl);
+            margin-bottom: var(--space-2xl);
             flex-wrap: wrap;
         }
 
@@ -443,8 +432,8 @@
             border: 2px solid var(--color-primary);
             border-radius: 50px;
             font-family: var(--font-body);
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             cursor: pointer;
@@ -459,23 +448,23 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: var(--space-xl);
         }
 
         .gallery-item {
             position: relative;
-            border-radius: var(--space-lg);
+            border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
-            aspect-ratio: 4/3;
-            box-shadow: var(--shadow-soft);
+            aspect-ratio: 1;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             transition: all var(--transition);
         }
 
         .gallery-item:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-strong);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
         }
 
         .gallery-item img {
@@ -495,7 +484,7 @@
             background: linear-gradient(
                 to top,
                 rgba(122, 27, 58, 0.95) 0%,
-                rgba(122, 27, 58, 0.3) 50%,
+                rgba(122, 27, 58, 0.4) 50%,
                 transparent 100%
             );
             padding: var(--space-xl);
@@ -513,8 +502,8 @@
         .gallery-category {
             font-family: var(--font-body);
             font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
+            font-weight: 700;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--color-gold);
             margin-bottom: var(--space-sm);
@@ -522,27 +511,31 @@
 
         .gallery-title {
             font-family: var(--font-display);
-            font-size: 24px;
+            font-size: 22px;
             color: white;
             margin-bottom: var(--space-sm);
         }
 
         .gallery-desc {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
         }
 
         /* ========================================
-           BOOKING JOURNEY TIMELINE
+           BOOKING JOURNEY - CONCISE TIMELINE
            ======================================== */
         .journey-section {
-            background: var(--color-ivory);
+            background: var(--color-white);
         }
 
         .journey-intro {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto var(--space-3xl);
+            margin: 0 auto var(--space-2xl);
+        }
+
+        .journey-intro p {
+            font-size: 16px;
         }
 
         .timeline {
@@ -564,7 +557,7 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: var(--space-3xl);
+            margin-bottom: var(--space-xl);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: var(--space-xl);
@@ -576,24 +569,24 @@
         }
 
         .timeline-content {
-            background: white;
+            background: var(--color-cream);
             padding: var(--space-xl);
-            border-radius: var(--space-lg);
-            box-shadow: var(--shadow-soft);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
             position: relative;
             transition: all var(--transition);
         }
 
         .timeline-content:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-medium);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
         .timeline-number {
             position: absolute;
-            top: var(--space-xl);
-            width: 40px;
-            height: 40px;
+            top: var(--space-lg);
+            width: 36px;
+            height: 36px;
             background: var(--color-primary);
             color: white;
             border-radius: 50%;
@@ -601,43 +594,44 @@
             align-items: center;
             justify-content: center;
             font-family: var(--font-display);
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
         }
 
         .timeline-item:nth-child(odd) .timeline-number {
-            right: -20px;
+            right: -18px;
         }
 
         .timeline-item:nth-child(even) .timeline-number {
-            left: -20px;
+            left: -18px;
         }
 
         .timeline-icon {
-            font-size: 32px;
+            font-size: 28px;
             margin-bottom: var(--space-md);
         }
 
         .timeline-title {
             font-family: var(--font-display);
-            font-size: 24px;
+            font-size: 20px;
             margin-bottom: var(--space-sm);
         }
 
         .timeline-desc {
-            font-size: 15px;
-            line-height: 1.7;
+            font-size: 14px;
+            line-height: 1.6;
             color: #666;
         }
 
         .timeline-cta {
-            margin-top: var(--space-lg);
+            margin-top: var(--space-xl);
             text-align: center;
         }
 
         .timeline-cta .btn {
             width: 100%;
             justify-content: center;
+            max-width: 400px;
         }
 
         /* ========================================
@@ -655,9 +649,9 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: var(--space-xl);
-            margin-top: var(--space-3xl);
+            margin-top: var(--space-2xl);
         }
 
         .feature-card {
@@ -665,8 +659,8 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: var(--space-2xl);
-            border-radius: var(--space-lg);
+            padding: var(--space-xl);
+            border-radius: 16px;
             text-align: center;
             transition: all var(--transition);
         }
@@ -677,20 +671,20 @@
         }
 
         .feature-icon {
-            font-size: 48px;
-            margin-bottom: var(--space-lg);
+            font-size: 40px;
+            margin-bottom: var(--space-md);
         }
 
         .feature-title {
             font-family: var(--font-display);
-            font-size: 24px;
-            margin-bottom: var(--space-md);
+            font-size: 20px;
+            margin-bottom: var(--space-sm);
         }
 
         .feature-desc {
-            font-size: 15px;
+            font-size: 14px;
             color: rgba(255, 255, 255, 0.9);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         /* ========================================
@@ -745,7 +739,7 @@
         .footer {
             background: var(--color-charcoal);
             color: white;
-            padding: var(--space-3xl) var(--space-lg);
+            padding: var(--space-2xl) var(--space-lg);
             text-align: center;
         }
 
@@ -757,6 +751,12 @@
         /* ========================================
            RESPONSIVE
            ======================================== */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -777,7 +777,7 @@
                 background: white;
                 flex-direction: column;
                 justify-content: center;
-                gap: var(--space-xl);
+                gap: var(--space-lg);
                 padding: var(--space-2xl);
                 box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
                 transition: right 0.4s var(--transition);
@@ -803,7 +803,7 @@
             .timeline-item {
                 grid-template-columns: 1fr;
                 gap: var(--space-lg);
-                padding-left: 70px;
+                padding-left: 60px;
             }
 
             .timeline-item:nth-child(even) {
@@ -811,7 +811,7 @@
             }
 
             .timeline-number {
-                left: -50px !important;
+                left: -45px !important;
                 right: auto !important;
             }
 
@@ -835,6 +835,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
             body {
                 padding-bottom: 70px;
             }
@@ -847,6 +851,17 @@
 
             .hero-content {
                 padding: var(--space-md);
+            }
+
+            .timeline-item {
+                padding-left: 50px;
+            }
+
+            .timeline-number {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+                left: -38px !important;
             }
         }
     </style>
@@ -868,7 +883,7 @@
             <div class="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#gallery" class="nav-link">Gallery</a>
-                <a href="#journey" class="nav-link">Your Journey</a>
+                <a href="#journey" class="nav-link">Journey</a>
                 <a href="#features" class="nav-link">Features</a>
                 <a href="tel:9208108108" class="nav-link nav-cta">📞 Book Now</a>
             </div>
@@ -970,7 +985,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section - 6 IMAGES (EVEN) -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
             <div class="section-header">
@@ -993,8 +1008,8 @@
                     <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Wedding Ceremony">
                     <div class="gallery-overlay">
                         <div class="gallery-category">Wedding</div>
-                        <h4 class="gallery-title">Elegant Wedding Ceremony</h4>
-                        <p class="gallery-desc">Priya & Rahul's Special Day • 300 Guests</p>
+                        <h4 class="gallery-title">Elegant Wedding</h4>
+                        <p class="gallery-desc">Priya & Rahul's Day • 300 Guests</p>
                     </div>
                 </div>
 
@@ -1004,15 +1019,6 @@
                         <div class="gallery-category">Wedding</div>
                         <h4 class="gallery-title">Grand Reception</h4>
                         <p class="gallery-desc">Traditional Ceremony • 400 Guests</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="wedding">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&q=80" alt="Wedding Decor">
-                    <div class="gallery-overlay">
-                        <div class="gallery-category">Wedding</div>
-                        <h4 class="gallery-title">Beautiful Mandap</h4>
-                        <p class="gallery-desc">Custom Floral Design • 250 Guests</p>
                     </div>
                 </div>
 
@@ -1040,7 +1046,7 @@
                     <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="Birthday Party">
                     <div class="gallery-overlay">
                         <div class="gallery-category">Social</div>
-                        <h4 class="gallery-title">Birthday Celebration</h4>
+                        <h4 class="gallery-title">Birthday</h4>
                         <p class="gallery-desc">Sweet 16 Party • 100 Guests</p>
                     </div>
                 </div>
@@ -1049,24 +1055,15 @@
                     <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&q=80" alt="Anniversary">
                     <div class="gallery-overlay">
                         <div class="gallery-category">Social</div>
-                        <h4 class="gallery-title">25th Anniversary</h4>
+                        <h4 class="gallery-title">Anniversary</h4>
                         <p class="gallery-desc">Family Gathering • 80 Guests</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="social">
-                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80" alt="Baby Shower">
-                    <div class="gallery-overlay">
-                        <div class="gallery-category">Social</div>
-                        <h4 class="gallery-title">Baby Shower</h4>
-                        <p class="gallery-desc">Gender Reveal • 50 Guests</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Booking Journey Timeline -->
+    <!-- Booking Journey Timeline - CONCISE -->
     <section id="journey" class="section journey-section">
         <div class="container">
             <div class="section-header">
@@ -1076,7 +1073,7 @@
             </div>
 
             <div class="journey-intro">
-                <p>We've crafted a seamless experience to bring your vision to life. Here's how we'll work together from your first inquiry to the final toast.</p>
+                <p>We've crafted a seamless experience. Here's how we'll work together from your first inquiry to the final toast.</p>
             </div>
 
             <div class="timeline">
@@ -1086,7 +1083,7 @@
                         <div class="timeline-number">1</div>
                         <div class="timeline-icon">📞</div>
                         <h3 class="timeline-title">Initial Inquiry</h3>
-                        <p class="timeline-desc">Reach out via phone, WhatsApp, or our website form. We'll respond within 2 hours to discuss your vision and check availability for your preferred date.</p>
+                        <p class="timeline-desc">Reach out via phone or WhatsApp. We respond within 2 hours to discuss your vision.</p>
                     </div>
                 </div>
 
@@ -1096,7 +1093,7 @@
                         <div class="timeline-number">2</div>
                         <div class="timeline-icon">🏛️</div>
                         <h3 class="timeline-title">Venue Tour</h3>
-                        <p class="timeline-desc">Visit our banquet hall to experience the space firsthand. We'll show you around, discuss layout options, and help you visualize your event setup.</p>
+                        <p class="timeline-desc">Visit us to experience the space and visualize your event setup.</p>
                     </div>
                 </div>
 
@@ -1106,7 +1103,7 @@
                         <div class="timeline-number">3</div>
                         <div class="timeline-icon">📋</div>
                         <h3 class="timeline-title">Custom Proposal</h3>
-                        <p class="timeline-desc">Receive a tailored proposal including menu options, decor packages, pricing, and a detailed timeline. We'll refine it until it's perfect for you.</p>
+                        <p class="timeline-desc">Receive a tailored proposal with menus, decor, and pricing.</p>
                     </div>
                 </div>
 
@@ -1115,8 +1112,8 @@
                     <div class="timeline-content">
                         <div class="timeline-number">4</div>
                         <div class="timeline-icon">✍️</div>
-                        <h3 class="timeline-title">Booking Confirmation</h3>
-                        <p class="timeline-desc">Secure your date with a simple booking agreement and deposit. We'll immediately begin planning all the details for your special day.</p>
+                        <h3 class="timeline-title">Booking & Planning</h3>
+                        <p class="timeline-desc">Secure your date. Our coordinator handles all the details.</p>
                     </div>
                 </div>
 
@@ -1124,28 +1121,18 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-number">5</div>
-                        <div class="timeline-icon">🎨</div>
-                        <h3 class="timeline-title">Event Planning</h3>
-                        <p class="timeline-desc">Our dedicated coordinator works with you on menus, decor, seating arrangements, AV requirements, and every detail to ensure perfection.</p>
-                    </div>
-                </div>
-
-                <!-- Step 6 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-number">6</div>
                         <div class="timeline-icon">🎉</div>
                         <h3 class="timeline-title">Celebration Day</h3>
-                        <p class="timeline-desc">Our team arrives early to set up everything. You and your guests enjoy a flawless event while we handle all logistics behind the scenes.</p>
+                        <p class="timeline-desc">We set up everything. You enjoy a flawless event.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="timeline-cta" style="margin-top: var(--space-3xl); text-align: center;">
-                <h3 style="margin-bottom: var(--space-lg);">Ready to Start Your Journey?</h3>
-                <a href="tel:9208108108" class="btn btn-primary" style="display: inline-flex; width: auto; padding: var(--space-lg) var(--space-2xl);">
+            <div class="timeline-cta">
+                <h3 style="margin-bottom: var(--space-md);">Ready to Start?</h3>
+                <a href="tel:9208108108" class="btn btn-primary">
                     <span>📞</span>
-                    <span>Call Us Now - (920) 810-8108</span>
+                    <span>Call (920) 810-8108</span>
                 </a>
             </div>
         </div>
@@ -1175,7 +1162,7 @@
     <!-- JavaScript -->
     <script>
         // Register GSAP plugins
-        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        gsap.registerPlugin(ScrollTrigger);
 
         // Hero parallax effect
         window.addEventListener('scroll', () => {
@@ -1228,8 +1215,8 @@
         gsap.utils.toArray('.timeline-item').forEach((item, i) => {
             gsap.from(item, {
                 opacity: 0,
-                y: 50,
-                duration: 0.8,
+                y: 40,
+                duration: 0.6,
                 scrollTrigger: {
                     trigger: item,
                     start: 'top 80%',
@@ -1243,21 +1230,21 @@
         gsap.utils.toArray('.feature-card').forEach((card, i) => {
             gsap.from(card, {
                 opacity: 0,
-                y: 40,
-                duration: 0.6,
+                y: 30,
+                duration: 0.5,
                 scrollTrigger: {
                     trigger: card,
                     start: 'top 85%',
                     toggleActions: 'play none none none'
                 },
-                delay: i * 0.1
+                delay: i * 0.08
             });
         });
 
         // Navbar scroll effect
         const nav = document.querySelector('.nav');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
@@ -1299,11 +1286,9 @@
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Update active button
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
-                // Filter items
                 const filter = btn.dataset.filter;
                 galleryItems.forEach(item => {
                     if (filter === 'all' || item.dataset.category === filter) {
