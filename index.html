@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasumarthi Banquet Hall - Where Dreams Become Celebrations</title>
     
-    <!-- Google Fonts - TRENDY MINIMALIST -->
+    <!-- Google Fonts - OUTFIT + DM SANS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -32,15 +32,15 @@
             --color-charcoal: #2C2C2C;
             --color-tan: #C3B7AD;
             
-            /* Typography - TRENDY MINIMALIST */
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter', system-ui, sans-serif;
+            /* Typography - OUTFIT + DM SANS */
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'DM Sans', system-ui, sans-serif;
             
             /* Spacing */
             --space-sm: 8px;
             --space-md: 16px;
             --space-lg: 24px;
-            --space-xl = 32px;
+            --space-xl: 32px;
             --space-2xl: 48px;
             --space-3xl: 64px;
             
@@ -91,19 +91,20 @@
         }
 
         /* ========================================
-           TYPOGRAPHY - SPACE GROTESK + INTER
+           TYPOGRAPHY - OUTFIT + DM SANS
            ======================================== */
         h1, h2, h3, h4 {
             font-family: var(--font-display);
             font-weight: 700;
             line-height: 1.1;
             color: var(--color-primary);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
         }
 
         h1 {
             font-size: clamp(40px, 10vw, 88px);
             line-height: 0.95;
+            font-weight: 800;
         }
 
         h2 {
@@ -125,7 +126,7 @@
         }
 
         /* ========================================
-           NAVIGATION
+           NAVIGATION - EDGE PADDING FIX
            ======================================== */
         .nav {
             position: fixed;
@@ -133,7 +134,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: var(--space-lg) 0;
+            padding: var(--space-lg) var(--space-xl);
             transition: all var(--transition);
         }
 
@@ -142,16 +143,15 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: var(--space-md) 0;
+            padding: var(--space-md) var(--space-xl);
         }
 
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 var(--space-xl);
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .nav-logo {
@@ -320,14 +320,14 @@
         .hero-venue-name {
             font-family: var(--font-display);
             font-size: clamp(48px, 12vw, 96px);
-            font-weight: 700;
+            font-weight: 800;
             line-height: 0.92;
             color: white;
             margin-bottom: var(--space-md);
             text-shadow: 
                 0 4px 20px rgba(0, 0, 0, 0.5),
                 0 0 40px rgba(0, 0, 0, 0.3);
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em;
         }
 
         .hero-tagline {
@@ -336,7 +336,7 @@
             font-weight: 400;
             color: var(--color-gold-light);
             margin-bottom: var(--space-lg);
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
         }
 
         .hero-location {
@@ -455,12 +455,12 @@
         }
 
         /* ========================================
-           STATS SECTION - NEW!
+           STATS SECTION
            ======================================== */
         .stats-section {
             background: var(--color-primary);
             color: white;
-            padding: var(--space-xl) var(--space-lg);
+            padding: var(--space-xl) var(--space-xl);
             position: relative;
             z-index: 1;
         }
@@ -481,7 +481,7 @@
         .stat-number {
             font-family: var(--font-display);
             font-size: clamp(36px, 5vw, 56px);
-            font-weight: 700;
+            font-weight: 800;
             color: var(--color-gold);
             line-height: 1;
             margin-bottom: var(--space-sm);
@@ -497,10 +497,10 @@
         }
 
         /* ========================================
-           SECTIONS
+           SECTIONS - LEFT-ALIGNED
            ======================================== */
         .section {
-            padding: var(--space-3xl) var(--space-lg);
+            padding: var(--space-3xl) var(--space-xl);
             position: relative;
             z-index: 1;
         }
@@ -511,7 +511,7 @@
         }
 
         .section-header {
-            text-align: center;
+            text-align: left;
             margin-bottom: var(--space-xl);
         }
 
@@ -529,7 +529,7 @@
             width: 60px;
             height: 3px;
             background: var(--color-gold);
-            margin: var(--space-md) auto;
+            margin: var(--space-md) 0;
         }
 
         /* ========================================
@@ -541,7 +541,7 @@
 
         .gallery-filters {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: var(--space-xl);
             margin-bottom: var(--space-2xl);
             flex-wrap: wrap;
@@ -674,20 +674,20 @@
         }
 
         /* ========================================
-           BOOKING JOURNEY
+           BOOKING JOURNEY - LEFT ALIGNED
            ======================================== */
         .journey-section {
             background: var(--color-cream);
         }
 
         .journey-intro {
-            text-align: center;
+            text-align: left;
             max-width: 700px;
-            margin: 0 auto var(--space-xl);
+            margin-bottom: var(--space-xl);
         }
 
         .journey-intro p {
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .story-toggle {
@@ -697,7 +697,7 @@
             padding: 6px;
             display: inline-flex;
             gap: 6px;
-            margin: var(--space-lg) auto;
+            margin-bottom: var(--space-xl);
         }
 
         .toggle-pill {
@@ -737,31 +737,22 @@
         .timeline {
             position: relative;
             max-width: 900px;
-            margin: 0 auto;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
+            left: 30px;
             top: 0;
             bottom: 0;
             width: 3px;
             background: var(--color-gold);
-            transform: translateX(-50%);
         }
 
         .timeline-item {
             position: relative;
             margin-bottom: var(--space-lg);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-lg);
-            align-items: center;
-        }
-
-        .timeline-item:nth-child(even) {
-            direction: rtl;
+            padding-left: 80px;
         }
 
         .timeline-content {
@@ -775,13 +766,14 @@
         }
 
         .timeline-content:hover {
-            transform: translateY(-4px);
+            transform: translateY(-4px) translateX(8px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
             border-color: var(--color-gold);
         }
 
         .timeline-number {
             position: absolute;
+            left: -50px;
             top: var(--space-md);
             width: 32px;
             height: 32px;
@@ -794,14 +786,6 @@
             font-family: var(--font-display);
             font-size: 16px;
             font-weight: 700;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-number {
-            right: -16px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-number {
-            left: -16px;
         }
 
         .timeline-icon {
@@ -817,7 +801,7 @@
         }
 
         .timeline-desc {
-            font-size: 13px;
+            font-size: 14px;
             line-height: 1.6;
             color: #666;
         }
@@ -825,7 +809,6 @@
         .quick-journey {
             display: none;
             max-width: 900px;
-            margin: 0 auto;
         }
 
         .quick-journey.active {
@@ -848,7 +831,7 @@
         }
 
         .quick-card:hover {
-            transform: translateX(8px);
+            transform: translateX(12px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
             border-color: var(--color-gold);
         }
@@ -856,7 +839,7 @@
         .quick-card-number {
             font-family: var(--font-display);
             font-size: 48px;
-            font-weight: 700;
+            font-weight: 800;
             color: rgba(201, 162, 39, 0.2);
             line-height: 1;
             flex-shrink: 0;
@@ -892,17 +875,15 @@
 
         .timeline-cta {
             margin-top: var(--space-xl);
-            text-align: center;
-        }
-
-        .timeline-cta .btn {
-            width: 100%;
-            justify-content: center;
-            max-width: 400px;
         }
 
         .timeline-cta h3 {
             margin-bottom: var(--space-sm);
+            color: var(--color-primary);
+        }
+
+        .timeline-cta .btn {
+            display: inline-flex;
         }
 
         /* ========================================
@@ -918,9 +899,9 @@
         }
 
         .features-section p.section-intro {
-            text-align: center;
+            text-align: left;
             max-width: 700px;
-            margin: 0 auto var(--space-2xl);
+            margin: 0 0 var(--space-2xl) 0;
             color: #666;
         }
 
@@ -991,7 +972,7 @@
         .footer {
             background: var(--color-charcoal);
             color: white;
-            padding: var(--space-xl) var(--space-lg);
+            padding: var(--space-xl) var(--space-xl);
             text-align: center;
         }
 
@@ -1011,7 +992,7 @@
             left: 0;
             width: 100%;
             background: var(--color-primary);
-            padding: var(--space-md) var(--space-lg);
+            padding: var(--space-md) var(--space-xl);
             z-index: 998;
             box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
         }
@@ -1061,6 +1042,14 @@
         }
 
         @media (max-width: 768px) {
+            .nav {
+                padding: var(--space-lg) var(--space-md);
+            }
+
+            .nav.scrolled {
+                padding: var(--space-md) var(--space-md);
+            }
+
             .nav-menu {
                 display: none;
             }
@@ -1099,25 +1088,6 @@
                 display: flex;
             }
 
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline-item {
-                grid-template-columns: 1fr;
-                gap: var(--space-md);
-                padding-left: 50px;
-            }
-
-            .timeline-item:nth-child(even) {
-                direction: ltr;
-            }
-
-            .timeline-number {
-                left: -38px !important;
-                right: auto !important;
-            }
-
             .hero-features {
                 flex-direction: column;
                 align-items: center;
@@ -1136,7 +1106,7 @@
 
             .gallery-filters {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 gap: var(--space-md);
             }
 
@@ -1152,14 +1122,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .quick-card {
-                flex-direction: column;
-                text-align: center;
-            }
-
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-lg);
+            }
+
+            .section {
+                padding: var(--space-xl) var(--space-md);
             }
 
             body {
@@ -1168,10 +1137,6 @@
         }
 
         @media (max-width: 480px) {
-            .section {
-                padding: var(--space-xl) var(--space-md);
-            }
-
             .hero-content {
                 padding: var(--space-md);
                 padding-top: 60px;
@@ -1180,17 +1145,6 @@
 
             .hero-venue-name {
                 font-size: clamp(36px, 10vw, 56px);
-            }
-
-            .timeline-item {
-                padding-left: 45px;
-            }
-
-            .timeline-number {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-                left: -33px !important;
             }
 
             .feature-card {
@@ -1206,6 +1160,17 @@
             .stats-grid {
                 grid-template-columns: 1fr;
                 gap: var(--space-md);
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-number {
+                left: -30px;
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
             }
         }
     </style>
@@ -1298,7 +1263,7 @@
         </div>
     </section>
 
-    <!-- Stats Section - NEW! -->
+    <!-- Stats Section -->
     <section class="stats-section">
         <div class="stats-grid">
             <div class="stat-item">
@@ -1470,7 +1435,7 @@
         </div>
     </section>
 
-    <!-- Booking Journey -->
+    <!-- Booking Journey - LEFT ALIGNED -->
     <section id="journey" class="section journey-section">
         <div class="container">
             <div class="section-header">
@@ -1732,6 +1697,7 @@
             gsap.from(item, {
                 opacity: 0,
                 y: 40,
+                x: -20,
                 duration: 0.6,
                 scrollTrigger: {
                     trigger: item,
