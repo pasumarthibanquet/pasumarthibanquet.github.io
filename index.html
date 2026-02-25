@@ -3,248 +3,1349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pasumarthi Banquet Hall - Modern Events & Celebrations</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <title>Pasumarthi Banquet Hall - Where Celebrations Come Alive</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
+        /* ========================================
+           CSS VARIABLES - DESIGN TOKENS
+           ======================================== */
+        :root {
+            /* Primary Colors */
+            --color-primary: #8B1538;
+            --color-primary-dark: #6B0E2B;
+            --color-primary-light: #A61945;
+            
+            /* Gold Accents */
+            --color-gold: #D4AF37;
+            --color-gold-light: #E5C158;
+            --color-gold-dark: #C49A2A;
+            
+            /* Background Colors */
+            --color-cream: #F5E6D3;
+            --color-cream-dark: #EBD9C1;
+            --color-white-warm: #FDFBF7;
+            
+            /* Text Colors */
+            --color-text-primary: #2C1810;
+            --color-text-secondary: #5C4A3E;
+            --color-text-light: #F5E6D3;
+            
+            /* Typography */
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Lato', system-ui, -apple-system, sans-serif;
+            
+            /* Spacing */
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 15px;
+            --radius-lg: 20px;
+            --radius-pill: 50px;
+            
+            /* Shadows */
+            --shadow-sm: 0 4px 15px rgba(139, 21, 56, 0.1);
+            --shadow-md: 0 10px 30px rgba(139, 21, 56, 0.15);
+            --shadow-lg: 0 20px 50px rgba(139, 21, 56, 0.2);
+            
+            /* Transitions */
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========================================
+           RESET & BASE STYLES
+           ======================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            line-height: 1.6;
-            color: #333;
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            background: var(--color-cream);
+            overflow-x: hidden;
         }
 
-        .header {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Hall_header.jpg') center/cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--color-primary);
         }
 
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h3 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text-secondary);
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
         .nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            padding: 1.5rem;
-            background: rgba(255,255,255,0.95);
+            background: rgba(245, 230, 211, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all var(--transition-base);
+            padding: 1rem 0;
         }
 
         .nav.scrolled {
-            padding: 1rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(245, 230, 211, 0.98);
+            box-shadow: var(--shadow-sm);
+            padding: 0.75rem 0;
         }
 
-        .nav-links {
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        .nav-links a {
-            color: #333;
+        .nav-logo {
             text-decoration: none;
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.03em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--color-text-primary);
             font-weight: 500;
-            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
         }
 
-        .nav-links a:hover {
-            color: #ff4d6d;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: width var(--transition-base);
         }
 
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: var(--color-primary);
+            color: var(--color-gold);
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            transition: all var(--transition-base);
+        }
+
+        .nav-cta:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--color-primary);
+            transition: all var(--transition-base);
+            border-radius: 2px;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 24, 16, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-base);
+            z-index: 999;
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            background: var(--color-cream);
+            overflow: hidden;
+            padding: 8rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Decorative pattern overlay */
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 35px,
+                    rgba(212, 175, 55, 0.03) 35px,
+                    rgba(212, 175, 55, 0.03) 70px
+                );
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Left side - Content */
+        .hero-content {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--color-primary);
+            color: var(--color-gold);
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-style: italic;
+            border-radius: var(--radius-pill);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .title-line {
+            display: block;
+        }
+
+        .title-accent {
+            color: var(--color-gold-dark);
+            position: relative;
+        }
+
+        .title-accent::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--color-gold);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2.5rem;
+            font-family: var(--font-display);
+            font-style: italic;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+            color: var(--color-text-primary);
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-primary);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-base);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: var(--color-gold);
+            transform: translateY(-2px);
+        }
+
+        /* Right side - Image with decorative frame */
+        .hero-image-wrapper {
+            position: relative;
+            animation: fadeInRight 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-image-frame {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--color-gold);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(139, 21, 56, 0.1) 0%,
+                transparent 50%
+            );
+        }
+
+        /* Floating accent card */
+        .hero-accent-card {
+            position: absolute;
+            bottom: -20px;
+            left: -30px;
+            background: var(--color-white-warm);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: float 3s ease-in-out infinite;
+            border-left: 4px solid var(--color-gold);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .accent-icon {
+            font-size: 2.5rem;
+        }
+
+        .accent-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .accent-number {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .accent-label {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Decorative corner elements */
+        .corner-decor {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            pointer-events: none;
+        }
+
+        .corner-tl {
+            top: 0;
+            left: 0;
+            border-top: 3px solid var(--color-gold);
+            border-left: 3px solid var(--color-gold);
+        }
+
+        .corner-br {
+            bottom: 0;
+            right: 0;
+            border-bottom: 3px solid var(--color-gold);
+            border-right: 3px solid var(--color-gold);
+        }
+
+        /* ========================================
+           SECTIONS
+           ======================================== */
         .section {
-            padding: 5rem 2rem;
+            position: relative;
+            padding: var(--spacing-xl) 2rem;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--color-gold),
+                transparent
+            );
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        .gallery {
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Ornate divider */
+        .divider-ornate {
+            width: 100%;
+            max-width: 300px;
+            height: 2px;
+            margin: 2rem auto;
+            position: relative;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--color-gold-dark),
+                transparent
+            );
+        }
+
+        .divider-ornate::before,
+        .divider-ornate::after {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-gold);
+            font-size: 1.2rem;
+        }
+
+        .divider-ornate::before {
+            left: 50px;
+        }
+
+        .divider-ornate::after {
+            right: 50px;
+        }
+
+        /* ========================================
+           GALLERY SECTION
+           ======================================== */
+        .gallery-section {
+            background: var(--color-white-warm);
+        }
+
+        .gallery-masonry {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .gallery-item {
             position: relative;
+            border-radius: var(--radius-md);
             overflow: hidden;
-            border-radius: 10px;
-            aspect-ratio: 16/9;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .gallery-item-large {
+            grid-row: span 2;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform var(--transition-slow);
+            aspect-ratio: 4/3;
+            display: block;
+        }
+
+        .gallery-item-large img {
+            aspect-ratio: 3/4;
+        }
+
+        /* Overlay */
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(139, 21, 56, 0.95) 0%,
+                rgba(139, 21, 56, 0.7) 50%,
+                transparent 100%
+            );
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: all var(--transition-base);
+            transform: translateY(20px);
+        }
+
+        .gallery-overlay h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-overlay p {
+            color: var(--color-white-warm);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Hover effects */
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
         }
 
         .gallery-item:hover img {
             transform: scale(1.1);
         }
 
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           ABOUT SECTION
+           ======================================== */
+        .about-section {
+            background: linear-gradient(
+                135deg,
+                var(--color-cream-dark) 0%,
+                var(--color-cream) 100%
+            );
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        /* Feature highlights */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: var(--color-white-warm);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: all var(--transition-base);
+            border-top: 3px solid var(--color-gold);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ========================================
+           CONTACT SECTION
+           ======================================== */
+        .contact-section {
+            background: linear-gradient(
+                135deg,
+                var(--color-cream-dark) 0%,
+                var(--color-cream) 100%
+            );
+        }
+
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .contact-card {
-            background: white;
+            background: var(--color-white-warm);
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-left: 4px solid var(--color-gold);
         }
 
         .contact-card:hover {
             transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #ff4d6d;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
+        .contact-card-primary {
+            background: linear-gradient(
+                135deg,
+                var(--color-primary) 0%,
+                var(--color-primary-dark) 100%
+            );
+            border-left-color: var(--color-gold);
         }
 
-        .btn:hover {
-            background: #ff3859;
-            transform: translateY(-2px);
+        .contact-card-primary h3,
+        .contact-card-primary p {
+            color: var(--color-white-warm);
         }
 
-        h1, h2 {
+        .contact-card-primary .contact-link {
+            color: var(--color-gold);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            color: #ff4d6d;
+        .contact-card p {
+            line-height: 1.8;
+        }
+
+        .contact-link,
+        .contact-link-phone,
+        .contact-link-email {
+            display: inline-block;
+            color: var(--color-primary);
+            font-weight: 600;
+            transition: all var(--transition-base);
+        }
+
+        .contact-link:hover,
+        .contact-link-phone:hover,
+        .contact-link-email:hover {
+            color: var(--color-gold-dark);
+            transform: translateX(5px);
+        }
+
+        /* Map */
+        .contact-map {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            min-height: 400px;
+        }
+
+        .contact-map iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        /* CTA */
+        .contact-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--color-white-warm);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-cta h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-large {
+            padding: 1.25rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-icon {
+            margin-right: 0.5rem;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--color-primary-dark);
+            color: var(--color-white-warm);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--color-gold);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Custom scroll animations */
+        .animate-pending {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        [data-animate="fade-up"] {
+            transform: translateY(40px);
+        }
+
+        [data-animate="fade-down"] {
+            transform: translateY(-40px);
+        }
+
+        [data-animate="fade-left"] {
+            transform: translateX(40px);
+        }
+
+        [data-animate="fade-right"] {
+            transform: translateX(-40px);
+        }
+
+        [data-animate="scale-up"] {
+            transform: scale(0.9);
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+           ======================================== */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-image-wrapper {
+                order: -1;
+            }
+
+            .hero-accent-card {
+                bottom: -15px;
+                left: 15px;
+            }
+
+            .gallery-masonry {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item-large {
+                grid-row: span 1;
+            }
+
+            .gallery-item-large img {
+                aspect-ratio: 4/3;
+            }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
+            .nav-container {
+                padding: 0 1rem;
             }
 
-            h1 {
+            /* Mobile nav styles */
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--color-cream);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                padding: 2rem;
+                box-shadow: -10px 0 30px rgba(139, 21, 56, 0.2);
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-overlay.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .nav-cta {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Hero mobile */
+            .hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .hero-title {
                 font-size: 2.5rem;
             }
 
-            h2 {
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-outline {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Sections */
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            /* Contact mobile */
+            .contact-map {
+                order: -1;
+                min-height: 300px;
+            }
+
+            .contact-map iframe {
+                min-height: 300px;
+            }
+
+            .contact-cta {
+                padding: 2rem 1.5rem;
+            }
+
+            /* Features */
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
                 font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .hero-accent-card {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                margin-top: 1rem;
+            }
+
+            .corner-decor {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-text">Pasumarthi</span>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#contact" class="nav-cta">Book Now</a>
+            </div>
         </div>
     </nav>
 
-    <header id="home" class="header">
-        <div>
-            <h1 data-aos="fade-up">Pasumarthi Banquet Hall</h1>
-            <p data-aos="fade-up" data-aos-delay="200" style="font-size: 1.2rem; margin-bottom: 2rem;">
-                Where Memories Are Made Beautiful
-            </p>
-            <a href="#contact" class="btn" data-aos="fade-up" data-aos-delay="400">Book Your Event</a>
+    <!-- Mobile Nav Overlay -->
+    <div class="nav-overlay"></div>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <!-- Decorative pattern overlay -->
+        <div class="hero-pattern"></div>
+
+        <div class="hero-container">
+            <!-- Left side - Main headline -->
+            <div class="hero-content">
+                <div class="hero-badge">Where Celebrations Come Alive</div>
+                <h1 class="hero-title">
+                    <span class="title-line">Elegant Spaces</span>
+                    <span class="title-line title-accent">for Unforgettable</span>
+                    <span class="title-line">Celebrations</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Up to 500 guests • Full AV Setup • Catering Services
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn-primary">
+                        <span>📞</span>
+                        <span>Book Your Event</span>
+                    </a>
+                    <a href="#gallery" class="btn-outline">View Gallery</a>
+                </div>
+            </div>
+
+            <!-- Right side - Image with decorative frame -->
+            <div class="hero-image-wrapper">
+                <div class="hero-image-frame">
+                    <img src="Hall_header.jpg" alt="Pasumarthi Banquet Hall" class="hero-image">
+                    <div class="hero-image-overlay"></div>
+                </div>
+                <!-- Floating accent card -->
+                <div class="hero-accent-card">
+                    <div class="accent-icon">🎉</div>
+                    <div class="accent-text">
+                        <span class="accent-number">500+</span>
+                        <span class="accent-label">Happy Events</span>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- Decorative border elements -->
+        <div class="corner-decor corner-tl"></div>
+        <div class="corner-decor corner-br"></div>
     </header>
 
-    <section id="gallery" class="section">
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery-section">
         <div class="container">
-            <h2 data-aos="fade-up">Our Space</h2>
-            <div class="gallery">
-                <div class="gallery-item" data-aos="fade-up">
+            <div class="section-header" data-animate="fade-up">
+                <h2>Our Space</h2>
+                <p class="section-subtitle">A glimpse into our elegant venue</p>
+                <div class="divider-ornate"></div>
+            </div>
+
+            <div class="gallery-masonry">
+                <!-- Large featured image -->
+                <div class="gallery-item gallery-item-large" data-animate="fade-up">
                     <img src="Main_Hall.jpg" alt="Main Hall">
+                    <div class="gallery-overlay">
+                        <h3>Main Hall</h3>
+                        <p>Accommodates up to 500 guests in elegant comfort</p>
+                    </div>
                 </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="Setup.jpg" alt="Setup">
+
+                <!-- Standard images -->
+                <div class="gallery-item" data-animate="fade-up">
+                    <img src="Setup.jpg" alt="Event Setup">
+                    <div class="gallery-overlay">
+                        <h3>Event Setup</h3>
+                        <p>Beautifully decorated for any occasion</p>
+                    </div>
                 </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="Evening.jpg" alt="Evening Setup">
+
+                <div class="gallery-item" data-animate="fade-up">
+                    <img src="Evening.jpg" alt="Evening Ambience">
+                    <div class="gallery-overlay">
+                        <h3>Evening Ambience</h3>
+                        <p>Perfect lighting for memorable events</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="section" style="background: #f8f9fa;">
+    <!-- About Section -->
+    <section id="about" class="section about-section">
         <div class="container">
-            <h2 data-aos="fade-up">About Us</h2>
-            <p data-aos="fade-up" data-aos-delay="100">
-                Located in the heart of the city, Pasumarthi Banquet Hall is a modern venue perfect for birthdays, corporate events, 
-                and social gatherings. The AC banquet hall can accommodate up to 500 guests, making it an ideal venue for a variety 
-                of events. It is equipped with a full AV setup and offers catering services to suit your needs. The hall can be beautifully
-                decorated for all kinds of functions, ensuring a memorable experience. Ample parking space is available, including a double cellar,
-                and two lifts operate 24 hours for convenient access.
-            </p>
+            <div class="section-header" data-animate="fade-up">
+                <h2>About Us</h2>
+                <p class="section-subtitle">Creating memories that last a lifetime</p>
+                <div class="divider-ornate"></div>
+            </div>
+
+            <div class="about-content" data-animate="fade-up">
+                <p>
+                    Located in the heart of Khammam, Pasumarthi Banquet Hall is a premier venue perfect for weddings, 
+                    birthdays, corporate events, and social gatherings. Our AC banquet hall can accommodate up to 500 guests, 
+                    making it an ideal venue for a variety of celebrations.
+                </p>
+                <br>
+                <p>
+                    We are equipped with a full AV setup and offer premium catering services to suit your needs. 
+                    Our hall can be beautifully decorated for all kinds of functions, ensuring a memorable experience. 
+                    Ample parking space is available, including a double cellar, and two lifts operate 24 hours for convenient access.
+                </p>
+
+                <!-- Feature highlights -->
+                <div class="features-grid">
+                    <div class="feature-item" data-animate="scale-up">
+                        <div class="feature-icon">❄️</div>
+                        <h3>AC Banquet Hall</h3>
+                        <p>Climate-controlled comfort for your guests</p>
+                    </div>
+                    <div class="feature-item" data-animate="scale-up">
+                        <div class="feature-icon">🎬</div>
+                        <h3>Full AV Setup</h3>
+                        <p>Projector, sound system & lighting included</p>
+                    </div>
+                    <div class="feature-item" data-animate="scale-up">
+                        <div class="feature-icon">🍽️</div>
+                        <h3>Premium Catering</h3>
+                        <p>Delicious cuisine for every occasion</p>
+                    </div>
+                    <div class="feature-item" data-animate="scale-up">
+                        <div class="feature-icon">🚗</div>
+                        <h3>Ample Parking</h3>
+                        <p>Double cellar with 24-hour lift access</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="contact" class="section">
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
         <div class="container">
-            <h2 data-aos="fade-up">Get in Touch</h2>
+            <div class="section-header" data-animate="fade-up">
+                <h2>Plan Your Visit</h2>
+                <p class="section-subtitle">We'd love to show you around</p>
+                <div class="divider-ornate"></div>
+            </div>
+
             <div class="contact-grid">
-                <div class="contact-card" data-aos="fade-up">
-                    <h3>Location</h3>
-                    <p>
-                        <a href="https://www.google.com/maps?q=Avantara+B K Bazar Colony,Khammam,+507001" target="_blank" rel="noopener noreferrer">
-                            4th floor, Koppu Naresh Complex, Wyra Rd, above Avantara, opp. Babu rao compex, B K Bazar Colony <br> Khammam, Telangana 507001, India
+                <!-- Information cards -->
+                <div class="contact-info">
+                    <div class="contact-card contact-card-primary" data-animate="fade-up">
+                        <div class="contact-icon">📍</div>
+                        <h3>Location</h3>
+                        <p>
+                            4th floor, Koppu Naresh Complex,<br>
+                            Wyra Rd, above Avantara,<br>
+                            B K Bazar Colony, Khammam,<br>
+                            Telangana 507001, India
+                        </p>
+                        <a href="https://www.google.com/maps?q=Avantara+B+K+Bazar+Colony,Khammam,+507001"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="contact-link">
+                            Get Directions →
                         </a>
-                    </p>
+                    </div>
+
+                    <div class="contact-card" data-animate="fade-up">
+                        <div class="contact-icon">📞</div>
+                        <h3>Contact</h3>
+                        <p>
+                            <a href="tel:9208108108" class="contact-link-phone">(920) 810-8108</a><br>
+                            <a href="mailto:info@elegancehall.com" class="contact-link-email">info@elegancehall.com</a>
+                        </p>
+                    </div>
+
+                    <div class="contact-card" data-animate="fade-up">
+                        <div class="contact-icon">🕐</div>
+                        <h3>Hours</h3>
+                        <p>Monday - Sunday<br><strong>Open 24 Hours</strong></p>
+                    </div>
                 </div>
-                <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Contact</h3>
-                    <p>Phone: (920) 810-8108<br>Email: info@elegancehall.com</p>
+
+                <!-- Map -->
+                <div class="contact-map" data-animate="fade-right">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3832.589783473893!2d80.9386!3d17.2472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDE0JzQ5LjkiTiA4MMKwNTYnMTkuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Pasumarthi Banquet Hall Location">
+                    </iframe>
                 </div>
-                <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Hours</h3>
-                    <p>Monday - Sunday<br>Open 24 Hours</p>
-                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="contact-cta" data-animate="scale-up">
+                <h3>Ready to Book Your Event?</h3>
+                <a href="tel:9208108108" class="btn-primary btn-large">
+                    <span class="btn-icon">📞</span>
+                    Call Us Now
+                </a>
             </div>
         </div>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Pasumarthi Banquet Hall. All rights reserved. | Where Celebrations Come Alive</p>
+    </footer>
 
-        window.addEventListener('scroll', () => {
+    <!-- JavaScript -->
+    <script>
+        // ========================================
+        // Custom Scroll Animations
+        // ========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animation configuration
+            const animationConfig = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            // Create observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, animationConfig);
+
+            // Observe elements with data-animate attribute
+            document.querySelectorAll('[data-animate]').forEach(el => {
+                el.classList.add('animate-pending');
+                observer.observe(el);
+            });
+
+            // Navbar scroll effect
             const nav = document.querySelector('.nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.scrollY;
+
+                if (currentScroll > 100) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+
+                lastScroll = currentScroll;
+            });
+
+            // Mobile nav toggle
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const navOverlay = document.querySelector('.nav-overlay');
+
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+            });
+
+            navOverlay.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                navOverlay.classList.remove('active');
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                });
+            });
         });
     </script>
 </body>
